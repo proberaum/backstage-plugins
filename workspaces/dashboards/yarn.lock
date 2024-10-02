@@ -3381,6 +3381,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@backstage/dev-utils@npm:^1.1.0":
+  version: 1.1.1
+  resolution: "@backstage/dev-utils@npm:1.1.1"
+  dependencies:
+    "@backstage/app-defaults": "npm:^1.5.11"
+    "@backstage/catalog-model": "npm:^1.7.0"
+    "@backstage/core-app-api": "npm:^1.15.0"
+    "@backstage/core-components": "npm:^0.15.0"
+    "@backstage/core-plugin-api": "npm:^1.9.4"
+    "@backstage/integration-react": "npm:^1.1.32"
+    "@backstage/plugin-catalog-react": "npm:^1.13.1"
+    "@backstage/theme": "npm:^0.5.7"
+    "@material-ui/core": "npm:^4.12.2"
+    "@material-ui/icons": "npm:^4.9.1"
+    "@types/react": "npm:^16.13.1 || ^17.0.0 || ^18.0.0"
+    react-use: "npm:^17.2.4"
+  peerDependencies:
+    react: ^16.13.1 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.13.1 || ^17.0.0 || ^18.0.0
+    react-router-dom: 6.0.0-beta.0 || ^6.3.0
+  checksum: 10c0/3d6f53011755599ae5219d05eac44deddf346d4bea3344f00d2e67f68800b02c6c1b0f21ada774e4e7c42fddff6acea41be604b2687b5ea027037bdcb830e2aa
+  languageName: node
+  linkType: hard
+
 "@backstage/e2e-test-utils@npm:^0.1.1":
   version: 0.1.1
   resolution: "@backstage/e2e-test-utils@npm:0.1.1"
@@ -6608,6 +6632,31 @@ __metadata:
   resolution: "@internal/backstage-plugin-dashboards-common@workspace:plugins/dashboards-common"
   dependencies:
     "@backstage/cli": "npm:^0.27.1"
+  languageName: unknown
+  linkType: soft
+
+"@internal/backstage-plugin-dashboards@npm:^0.1.0, @internal/backstage-plugin-dashboards@workspace:plugins/dashboards":
+  version: 0.0.0-use.local
+  resolution: "@internal/backstage-plugin-dashboards@workspace:plugins/dashboards"
+  dependencies:
+    "@backstage/cli": "npm:^0.27.1"
+    "@backstage/core-app-api": "npm:^1.15.0"
+    "@backstage/core-components": "npm:^0.15.0"
+    "@backstage/core-plugin-api": "npm:^1.9.4"
+    "@backstage/dev-utils": "npm:^1.1.0"
+    "@backstage/test-utils": "npm:^1.6.0"
+    "@backstage/theme": "npm:^0.5.7"
+    "@material-ui/core": "npm:^4.9.13"
+    "@material-ui/icons": "npm:^4.9.1"
+    "@material-ui/lab": "npm:^4.0.0-alpha.61"
+    "@testing-library/jest-dom": "npm:^6.0.0"
+    "@testing-library/react": "npm:^14.0.0"
+    "@testing-library/user-event": "npm:^14.0.0"
+    msw: "npm:^1.0.0"
+    react: "npm:^16.13.1 || ^17.0.0 || ^18.0.0"
+    react-use: "npm:^17.2.4"
+  peerDependencies:
+    react: ^16.13.1 || ^17.0.0 || ^18.0.0
   languageName: unknown
   linkType: soft
 
@@ -13413,6 +13462,7 @@ __metadata:
     "@backstage/plugin-user-settings": "npm:^0.8.12"
     "@backstage/test-utils": "npm:^1.6.0"
     "@backstage/theme": "npm:^0.5.7"
+    "@internal/backstage-plugin-dashboards": "npm:^0.1.0"
     "@material-ui/core": "npm:^4.12.2"
     "@material-ui/icons": "npm:^4.9.1"
     "@playwright/test": "npm:^1.32.3"
@@ -27035,7 +27085,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^18.0.2":
+"react@npm:^16.13.1 || ^17.0.0 || ^18.0.0, react@npm:^18.0.2":
   version: 18.3.1
   resolution: "react@npm:18.3.1"
   dependencies:
