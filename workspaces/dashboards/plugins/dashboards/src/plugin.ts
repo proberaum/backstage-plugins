@@ -16,7 +16,7 @@ export const DashboardsPage = dashboardsPlugin.provide(
   createRoutableExtension({
     name: 'DashboardsPage',
     component: () =>
-      import('./components/ExampleComponent').then(m => m.ExampleComponent),
+      import('./components/DashboardsPage').then(m => m.DashboardsPage),
     mountPoint: rootRouteRef,
   }),
 );

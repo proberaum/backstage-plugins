@@ -1,4 +1,3 @@
-/***/
 /**
  * Common functionalities for the dashboards plugin.
  *
@@ -6,14 +5,9 @@
  */
 
 /**
- * In this package you might for example declare types that are common
- * between the frontend and backend plugin packages.
+ * todo
  */
-export type CommonType = {
-  field: string;
+export interface Dashboard {
+  name: string;
+  title?: string;
 };
-
-/**
- * Or you might declare some common constants.
- */
-export const COMMON_CONSTANT = 1;
