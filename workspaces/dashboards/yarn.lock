@@ -6603,6 +6603,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@internal/backstage-plugin-dashboards-common@workspace:plugins/dashboards-common":
+  version: 0.0.0-use.local
+  resolution: "@internal/backstage-plugin-dashboards-common@workspace:plugins/dashboards-common"
+  dependencies:
+    "@backstage/cli": "npm:^0.27.1"
+  languageName: unknown
+  linkType: soft
+
 "@ioredis/commands@npm:^1.1.1":
   version: 1.2.0
   resolution: "@ioredis/commands@npm:1.2.0"
