@@ -15,18 +15,26 @@ export const dashboardsPlugin = createBackendPlugin({
     env.registerInit({
       deps: {
         httpRouter: coreServices.httpRouter,
+        httpAuth: coreServices.httpAuth,
+        userInfo: coreServices.userInfo,
         logger: coreServices.logger,
         config: coreServices.rootConfig,
+        database: coreServices.database,
       },
       async init({
         httpRouter,
+        httpAuth,
+        userInfo,
         logger,
         config,
+        database,
       }) {
         httpRouter.use(
           await createRouter({
-            logger,
+            httpAuth,
+            userInfo,
             config,
+            logger,
           }),
         );
         httpRouter.addAuthPolicy({
