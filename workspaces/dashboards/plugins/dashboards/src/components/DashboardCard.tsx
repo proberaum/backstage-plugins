@@ -14,18 +14,23 @@ export const DashboardCard = () => {
     queryFn: () => dashboardsApi.getDashboard(name),
   });
 
+  let content: React.ReactNode
   if (isLoading) {
-    return <Progress />;
+    content = <Progress />;
   } else if (error) {
-    return <ResponseErrorPanel error={error} />;
-  }
-
-  return (
-    <InfoCard title={name}>
+    content = <ResponseErrorPanel error={error} />;
+  } else {
+    content = (
       <CodeSnippet
         language="json"
         text={JSON.stringify(data, null, 2)}
       />
+    )
+  }
+
+  return (
+    <InfoCard title={name}>
+      {content}      
     </InfoCard>
   );
 }
