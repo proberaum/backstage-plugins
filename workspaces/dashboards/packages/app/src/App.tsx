@@ -25,12 +25,7 @@ import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
 import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 
-import {
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
-
-import { DashboardsPage, DashboardPage } from '@internal/backstage-plugin-dashboards';
+import { DashboardRouter } from '@internal/backstage-plugin-dashboards';
 
 import { apis } from './apis';
 import { entityPage } from './components/catalog/EntityPage';
@@ -59,9 +54,6 @@ const app = createApp({
   },
 });
 
-// Create a client
-const queryClient = new QueryClient()
-
 const routes = (
   <FlatRoutes>
     <Route path="/" element={<Navigate to="catalog" />} />
@@ -87,8 +79,7 @@ const routes = (
     </Route>
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
-    <Route path="/dashboards" element={<DashboardsPage />} />
-    <Route path="/dashboards/:name" element={<DashboardPage />} />
+    <Route path="/dashboards" element={<DashboardRouter />} />
   </FlatRoutes>
 );
 
@@ -96,10 +87,8 @@ export default app.createRoot(
   <>
     <AlertDisplay />
     <OAuthRequestDialog />
-    <QueryClientProvider client={queryClient}>
-      <AppRouter>
-        <Root>{routes}</Root>
-      </AppRouter>
-    </QueryClientProvider>
-  </>,
+    <AppRouter>
+      <Root>{routes}</Root>
+    </AppRouter>
+  </>
 );

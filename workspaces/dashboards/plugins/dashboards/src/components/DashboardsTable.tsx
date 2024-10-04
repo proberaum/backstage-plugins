@@ -5,6 +5,18 @@ import { useQuery } from '@tanstack/react-query'
 import { dashboardsApiRef } from '../api/DashboardsApi';
 import { Dashboard } from '../../../dashboards-common/src';
 
+const columns: TableColumn<Dashboard>[] = [
+  {
+    title: 'Name',
+    field: 'name',
+    render: (row) => <Link to={row.name}>{row.name}</Link>,
+  },
+  {
+    title: 'Title',
+    field: 'title',
+  },
+];
+
 export const DashboardsTable = () => {
   const dashboardsApi = useApi(dashboardsApiRef);
 
@@ -12,18 +24,6 @@ export const DashboardsTable = () => {
     queryKey: ['dashboards'],
     queryFn: () => dashboardsApi.getDashboards(),
   });
-
-  const columns: TableColumn<Dashboard>[] = [
-    {
-      title: 'Name',
-      field: 'name',
-      render: (row) => <Link to={row.name}>{row.name}</Link>,
-    },
-    {
-      title: 'Title',
-      field: 'title',
-    },
-  ];
 
   if (error) {
     return <ResponseErrorPanel error={error} />;

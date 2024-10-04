@@ -1,1 +1,6 @@
-export { dashboardsPlugin, DashboardsPage, DashboardPage } from './plugin';
+export {
+  dashboardsPlugin,
+  DashboardsPage,
+  // DashboardPage,
+  DashboardRouter,
+} from './plugin';
