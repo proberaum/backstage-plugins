@@ -21,11 +21,6 @@ import {
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 import { UserSettingsPage } from '@backstage/plugin-user-settings';
-import { apis } from './apis';
-import { entityPage } from './components/catalog/EntityPage';
-import { searchPage } from './components/search/SearchPage';
-import { Root } from './components/Root';
-
 import {
   AlertDisplay,
   OAuthRequestDialog,
@@ -36,7 +31,18 @@ import { AppRouter, FlatRoutes } from '@backstage/core-app-api';
 import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
 import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
+
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+
 import { DashboardsPage, DashboardPage } from '@internal/backstage-plugin-dashboards';
+
+import { apis } from './apis';
+import { entityPage } from './components/catalog/EntityPage';
+import { searchPage } from './components/search/SearchPage';
+import { Root } from './components/Root';
 
 const app = createApp({
   apis,
@@ -61,6 +67,9 @@ const app = createApp({
     SignInPage: props => <SignInPage {...props} auto providers={['guest']} />,
   },
 });
+
+// Create a client
+const queryClient = new QueryClient()
 
 const routes = (
   <FlatRoutes>
@@ -105,8 +114,10 @@ export default app.createRoot(
   <>
     <AlertDisplay />
     <OAuthRequestDialog />
-    <AppRouter>
-      <Root>{routes}</Root>
-    </AppRouter>
+    <QueryClientProvider client={queryClient}>
+      <AppRouter>
+        <Root>{routes}</Root>
+      </AppRouter>
+    </QueryClientProvider>
   </>,
 );

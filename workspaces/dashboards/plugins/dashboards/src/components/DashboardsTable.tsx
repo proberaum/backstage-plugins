@@ -1,14 +1,17 @@
 import React from 'react';
 import { Table, TableColumn, ResponseErrorPanel, Link } from '@backstage/core-components';
 import { useApi } from '@backstage/core-plugin-api';
-import useAsync from 'react-use/lib/useAsync';
+import { useQuery } from '@tanstack/react-query'
 import { dashboardsApiRef } from '../api/DashboardsApi';
 import { Dashboard } from '../../../dashboards-common/src';
 
 export const DashboardsTable = () => {
   const dashboardsApi = useApi(dashboardsApiRef);
 
-  const { value, loading, error } = useAsync(() => dashboardsApi.getDashboards(), []);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['dashboards'],
+    queryFn: () => dashboardsApi.getDashboards(),
+  });
 
   const columns: TableColumn<Dashboard>[] = [
     {
@@ -31,8 +34,8 @@ export const DashboardsTable = () => {
       title="Dashboards"
       options={{ search: false, paging: false }}
       columns={columns}
-      isLoading={loading}
-      data={value || []}
+      isLoading={isLoading}
+      data={data || []}
     />
   );
 }
