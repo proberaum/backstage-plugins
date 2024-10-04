@@ -36,7 +36,7 @@ import { AppRouter, FlatRoutes } from '@backstage/core-app-api';
 import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
 import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
-import { DashboardsPage } from '@internal/backstage-plugin-dashboards';
+import { DashboardsPage, DashboardPage } from '@internal/backstage-plugin-dashboards';
 
 const app = createApp({
   apis,
@@ -97,6 +97,7 @@ const routes = (
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
     <Route path="/dashboards" element={<DashboardsPage />} />
+    <Route path="/dashboards/:name" element={<DashboardPage />} />
   </FlatRoutes>
 );
 

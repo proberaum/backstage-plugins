@@ -17,12 +17,20 @@ export class DashboardsClient implements DashboardsApi {
     this.fetchApi = deps.fetchApi;
   }
 
-  async getDashboards(): Promise<Dashboard[]> {
+  private async get(path: string): Promise<any> {
     const baseUrl = await this.discoveryApi.getBaseUrl('dashboards');
-    const response = await this.fetchApi.fetch(`${baseUrl}/dashboards`);
+    const response = await this.fetchApi.fetch(`${baseUrl}/${path}`);
     if (!response.ok) {
       throw await ResponseError.fromResponse(response);
     }
     return response.json();
+  }
+
+  async getDashboards(): Promise<Dashboard[]> {
+    return this.get('dashboards');
+  }
+
+  async getDashboard(name: string): Promise<Dashboard> {
+    return this.get(`dashboards/${name}`);
   }
 }

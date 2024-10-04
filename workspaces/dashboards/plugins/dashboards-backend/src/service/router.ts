@@ -11,6 +11,10 @@ export interface RouterOptions {
   logger: LoggerService;
 }
 
+const sleep = (timeout: number) => new Promise((resolve) => {
+  setTimeout(() => resolve(null), timeout);
+});
+
 export async function createRouter(options: RouterOptions): Promise<express.Router> {
   const { httpAuth, userInfo, config, logger } = options;
 
@@ -18,6 +22,8 @@ export async function createRouter(options: RouterOptions): Promise<express.Rout
   router.use(express.json());
 
   router.get('/dashboards', async (req, res) => {
+    await sleep(1000);
+
     const credentials = await httpAuth.credentials(req, {
       // This rejects request from non-users. Only use this if your plugin needs to access the
       // user identity, most of the time it's enough to just call `httpAuth.credentials(req)`
@@ -46,6 +52,25 @@ export async function createRouter(options: RouterOptions): Promise<express.Rout
     ];
 
     res.json(dashboards);
+  });
+
+  router.get('/dashboards/:name', async (req, res) => {
+    await sleep(1000);
+
+    const credentials = await httpAuth.credentials(req, {
+      // This rejects request from non-users. Only use this if your plugin needs to access the
+      // user identity, most of the time it's enough to just call `httpAuth.credentials(req)`
+      allow: ['user'],
+    });
+
+    const user = await userInfo.getUserInfo(credentials);
+
+    const dashboard: Dashboard = {
+      name: 'current-user',
+      title: user.userEntityRef,
+    };
+
+    res.json(dashboard);
   });
 
   router.get('/health', (_, response) => {

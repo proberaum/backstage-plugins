@@ -35,3 +35,12 @@ export const DashboardsPage = dashboardsPlugin.provide(
     mountPoint: rootRouteRef,
   }),
 );
+
+export const DashboardPage = dashboardsPlugin.provide(
+  createRoutableExtension({
+    name: 'DashboardPage',
+    component: () =>
+      import('./components/DashboardPage').then(m => m.DashboardPage),
+    mountPoint: rootRouteRef,
+  }),
+);

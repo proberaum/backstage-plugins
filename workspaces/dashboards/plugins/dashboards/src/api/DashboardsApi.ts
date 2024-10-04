@@ -3,6 +3,7 @@ import { Dashboard } from "../../../dashboards-common/src";
 
 export interface DashboardsApi {
   getDashboards(): Promise<Dashboard[]>
+  getDashboard(name: string): Promise<Dashboard>
 }
 
 /** @public */
