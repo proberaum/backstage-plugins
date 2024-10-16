@@ -17,7 +17,7 @@ export const Router = () => {
     <QueryClientProvider client={queryClient}>
       <Routes>
         <Route
-          path="/*"
+          path="/"
           element={<DashboardsPage />}
         />
         <Route

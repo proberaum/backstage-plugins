@@ -6,7 +6,7 @@ import {
   fetchApiRef,
 } from '@backstage/core-plugin-api';
 
-import { dashboardsListRouteRef, dashboardDetailRouteRef } from './routes';
+import { dashboardsRouteRef } from './routes';
 import { dashboardsApiRef } from './api/DashboardsApi';
 import { DashboardsClient } from './api/DashboardsClient';
 
@@ -23,19 +23,18 @@ export const dashboardsPlugin = createPlugin({
     }),
   ],
   routes: {
-    dashboardsListRouteRef,
-    dashboardDetailRouteRef,
+    dashboardsRouteRef,
   },
 });
 
-export const DashboardsPage = dashboardsPlugin.provide(
-  createRoutableExtension({
-    name: 'DashboardsPage',
-    component: () =>
-      import('./components/DashboardsPage').then(m => m.DashboardsPage),
-    mountPoint: dashboardsListRouteRef,
-  }),
-);
+// export const DashboardsPage = dashboardsPlugin.provide(
+//   createRoutableExtension({
+//     name: 'DashboardsPage',
+//     component: () =>
+//       import('./components/DashboardsPage').then(m => m.DashboardsPage),
+//     mountPoint: dashboardsListRouteRef,
+//   }),
+// );
 
 // export const DashboardPage = dashboardsPlugin.provide(
 //   createRoutableExtension({
@@ -51,6 +50,6 @@ export const DashboardRouter = dashboardsPlugin.provide(
     name: 'DashboardsPage',
     component: () =>
       import('./components/Router').then(m => m.Router),
-    mountPoint: dashboardsListRouteRef,
+    mountPoint: dashboardsRouteRef,
   }),
 );

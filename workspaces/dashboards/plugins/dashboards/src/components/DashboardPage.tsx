@@ -5,12 +5,12 @@ import {
   HeaderLabel,
   HeaderActionMenu,
   HeaderActionMenuItem,
-  Content,
-  ContentHeader,
-  SupportButton,
   TabbedLayout,
   FavoriteToggle,
+  Link,
 } from '@backstage/core-components';
+import Tab from '@material-ui/core/Tab'
+import AddIcon from '@material-ui/icons/Add';
 import { DashboardCard } from './DashboardCard';
 import { DashboardGrid } from './DashboardGrid';
 
@@ -19,6 +19,14 @@ interface Label {
   label: string;
   value: string;
 }
+
+const AddIconTab = (props: any) => (
+  <Tab
+    icon={<AddIcon />}
+    component={Link}
+    {...props}
+  />
+);
 
 export const DashboardPage = () => {
   const [isFavorite, setIsFavorite] = React.useState(true);
@@ -79,13 +87,16 @@ export const DashboardPage = () => {
       </Header>
 
       <TabbedLayout>
-        <TabbedLayout.Route path="" title="Example tab">
-
-          <>
-            <DashboardCard />
-            <DashboardGrid />
-          </>
-
+        <TabbedLayout.Route path="/" title="Card">
+          <DashboardCard />
+        </TabbedLayout.Route>
+        <TabbedLayout.Route path="/grid" title="Grid">
+          <DashboardGrid />
+        </TabbedLayout.Route>
+        <TabbedLayout.Route path="/add" title="Add" tabProps={{
+          component: AddIconTab,
+        }}>
+          <div>add</div>
         </TabbedLayout.Route>
       </TabbedLayout>
 
