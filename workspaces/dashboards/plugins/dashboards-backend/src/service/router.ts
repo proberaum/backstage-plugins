@@ -40,14 +40,23 @@ export async function createRouter(options: RouterOptions): Promise<express.Rout
       {
         name: 'test-1',
         title: 'Test 1',
+        description: 'asd asd asd as\nasd asd asd as\nasd asd asd as',
+        owner: 'guests',
+        tags: ['tag1', 'tag2', 'tag3'],
       },
       {
         name: 'test-2',
         title: 'Test 2',
+        description: 'asd asd asd as',
+        owner: 'guests',
+        tags: ['tag1', 'tag2', 'tag3'],
       },
       {
         name: 'test-3',
         title: 'Test 3',
+        description: 'asd asd asd as',
+        owner: 'guests',
+        tags: ['tag1', 'tag2', 'tag3'],
       },
     ];
 
