@@ -25,6 +25,7 @@
   "dependencies": {
     "@backstage/backend-defaults": "^0.5.0",
     "@backstage/backend-plugin-api": "^1.0.0",
+    "@internal/backstage-plugin-dashboards-common": "workspace:^",
     "express": "^4.17.1",
     "express-promise-router": "^4.1.0",
     "node-fetch": "^2.6.7"

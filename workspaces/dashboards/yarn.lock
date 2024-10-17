@@ -6485,6 +6485,7 @@ __metadata:
     "@backstage/cli": "npm:^0.27.1"
     "@backstage/plugin-auth-backend": "npm:^0.23.0"
     "@backstage/plugin-auth-backend-module-guest-provider": "npm:^0.2.0"
+    "@internal/backstage-plugin-dashboards-common": "workspace:^"
     "@types/express": "npm:*"
     "@types/supertest": "npm:^2.0.12"
     express: "npm:^4.17.1"
@@ -6495,7 +6496,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@internal/backstage-plugin-dashboards-common@workspace:plugins/dashboards-common":
+"@internal/backstage-plugin-dashboards-common@workspace:^, @internal/backstage-plugin-dashboards-common@workspace:plugins/dashboards-common":
   version: 0.0.0-use.local
   resolution: "@internal/backstage-plugin-dashboards-common@workspace:plugins/dashboards-common"
   dependencies:
@@ -6514,6 +6515,9 @@ __metadata:
     "@backstage/dev-utils": "npm:^1.1.0"
     "@backstage/test-utils": "npm:^1.6.0"
     "@backstage/theme": "npm:^0.5.7"
+    "@internal/backstage-plugin-dashboards-common": "workspace:^"
+    "@material-ui/core": "npm:^4.12.4"
+    "@material-ui/icons": "npm:^4.11.3"
     "@tanstack/react-query": "npm:^5.59.0"
     "@testing-library/jest-dom": "npm:^6.0.0"
     "@testing-library/react": "npm:^14.0.0"
@@ -6525,6 +6529,7 @@ __metadata:
     react-use: "npm:^17.2.4"
   peerDependencies:
     react: ^17.0.0 || ^18.0.0
+    react-router-dom: ^6
   languageName: unknown
   linkType: soft
 

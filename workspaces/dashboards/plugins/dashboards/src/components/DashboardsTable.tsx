@@ -4,7 +4,7 @@ import { useApi } from '@backstage/core-plugin-api';
 import Chip from '@material-ui/core/Chip';
 import { useQuery } from '@tanstack/react-query'
 import { dashboardsApiRef } from '../api/DashboardsApi';
-import { Dashboard } from '../../../dashboards-common/src';
+import type { Dashboard } from '@internal/backstage-plugin-dashboards-common';
 
 const columns: TableColumn<Dashboard>[] = [
   {
@@ -35,9 +35,9 @@ const columns: TableColumn<Dashboard>[] = [
   {
     title: 'Tags',
     field: 'tags',
-    render: ({ tags }) => (
+    render: (row) => (
       <>
-        {tags && tags.map(t => (
+        {row.tags?.map(t => (
           <Chip
             key={t}
             label={t}

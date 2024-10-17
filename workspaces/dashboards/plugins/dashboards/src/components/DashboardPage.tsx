@@ -9,7 +9,7 @@ import {
   FavoriteToggle,
   Link,
 } from '@backstage/core-components';
-import Tab from '@material-ui/core/Tab'
+import Tab from '@material-ui/core/Tab';
 import AddIcon from '@material-ui/icons/Add';
 import { DashboardCard } from './DashboardCard';
 import { DashboardGrid } from './DashboardGrid';
@@ -72,7 +72,7 @@ export const DashboardPage = () => {
 
   return (
     <Page themeId="dashboards">
-      <Header type="Dashboard" title={titleComponent}>
+      <Header type="Dashboard" title={titleComponent} pageTitleOverride={title}>
         {headerLabels.map((headerLabel) => (
           <HeaderLabel
             key={headerLabel.id}
