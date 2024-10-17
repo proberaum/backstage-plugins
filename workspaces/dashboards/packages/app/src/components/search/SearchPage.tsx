@@ -1,5 +1,5 @@
 import React from 'react';
-import { Theme, Grid, Paper } from '@mui/material';
+import { Grid, Paper } from '@mui/material';
 
 import makeStyles from '@mui/styles/makeStyles';
 
@@ -26,17 +26,14 @@ import {
 } from '@backstage/core-components';
 import { useApi } from '@backstage/core-plugin-api';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  bar: {
-    padding: theme.spacing(1, 0),
-  },
+const useStyles = makeStyles(() => ({
   filters: {
-    padding: theme.spacing(2),
-    marginTop: theme.spacing(2),
+    padding: '16px',
+    marginTop: '16px',
   },
   filter: {
     '& + &': {
-      marginTop: theme.spacing(2.5),
+      marginTop: '20px',
     },
   },
 }));
@@ -52,9 +49,7 @@ const SearchPage = () => {
       <Content>
         <Grid container direction="row">
           <Grid item xs={12}>
-            <Paper className={classes.bar}>
-              <SearchBar />
-            </Paper>
+            <SearchBar />
           </Grid>
           <Grid item xs={3}>
             <SearchType.Accordion
