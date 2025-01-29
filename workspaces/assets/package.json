@@ -1,6 +1,7 @@
 {
   "name": "root",
-  "version": "1.0.0",
+  "description": "An asset/inventory plugin that allows you to save physical items and their locations.",
+  "version": "0.0.0",
   "private": true,
   "engines": {
     "node": "20 || 22"

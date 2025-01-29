@@ -3,10 +3,10 @@ kind: Component
 metadata:
   name: proberaum-assets
   title: Assets Plugin for Backstage
-  description: An asset / inventory system based on Backstage
+  description: An asset/inventory plugin that allows you to save physical items and their locations.
   annotations:
     github.com/project-slug: proberaum/assets
-    # backstage.io/techdocs-ref: dir:.
+    backstage.io/techdocs-ref: dir:.
 spec:
   type: backstage-plugin
   lifecycle: experimental

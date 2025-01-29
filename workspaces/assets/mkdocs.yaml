@@ -1,0 +1,12 @@
+site_name: Assets Plugin for Backstage
+site_description: An asset/inventory plugin that allows you to save physical items and their locations.
+repo_url: https://github.com/proberaum/assets
+edit_uri: edit/main/docs
+
+plugins:
+  - techdocs-core
+
+nav:
+  - Goal: 'index.md'
+  - Items: 'items.md'
+  - Locations: 'locations.md'
