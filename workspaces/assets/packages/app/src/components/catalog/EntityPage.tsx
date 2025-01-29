@@ -1,14 +1,6 @@
 import React from 'react';
 import { Button, Grid } from '@material-ui/core';
 import {
-  EntityApiDefinitionCard,
-  EntityConsumedApisCard,
-  EntityConsumingComponentsCard,
-  EntityHasApisCard,
-  EntityProvidedApisCard,
-  EntityProvidingComponentsCard,
-} from '@backstage/plugin-api-docs';
-import {
   EntityAboutCard,
   EntityDependsOnComponentsCard,
   EntityDependsOnResourcesCard,
@@ -53,11 +45,6 @@ import {
 
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
-
-import {
-  EntityKubernetesContent,
-  isKubernetesAvailable,
-} from '@backstage/plugin-kubernetes';
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -155,25 +142,6 @@ const serviceEntityPage = (
       {cicdContent}
     </EntityLayout.Route>
 
-    <EntityLayout.Route
-      path="/kubernetes"
-      title="Kubernetes"
-      if={isKubernetesAvailable}
-    >
-      <EntityKubernetesContent />
-    </EntityLayout.Route>
-
-    <EntityLayout.Route path="/api" title="API">
-      <Grid container spacing={3} alignItems="stretch">
-        <Grid item md={6}>
-          <EntityProvidedApisCard />
-        </Grid>
-        <Grid item md={6}>
-          <EntityConsumedApisCard />
-        </Grid>
-      </Grid>
-    </EntityLayout.Route>
-
     <EntityLayout.Route path="/dependencies" title="Dependencies">
       <Grid container spacing={3} alignItems="stretch">
         <Grid item md={6}>
@@ -199,14 +167,6 @@ const websiteEntityPage = (
 
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
       {cicdContent}
-    </EntityLayout.Route>
-
-    <EntityLayout.Route
-      path="/kubernetes"
-      title="Kubernetes"
-      if={isKubernetesAvailable}
-    >
-      <EntityKubernetesContent />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/dependencies" title="Dependencies">
@@ -257,41 +217,6 @@ const componentPage = (
 
     <EntitySwitch.Case>{defaultEntityPage}</EntitySwitch.Case>
   </EntitySwitch>
-);
-
-const apiPage = (
-  <EntityLayout>
-    <EntityLayout.Route path="/" title="Overview">
-      <Grid container spacing={3}>
-        {entityWarningContent}
-        <Grid item md={6}>
-          <EntityAboutCard />
-        </Grid>
-        <Grid item md={6} xs={12}>
-          <EntityCatalogGraphCard variant="gridItem" height={400} />
-        </Grid>
-        <Grid item md={4} xs={12}>
-          <EntityLinksCard />
-        </Grid>
-        <Grid container item md={12}>
-          <Grid item md={6}>
-            <EntityProvidingComponentsCard />
-          </Grid>
-          <Grid item md={6}>
-            <EntityConsumingComponentsCard />
-          </Grid>
-        </Grid>
-      </Grid>
-    </EntityLayout.Route>
-
-    <EntityLayout.Route path="/definition" title="Definition">
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <EntityApiDefinitionCard />
-        </Grid>
-      </Grid>
-    </EntityLayout.Route>
-  </EntityLayout>
 );
 
 const userPage = (
@@ -350,9 +275,6 @@ const systemPage = (
           <EntityHasComponentsCard variant="gridItem" />
         </Grid>
         <Grid item md={6}>
-          <EntityHasApisCard variant="gridItem" />
-        </Grid>
-        <Grid item md={6}>
           <EntityHasResourcesCard variant="gridItem" />
         </Grid>
       </Grid>
@@ -401,7 +323,6 @@ const domainPage = (
 export const entityPage = (
   <EntitySwitch>
     <EntitySwitch.Case if={isKind('component')} children={componentPage} />
-    <EntitySwitch.Case if={isKind('api')} children={apiPage} />
     <EntitySwitch.Case if={isKind('group')} children={groupPage} />
     <EntitySwitch.Case if={isKind('user')} children={userPage} />
     <EntitySwitch.Case if={isKind('system')} children={systemPage} />

@@ -3,7 +3,7 @@ app:
   baseUrl: http://localhost:3000
 
 organization:
-  name: My Company
+  name: Assets
 
 backend:
   # Used for enabling authentication, secret is shared by all backend plugins
@@ -30,7 +30,6 @@ backend:
   database:
     client: better-sqlite3
     connection: ':memory:'
-  # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
 
 integrations:
   github:
@@ -42,14 +41,6 @@ integrations:
     # - host: ghe.example.net
     #   apiBaseUrl: https://ghe.example.net/api/v3
     #   token: ${GHE_TOKEN}
-
-proxy:
-  ### Example for how to add a proxy endpoint for the frontend.
-  ### A typical reason to do this is to handle HTTPS and CORS for internal services.
-  # endpoints:
-  #   '/test':
-  #     target: 'https://example.com'
-  #     changeOrigin: true
 
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration
 # Note: After experimenting with basic setup, use CI/CD to generate docs
@@ -68,9 +59,6 @@ auth:
     # See https://backstage.io/docs/auth/guest/provider
     guest: {}
 
-scaffolder:
-  # see https://backstage.io/docs/features/software-templates/configuration for software template options
-
 catalog:
   import:
     entityFilename: catalog-info.yaml
@@ -81,12 +69,6 @@ catalog:
     # Local example data, file locations are relative to the backend process, typically `packages/backend`
     - type: file
       target: ../../examples/entities.yaml
-
-    # Local example template
-    - type: file
-      target: ../../examples/template/template.yaml
-      rules:
-        - allow: [Template]
 
     # Local example organizational data
     - type: file
@@ -103,9 +85,6 @@ catalog:
     #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme-corp.yaml
     #   rules:
     #     - allow: [User, Group]
-
-kubernetes:
-  # see https://backstage.io/docs/features/kubernetes/configuration for kubernetes configuration options
 
 # see https://backstage.io/docs/permissions/getting-started for more on the permission framework
 permission:
