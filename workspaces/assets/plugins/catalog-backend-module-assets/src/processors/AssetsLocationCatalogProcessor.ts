@@ -3,8 +3,8 @@ import {
   Entity,
   getCompoundEntityRef,
   parseEntityRef,
-  RELATION_HAS_PART,
-  RELATION_PART_OF,
+  RELATION_CHILD_OF,
+  RELATION_PARENT_OF,
 } from '@backstage/catalog-model';
 import { LocationSpec } from '@backstage/plugin-catalog-common/index';
 import {
@@ -18,18 +18,26 @@ interface Options {
   config?: Config;
 }
 
-export class AssetsItemCatalogProcessor implements CatalogProcessor {
+export class AssetsLocationCatalogProcessor implements CatalogProcessor {
   private readonly kinds: string[];
 
-  getProcessorName(): string {
-    return 'AssetsItemCatalogProcessor';
+  constructor({ config }: Options) {
+    this.kinds = config?.getOptionalStringArray('kinds.locations') ?? [
+      'Shelf',
+      'Room',
+      'Floor',
+      'Building',
+      'Campus',
+    ];
+    if (this.kinds.some(kind => kind.toLowerCase() === 'location')) {
+      throw new Error(
+        'The assets plugin forbids using the kind "Location" due the high-risk of misconfiguration. A Backstage Location might allow users to import other resources into the catalog. We recommend to use the predefined or a more specific kind instead.',
+      );
+    }
   }
 
-  constructor({ config }: Options) {
-    this.kinds = config?.getOptionalStringArray('kinds.items') ?? [
-      'Item',
-      'Container',
-    ];
+  getProcessorName(): string {
+    return 'AssetsLocationCatalogProcessor';
   }
 
   async validateEntityKind(entity: Entity): Promise<boolean> {
@@ -50,22 +58,22 @@ export class AssetsItemCatalogProcessor implements CatalogProcessor {
       entity.apiVersion === 'assets.backstage.io/v1alpha1' &&
       this.kinds.includes(entity.kind)
     ) {
-      const location = entity.spec?.location as string;
-      if (location) {
+      const parent = entity.spec?.parent as string;
+      if (parent) {
         const sourceRef = getCompoundEntityRef(entity);
-        const targetRef = parseEntityRef(location, {
+        const targetRef = parseEntityRef(parent, {
           defaultNamespace: sourceRef.namespace,
         });
         emit(
           processingResult.relation({
-            type: RELATION_PART_OF,
+            type: RELATION_CHILD_OF,
             source: sourceRef,
             target: targetRef,
           }),
         );
         emit(
           processingResult.relation({
-            type: RELATION_HAS_PART,
+            type: RELATION_PARENT_OF,
             source: targetRef,
             target: sourceRef,
           }),
