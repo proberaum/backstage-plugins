@@ -1,10 +1,5 @@
-# [Backstage](https://backstage.io)
+# 📚 Assets Plugin for Backstage
 
-This is your newly scaffolded Backstage App, Good Luck!
+An asset / inventory system based on Backstage
 
-To start the app, run:
-
-```sh
-yarn install
-yarn dev
-```
+Status: 🧪 experimental
