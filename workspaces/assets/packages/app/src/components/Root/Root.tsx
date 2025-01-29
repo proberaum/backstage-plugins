@@ -1,9 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { makeStyles } from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
-import LibraryBooks from '@material-ui/icons/LibraryBooks';
-import LogoFull from './LogoFull';
-import LogoIcon from './LogoIcon';
+
 import {
   Settings as SidebarSettings,
   UserSettingsSignInAvatar,
@@ -21,10 +17,20 @@ import {
   useSidebarOpenState,
   Link,
 } from '@backstage/core-components';
+import { MyGroupsSidebarItem } from '@backstage/plugin-org';
+
+import { makeStyles } from '@material-ui/core';
+
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import { MyGroupsSidebarItem } from '@backstage/plugin-org';
+
+import AssetsIcon from '@material-ui/icons/Assignment';
+import CatalogIcon from '@material-ui/icons/Dashboard';
 import GroupIcon from '@material-ui/icons/People';
+import DocsIcon from '@material-ui/icons/LibraryBooks';
+
+import LogoFull from './LogoFull';
+import LogoIcon from './LogoIcon';
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -64,13 +70,14 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
       <SidebarDivider />
       <SidebarGroup label="Menu" icon={<MenuIcon />}>
         {/* Global nav, not org-specific */}
-        <SidebarItem icon={HomeIcon} to="catalog" text="Home" />
+        <SidebarItem icon={AssetsIcon} to="assets" text="Assets" />
+        <SidebarItem icon={CatalogIcon} to="catalog" text="Catalog" />
         <MyGroupsSidebarItem
           singularTitle="My Group"
           pluralTitle="My Groups"
           icon={GroupIcon}
         />
-        <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
+        <SidebarItem icon={DocsIcon} to="docs" text="Docs" />
         {/* End global nav */}
         <SidebarDivider />
         <SidebarScrollWrapper>

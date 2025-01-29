@@ -34,6 +34,8 @@ import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
 import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 
+import { AssetsPage } from '@proberaum/backstage-plugin-assets';
+
 const app = createApp({
   apis,
   bindRoutes({ bind }) {
@@ -51,7 +53,9 @@ const app = createApp({
 
 const routes = (
   <FlatRoutes>
-    <Route path="/" element={<Navigate to="catalog" />} />
+    <Route path="/" element={<Navigate to="assets" />} />
+    <Route path="/assets" element={<AssetsPage />} />
+
     <Route path="/catalog" element={<CatalogIndexPage />} />
     <Route
       path="/catalog/:namespace/:kind/:name"

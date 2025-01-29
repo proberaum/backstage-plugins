@@ -35,6 +35,7 @@
     "@backstage/plugin-search-backend-module-techdocs": "^0.3.5",
     "@backstage/plugin-search-backend-node": "^1.3.7",
     "@backstage/plugin-techdocs-backend": "^1.11.5",
+    "@proberaum/backstage-plugin-assets-backend": "workspace:^",
     "@proberaum/backstage-plugin-catalog-backend-module-assets": "workspace:^",
     "app": "link:../app",
     "better-sqlite3": "^9.0.0",
