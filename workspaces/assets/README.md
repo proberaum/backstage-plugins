@@ -2,13 +2,15 @@
 
 An asset/inventory plugin that allows you to save physical items and their locations.
 
-Status: 🧪 early-stage / experimental
+Status: 🧪 early stage
 
 <br/>
 
 ## Current status
 
-Currently it supports different items and locations (without any kind of validation!). There is no custom UI yet.
+Currently it supports different items and locations (without any kind of validation yet!). There is no custom UI yet.
+
+### Personal belongings (example)
 
 ```yaml
 apiVersion: assets.backstage.io/v1alpha1
@@ -33,8 +35,45 @@ spec:
 
 Default catalog types and kinds:
 
-1. Items: `Item` and `Container`
-2. Locations: `Shelf`, `Room`, `Floor`, `Building`, `Campus`
+1. Item kinds: `Item` and `Container`
+2. Location kinds: `Shelf`, `Room`, `Floor`, `Building`, `Campus`
+
+### Data center (example)
+
+```yaml
+apiVersion: assets.backstage.io/v1alpha1
+kind: Building
+metadata:
+  name: west-1
+---
+apiVersion: assets.backstage.io/v1alpha1
+kind: Rack
+metadata:
+  name: r-32-231
+spec:
+  location: building:west-1
+---
+apiVersion: assets.backstage.io/v1alpha1
+kind: Server
+metadata:
+  name: svr-4711
+spec:
+  location: rack:r-32-231
+  mac: x2:xx:xx:xx:xx:xx
+---
+apiVersion: assets.backstage.io/v1alpha1
+kind: Harddrive
+metadata:
+  name: hd-1234-0000
+spec:
+  location: server:svr-4711
+  installed: '2024-10-10'
+```
+
+1. Item kinds: `Rack`, `Server`, `Harddrive`
+2. Location kinds: `Building`
+
+Expect additional, custom catalog plugins could show information based on these data.
 
 ## Contributions
 
@@ -45,7 +84,7 @@ This plugin looks for any kind of feedback, input and contributions. Feel free t
 - [x] Catalog module to enable asset types.
 - [ ] Repository tooling (run tests, release plugins and modules)
 - [ ] Custom UI, backend and DB schema to create and edit items.
-- [ ] Support for pictures (save them in local FS or DB?)
+- [ ] Support for pictures (save them in the local FS, DB, S3?)
 - [ ] Mark items as rented by an user
 - [ ] Permissions framework
 - [ ] Audit logs
