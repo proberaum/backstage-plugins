@@ -1,11 +1,11 @@
-# 🧪 Proberaum [German for rehearsal room] for Backstage Plugins
+# 🧪 Proberaum* for Backstage Plugins
+
+*German for rehearsal room
 
 Currently there is one plugin:
 
-## ▶️ &nbsp; [📚 Assets Plugin for Backstage](workspaces/assets/README.md)
+## [📚 Assets Plugin](workspaces/assets/README.md)
 
-An asset / inventory plugin that allows you to save physical items and their locations.
+An asset / inventory plugin that allows you to save physical items and their locations in the Backstage ~~Software~~ Catalog.
 
-Early stage!
-
-The goal is a highly customizable solution based on the Backstage ~~Software~~ Catalog, that scales from personal belongings up to a data center.
+From personal belongings, over your shared hardware resources, up to a data center, maybe...
