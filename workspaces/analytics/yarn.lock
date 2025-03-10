@@ -2886,9 +2886,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@backstage/backend-defaults@npm:^0.8.0":
-  version: 0.8.0
-  resolution: "@backstage/backend-defaults@npm:0.8.0"
+"@backstage/backend-defaults@npm:^0.8.0, @backstage/backend-defaults@npm:^0.8.1":
+  version: 0.8.1
+  resolution: "@backstage/backend-defaults@npm:0.8.1"
   dependencies:
     "@aws-sdk/abort-controller": "npm:^3.347.0"
     "@aws-sdk/client-codecommit": "npm:^3.350.0"
@@ -2965,7 +2965,7 @@ __metadata:
   peerDependenciesMeta:
     "@google-cloud/cloud-sql-connector":
       optional: true
-  checksum: 10/9f21469a8651ef3bb28dbb9a33f1c6d4149b6101fea501fada2530d75ba8fcca0b2a2805134f1f162012d5d51dde1c5234d104895dbd225d2bf6b4282e113675
+  checksum: 10/0fb46dc4485ef620eede3e8db033ebb57fc7276637e38da39614cd6176ac2a51ce2b34adce63a317b5dda12e1ab8df3f2f7a42f2cfe0cb1d7301ef7d02139571
   languageName: node
   linkType: hard
 
@@ -15181,7 +15181,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "backend@workspace:packages/backend"
   dependencies:
-    "@backstage/backend-defaults": "npm:^0.8.0"
+    "@backstage/backend-defaults": "npm:^0.8.1"
     "@backstage/cli": "npm:^0.30.0"
     "@backstage/config": "npm:^1.3.2"
     "@backstage/plugin-app-backend": "npm:^0.4.5"
@@ -23735,8 +23735,8 @@ __metadata:
   linkType: hard
 
 "knip@npm:^5.27.4, knip@npm:^5.42.0":
-  version: 5.44.4
-  resolution: "knip@npm:5.44.4"
+  version: 5.45.0
+  resolution: "knip@npm:5.45.0"
   dependencies:
     "@nodelib/fs.walk": "npm:3.0.1"
     "@snyk/github-codeowners": "npm:1.1.0"
@@ -23760,7 +23760,7 @@ __metadata:
   bin:
     knip: bin/knip.js
     knip-bun: bin/knip-bun.js
-  checksum: 10/85fbf7e4138681d9d8c66a61fb4117c1c578847113605c9bee1f473ab9098e144feb481d0fd6cb4a603d07d421aff0c93ba7ba2f74dfc221eaf1e183f3327adc
+  checksum: 10/856257579029c5d603b370531c510cb75bd4c47f6bc9c57a5d4bd7c7a4de63808534d5b152b54e1ff2f57a26b63b32c00b5a7e09c5af3ca5fd354656ac0dccb6
   languageName: node
   linkType: hard
 
@@ -32725,9 +32725,9 @@ __metadata:
   linkType: hard
 
 "undici@npm:^7.2.3":
-  version: 7.3.0
-  resolution: "undici@npm:7.3.0"
-  checksum: 10/8165c3a18cd045c70b009db006bee1784c5ba405634e8d2017107f65220a23190e2dfbbcb314bec71add1e43cabcd7515cd29b655c819f22e59b5e2e7025db20
+  version: 7.4.0
+  resolution: "undici@npm:7.4.0"
+  checksum: 10/b2f659f2e2cdad422ad9ae6aff2bbba2669c0707708eed9cb56d85bcaf554c4e61be5fd437e58bb181d5ee6cd6c87def393fcfccd1633cc8ff2aa6b744abe520
   languageName: node
   linkType: hard
 
