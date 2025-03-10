@@ -6,9 +6,9 @@ import {
   fetchApiRef,
 } from '@backstage/core-plugin-api';
 
-import { dashboardsRouteRef } from './routes';
 import { dashboardsApiRef } from './api/DashboardsApi';
 import { DashboardsClient } from './api/DashboardsClient';
+import { dashboardsRouteRef } from './routes';
 
 export const dashboardsPlugin = createPlugin({
   id: 'dashboards',
@@ -27,14 +27,14 @@ export const dashboardsPlugin = createPlugin({
   },
 });
 
-// export const DashboardsPage = dashboardsPlugin.provide(
-//   createRoutableExtension({
-//     name: 'DashboardsPage',
-//     component: () =>
-//       import('./components/DashboardsPage').then(m => m.DashboardsPage),
-//     mountPoint: dashboardsListRouteRef,
-//   }),
-// );
+export const DashboardsPage = dashboardsPlugin.provide(
+  createRoutableExtension({
+    name: 'DashboardsPage',
+    component: () =>
+      import('./components/DashboardsPage').then(m => m.DashboardsPage),
+    mountPoint: dashboardsRouteRef,
+  }),
+);
 
 // export const DashboardPage = dashboardsPlugin.provide(
 //   createRoutableExtension({

@@ -9,6 +9,8 @@ describe('createRouter', () => {
 
   beforeAll(async () => {
     const router = await createRouter({
+      httpAuth: mockServices.httpAuth.mock(),
+      userInfo: mockServices.userInfo.mock(),
       logger: mockServices.logger.mock(),
       config: mockServices.rootConfig(),
     });

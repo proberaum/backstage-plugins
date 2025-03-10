@@ -27,9 +27,9 @@ export const dashboardsPlugin = createBackendPlugin({
         userInfo,
         logger,
         config,
-        database,
+        // database,
       }) {
-        const client = await database.getClient();
+        // const client = await database.getClient();
         httpRouter.use(
           await createRouter({
             httpAuth,
