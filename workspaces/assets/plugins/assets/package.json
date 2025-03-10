@@ -10,7 +10,13 @@
     "types": "dist/index.d.ts"
   },
   "backstage": {
-    "role": "frontend-plugin"
+    "role": "frontend-plugin",
+    "pluginId": "assets",
+    "pluginPackages": [
+      "@proberaum/backstage-plugin-assets",
+      "@proberaum/backstage-plugin-assets-backend",
+      "@proberaum/backstage-plugin-assets-common"
+    ]
   },
   "sideEffects": false,
   "scripts": {
