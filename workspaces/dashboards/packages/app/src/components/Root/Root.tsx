@@ -68,16 +68,36 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
       <SidebarDivider />
       <SidebarGroup label="Menu" icon={<MenuIcon />}>
         {/* Global nav, not org-specific */}
-        <SidebarItem icon={HomeIcon as IconComponent} to="catalog" text="Home" />
-        <SidebarItem icon={DashboardIcon as IconComponent} to="dashboards" text="Dashboards" />
+        <SidebarItem
+          icon={HomeIcon as IconComponent}
+          to="catalog"
+          text="Home"
+        />
+        <SidebarItem
+          icon={DashboardIcon as IconComponent}
+          to="dashboards"
+          text="Dashboards"
+        />
         <MyGroupsSidebarItem
           singularTitle="My Group"
           pluralTitle="My Groups"
           icon={GroupIcon as IconComponent}
         />
-        <SidebarItem icon={ExtensionIcon as IconComponent} to="api-docs" text="APIs" />
-        <SidebarItem icon={LibraryBooks as IconComponent} to="docs" text="Docs" />
-        <SidebarItem icon={CreateComponentIcon as IconComponent} to="create" text="Create..." />
+        <SidebarItem
+          icon={ExtensionIcon as IconComponent}
+          to="api-docs"
+          text="APIs"
+        />
+        <SidebarItem
+          icon={LibraryBooks as IconComponent}
+          to="docs"
+          text="Docs"
+        />
+        <SidebarItem
+          icon={CreateComponentIcon as IconComponent}
+          to="create"
+          text="Create..."
+        />
         {/* End global nav */}
         <SidebarDivider />
         <SidebarScrollWrapper>

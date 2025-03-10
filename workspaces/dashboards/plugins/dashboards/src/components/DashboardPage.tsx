@@ -21,27 +21,35 @@ interface Label {
 }
 
 const AddIconTab = (props: any) => (
-  <Tab
-    icon={<AddIcon />}
-    component={Link}
-    {...props}
-  />
+  <Tab icon={<AddIcon />} component={Link} {...props} />
 );
 
 export const DashboardPage = () => {
   const [isFavorite, setIsFavorite] = React.useState(true);
 
-  const title = "My dashboard";
+  const title = 'My dashboard';
 
-  const favoriteToggleTooltip = !isFavorite ?
-    'Add to favorites' :
-    'Remove from favorites';
+  const favoriteToggleTooltip = !isFavorite
+    ? 'Add to favorites'
+    : 'Remove from favorites';
 
   // Aligned with backstage catalog
   const titleComponent = (
-    <div style={{ display: 'inline-flex', alignItems: 'center', height: '1em', maxWidth: '100%' }}>
+    <div
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        height: '1em',
+        maxWidth: '100%',
+      }}
+    >
       <div>{title}</div>
-      <FavoriteToggle id="x" title={favoriteToggleTooltip} isFavorite={isFavorite} onToggle={setIsFavorite} />
+      <FavoriteToggle
+        id="x"
+        title={favoriteToggleTooltip}
+        isFavorite={isFavorite}
+        onToggle={setIsFavorite}
+      />
     </div>
   );
 
@@ -73,17 +81,16 @@ export const DashboardPage = () => {
   return (
     <Page themeId="dashboards">
       <Header type="Dashboard" title={titleComponent} pageTitleOverride={title}>
-        {headerLabels.map((headerLabel) => (
+        {headerLabels.map(headerLabel => (
           <HeaderLabel
             key={headerLabel.id}
             label={headerLabel.label}
             value={headerLabel.value}
           />
         ))}
-        {actionItems?.length > 0 ?
-          <HeaderActionMenu actionItems={actionItems} /> :
-          null
-        }
+        {actionItems?.length > 0 ? (
+          <HeaderActionMenu actionItems={actionItems} />
+        ) : null}
       </Header>
 
       <TabbedLayout>
@@ -93,13 +100,16 @@ export const DashboardPage = () => {
         <TabbedLayout.Route path="/grid" title="Grid">
           <DashboardGrid />
         </TabbedLayout.Route>
-        <TabbedLayout.Route path="/add" title="Add" tabProps={{
-          component: AddIconTab,
-        }}>
+        <TabbedLayout.Route
+          path="/add"
+          title="Add"
+          tabProps={{
+            component: AddIconTab,
+          }}
+        >
           <div>add</div>
         </TabbedLayout.Route>
       </TabbedLayout>
-
     </Page>
   );
-}
+};

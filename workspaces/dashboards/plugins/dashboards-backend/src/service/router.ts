@@ -1,5 +1,10 @@
 import { MiddlewareFactory } from '@backstage/backend-defaults/rootHttpRouter';
-import { HttpAuthService, LoggerService, RootConfigService, UserInfoService } from '@backstage/backend-plugin-api';
+import {
+  HttpAuthService,
+  LoggerService,
+  RootConfigService,
+  UserInfoService,
+} from '@backstage/backend-plugin-api';
 import express from 'express';
 import Router from 'express-promise-router';
 import type { Dashboard } from '@proberaum/backstage-plugin-dashboards-common';
@@ -11,11 +16,14 @@ export interface RouterOptions {
   logger: LoggerService;
 }
 
-const sleep = (timeout: number) => new Promise((resolve) => {
-  setTimeout(() => resolve(null), timeout);
-});
+const sleep = (timeout: number) =>
+  new Promise(resolve => {
+    setTimeout(() => resolve(null), timeout);
+  });
 
-export async function createRouter(options: RouterOptions): Promise<express.Router> {
+export async function createRouter(
+  options: RouterOptions,
+): Promise<express.Router> {
   const { httpAuth, userInfo, config, logger } = options;
 
   const router = Router();

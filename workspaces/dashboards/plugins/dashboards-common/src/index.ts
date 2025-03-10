@@ -13,4 +13,4 @@ export interface Dashboard {
   description?: string;
   owner?: string;
   tags?: string[];
-};
+}

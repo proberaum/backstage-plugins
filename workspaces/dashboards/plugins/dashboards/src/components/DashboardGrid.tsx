@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { CodeSnippet, ErrorBoundary, InfoCard } from '@backstage/core-components';
+import {
+  CodeSnippet,
+  ErrorBoundary,
+  InfoCard,
+} from '@backstage/core-components';
 import makeStyles from '@mui/styles/makeStyles';
 
 import {
@@ -74,10 +78,10 @@ export const DashboardGrid = () => {
   const [currentLayout, setCurrentLayout] = React.useState<any>();
   const [allLayouts, setAllLayout] = React.useState<any>();
   const onLayoutChange = (currentLayout: Layout[], allLayouts: Layouts) => {
-    console.log('xxx onLayoutChange', currentLayout, allLayouts)
+    console.log('xxx onLayoutChange', currentLayout, allLayouts);
     setCurrentLayout(currentLayout);
     setAllLayout(allLayouts);
-  }
+  };
 
   const children = React.useMemo(() => {
     return cards.map(card => (
@@ -89,9 +93,7 @@ export const DashboardGrid = () => {
         className={classes.cardWrapper}
       >
         <ErrorBoundary>
-          <InfoCard>
-            {card.id}
-          </InfoCard>
+          <InfoCard>{card.id}</InfoCard>
         </ErrorBoundary>
       </div>
     ));
@@ -115,10 +117,7 @@ export const DashboardGrid = () => {
         language="json"
         text={JSON.stringify(currentLayout, null, 2)}
       />
-      <CodeSnippet
-        language="json"
-        text={JSON.stringify(allLayouts, null, 2)}
-      />
+      <CodeSnippet language="json" text={JSON.stringify(allLayouts, null, 2)} />
     </div>
   );
-}
+};

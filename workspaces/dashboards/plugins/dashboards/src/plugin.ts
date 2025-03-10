@@ -19,7 +19,7 @@ export const dashboardsPlugin = createPlugin({
         discoveryApi: discoveryApiRef,
         fetchApi: fetchApiRef,
       },
-      factory: (deps) => new DashboardsClient(deps),
+      factory: deps => new DashboardsClient(deps),
     }),
   ],
   routes: {
@@ -48,8 +48,7 @@ export const DashboardsPage = dashboardsPlugin.provide(
 export const DashboardRouter = dashboardsPlugin.provide(
   createRoutableExtension({
     name: 'DashboardsPage',
-    component: () =>
-      import('./components/Router').then(m => m.Router),
+    component: () => import('./components/Router').then(m => m.Router),
     mountPoint: dashboardsRouteRef,
   }),
 );
