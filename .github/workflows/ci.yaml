@@ -40,7 +40,7 @@ jobs:
 
       - name: Find changed workspaces
         id: find-changed-workspaces
-        run: node ./scripts/ci/list-workspaces-with-changes.js
+        run: node ./scripts/ci/list-workspaces-with-changes.mjs
         env:
           BASE_REF: origin/${{ github.event.pull_request.base.ref }}
 
