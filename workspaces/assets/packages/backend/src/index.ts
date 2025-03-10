@@ -45,6 +45,8 @@ backend.add(import('@backstage/plugin-search-backend-module-techdocs'));
 
 // assets plugins
 backend.add(import('@proberaum/backstage-plugin-assets-backend'));
-backend.add(import('@proberaum/backstage-plugin-catalog-backend-module-assets'));
+backend.add(
+  import('@proberaum/backstage-plugin-catalog-backend-module-assets'),
+);
 
 backend.start();
