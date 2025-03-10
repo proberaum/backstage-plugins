@@ -141,9 +141,9 @@ jobs:
       - name: Install root dependencies
         run: yarn install --immutable
       - name: Verify lockfile duplicates
-        run: node scripts/ci/verify-lockfile-duplicates.js workspaces/${{ matrix.workspace }}/yarn.lock
+        run: node scripts/ci/verify-lockfile-duplicates.mjs workspaces/${{ matrix.workspace }}/yarn.lock
       - name: Verify changesets
-        run: node scripts/ci/verify-changesets.js ${{ matrix.workspace }}
+        run: node scripts/ci/verify-changesets.mjs ${{ matrix.workspace }}
   result:
     if: ${{ always() }}
     name: check all required jobs
