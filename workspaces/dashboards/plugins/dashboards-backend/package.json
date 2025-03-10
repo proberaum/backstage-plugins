@@ -11,7 +11,13 @@
     "types": "dist/index.d.ts"
   },
   "backstage": {
-    "role": "backend-plugin"
+    "role": "backend-plugin",
+    "pluginId": "dashboards",
+    "pluginPackages": [
+      "@proberaum/backstage-plugin-dashboards",
+      "@proberaum/backstage-plugin-dashboards-backend",
+      "@proberaum/backstage-plugin-dashboards-common"
+    ]
   },
   "scripts": {
     "start": "backstage-cli package start",

@@ -13,7 +13,13 @@
     "types": "dist/index.d.ts"
   },
   "backstage": {
-    "role": "common-library"
+    "role": "common-library",
+    "pluginId": "dashboards",
+    "pluginPackages": [
+      "@proberaum/backstage-plugin-dashboards",
+      "@proberaum/backstage-plugin-dashboards-backend",
+      "@proberaum/backstage-plugin-dashboards-common"
+    ]
   },
   "sideEffects": false,
   "scripts": {
