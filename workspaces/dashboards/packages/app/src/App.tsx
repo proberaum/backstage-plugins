@@ -25,7 +25,7 @@ import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
 import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 
-import { DashboardRouter } from '@internal/backstage-plugin-dashboards';
+import { DashboardRouter } from '@proberaum/backstage-plugin-dashboards';
 
 import { apis } from './apis';
 import { entityPage } from './components/catalog/EntityPage';

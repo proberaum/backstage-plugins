@@ -4,7 +4,7 @@ import { useApi } from '@backstage/core-plugin-api';
 import Chip from '@material-ui/core/Chip';
 import { useQuery } from '@tanstack/react-query'
 import { dashboardsApiRef } from '../api/DashboardsApi';
-import type { Dashboard } from '@internal/backstage-plugin-dashboards-common';
+import type { Dashboard } from '@proberaum/backstage-plugin-dashboards-common';
 
 const columns: TableColumn<Dashboard>[] = [
   {

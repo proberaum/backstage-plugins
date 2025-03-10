@@ -1,5 +1,5 @@
 {
-  "name": "@internal/backstage-plugin-dashboards-common",
+  "name": "@proberaum/backstage-plugin-dashboards-common",
   "description": "Common functionalities for the dashboards plugin",
   "version": "0.1.0",
   "main": "src/index.ts",

@@ -2,7 +2,7 @@ import { MiddlewareFactory } from '@backstage/backend-defaults/rootHttpRouter';
 import { HttpAuthService, LoggerService, RootConfigService, UserInfoService } from '@backstage/backend-plugin-api';
 import express from 'express';
 import Router from 'express-promise-router';
-import type { Dashboard } from '@internal/backstage-plugin-dashboards-common';
+import type { Dashboard } from '@proberaum/backstage-plugin-dashboards-common';
 
 export interface RouterOptions {
   httpAuth: HttpAuthService;

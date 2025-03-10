@@ -1,4 +1,4 @@
-# @internal/backstage-plugin-dashboards-common
+# @proberaum/backstage-plugin-dashboards-common
 
 Welcome to the common package for the dashboards plugin!
 
