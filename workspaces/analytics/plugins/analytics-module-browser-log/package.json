@@ -1,5 +1,5 @@
 {
-  "name": "@red-hat-developer-hub/backstage-plugin-analytics-module-browser-log",
+  "name": "@proberaum/backstage-plugin-analytics-module-browser-log",
   "version": "0.0.0",
   "license": "Apache-2.0",
   "private": true,
@@ -11,7 +11,11 @@
     "types": "dist/index.d.ts"
   },
   "backstage": {
-    "role": "frontend-plugin"
+    "role": "frontend-plugin",
+    "pluginId": "analytics-module-browser-log",
+    "pluginPackages": [
+      "@proberaum/backstage-plugin-analytics-module-browser-log"
+    ]
   },
   "sideEffects": false,
   "scripts": {

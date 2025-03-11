@@ -26,7 +26,7 @@ import {
   identityApiRef,
 } from '@backstage/core-plugin-api';
 
-import { BrowserLogAnalyticsApi } from '@red-hat-developer-hub/backstage-plugin-analytics-module-browser-log';
+import { BrowserLogAnalyticsApi } from '@proberaum/backstage-plugin-analytics-module-browser-log';
 
 export const apis: AnyApiFactory[] = [
   createApiFactory({
