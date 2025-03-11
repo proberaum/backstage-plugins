@@ -10,6 +10,9 @@ import { dashboardsApiRef } from './api/DashboardsApi';
 import { DashboardsClient } from './api/DashboardsClient';
 import { dashboardsRouteRef } from './routes';
 
+/**
+ * @public
+ */
 export const dashboardsPlugin = createPlugin({
   id: 'dashboards',
   apis: [
@@ -27,6 +30,9 @@ export const dashboardsPlugin = createPlugin({
   },
 });
 
+/**
+ * @public
+ */
 export const DashboardsPage = dashboardsPlugin.provide(
   createRoutableExtension({
     name: 'DashboardsPage',
@@ -45,6 +51,9 @@ export const DashboardsPage = dashboardsPlugin.provide(
 //   }),
 // );
 
+/**
+ * @public
+ */
 export const DashboardRouter = dashboardsPlugin.provide(
   createRoutableExtension({
     name: 'DashboardsPage',

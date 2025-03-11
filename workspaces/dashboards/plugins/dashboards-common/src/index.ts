@@ -5,7 +5,7 @@
  */
 
 /**
- * todo
+ * @public
  */
 export interface Dashboard {
   name: string;
