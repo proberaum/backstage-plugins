@@ -90,5 +90,5 @@ export default app.createRoot(
     <AppRouter>
       <Root>{routes}</Root>
     </AppRouter>
-  </>
+  </>,
 );

@@ -1,7 +1,12 @@
 import React from 'react';
-import { CodeSnippet, InfoCard, Progress, ResponseErrorPanel } from '@backstage/core-components';
+import {
+  CodeSnippet,
+  InfoCard,
+  Progress,
+  ResponseErrorPanel,
+} from '@backstage/core-components';
 import { useApi, useRouteRefParams } from '@backstage/core-plugin-api';
-import { useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query';
 import { dashboardsApiRef } from '../api/DashboardsApi';
 import { dashboardDetailRouteRef } from '../routes';
 
@@ -14,23 +19,16 @@ export const DashboardCard = () => {
     queryFn: () => dashboardsApi.getDashboard(name),
   });
 
-  let content: React.ReactNode
+  let content: React.ReactNode;
   if (isLoading) {
     content = <Progress />;
   } else if (error) {
     content = <ResponseErrorPanel error={error} />;
   } else {
     content = (
-      <CodeSnippet
-        language="json"
-        text={JSON.stringify(data, null, 2)}
-      />
-    )
+      <CodeSnippet language="json" text={JSON.stringify(data, null, 2)} />
+    );
   }
 
-  return (
-    <InfoCard title={name}>
-      {content}      
-    </InfoCard>
-  );
-}
+  return <InfoCard title={name}>{content}</InfoCard>;
+};

@@ -1,7 +1,7 @@
-import { DiscoveryApi, FetchApi } from "@backstage/core-plugin-api";
+import { DiscoveryApi, FetchApi } from '@backstage/core-plugin-api';
 import { ResponseError } from '@backstage/errors';
-import { Dashboard } from "../../../dashboards-common/src";
-import { DashboardsApi } from "./DashboardsApi";
+import { Dashboard } from '../../../dashboards-common/src';
+import { DashboardsApi } from './DashboardsApi';
 
 interface DashboardsClientDeps {
   discoveryApi: DiscoveryApi;
