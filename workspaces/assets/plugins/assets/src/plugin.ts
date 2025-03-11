@@ -5,6 +5,9 @@ import {
 
 import { rootRouteRef } from './routes';
 
+/**
+ * @public
+ */
 export const assetsPlugin = createPlugin({
   id: 'assets',
   routes: {
@@ -12,6 +15,9 @@ export const assetsPlugin = createPlugin({
   },
 });
 
+/**
+ * @public
+ */
 export const AssetsPage = assetsPlugin.provide(
   createRoutableExtension({
     name: 'AssetsPage',

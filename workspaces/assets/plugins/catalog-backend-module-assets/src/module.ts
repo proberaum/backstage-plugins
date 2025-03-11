@@ -10,6 +10,8 @@ import { AssetsLocationCatalogProcessor } from './processors/AssetsLocationCatal
 /**
  * A catalog plugin that adds support for assets items and locations.
  * The kinds for both types are configable.
+ *
+ * @public
  */
 export const catalogModuleAssets = createBackendModule({
   pluginId: 'catalog',
