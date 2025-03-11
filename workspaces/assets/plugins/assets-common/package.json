@@ -12,7 +12,13 @@
     "types": "dist/index.d.ts"
   },
   "backstage": {
-    "role": "common-library"
+    "role": "common-library",
+    "pluginId": "assets",
+    "pluginPackages": [
+      "@proberaum/backstage-plugin-assets",
+      "@proberaum/backstage-plugin-assets-backend",
+      "@proberaum/backstage-plugin-assets-common"
+    ]
   },
   "sideEffects": false,
   "scripts": {
@@ -24,7 +30,7 @@
     "postpack": "backstage-cli package postpack"
   },
   "devDependencies": {
-    "@backstage/cli": "^0.29.5"
+    "@backstage/cli": "^0.29.6"
   },
   "files": [
     "dist"
