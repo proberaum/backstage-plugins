@@ -80,8 +80,8 @@ jobs:
         run: node scripts/ci/set-release-name.js ${{ matrix.workspace }} ${{ inputs.release_line || 'main' }}
       - name: 'Configure git'
         run: |
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
+          git config --global user.email "jerolimov+git@gmail.com"
+          git config --global user.name "Christoph Jerolimov"
       - name: 'Create workspace branch'
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
