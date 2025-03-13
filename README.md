@@ -2,7 +2,7 @@
 
 *German for rehearsal room
 
-Currently there is one plugin:
+This repo contains multiple early-stage Backstage plugins. The processes, tooling, and workflows are based on those in [backstage/community-plugins](https://github.com/backstage/community-plugins). Thanks to the Backstage Community, Spotify and Red Hat for making this setup public.
 
 ## [📚 Assets Plugin](workspaces/assets/README.md)
 
