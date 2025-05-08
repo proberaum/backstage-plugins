@@ -3,13 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       release_line:
-        description: 'Release Line'
+        description: 'Release (main, next or version number)'
         required: true
-        default: main
-        type: choice
-        options:
-          - next
-          - main
+        type: string
       workspace_input:
         description: 'Workspace (this must be a JSON array)'
         required: true
