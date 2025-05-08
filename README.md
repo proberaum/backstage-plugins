@@ -12,17 +12,21 @@ From personal belongings, over your shared hardware resources, up to a data cent
 
 ## New workspace
 
-1. Create workspace:
+0. Define workspace name
 
    ```
    export BACKSTAGE_APP_NAME=example
-   
-    npx @backstage/create-app --path workspaces/$BACKSTAGE_APP_NAME --template-path=../../backstage/community-plugins/workspaces/repo-tools/packages/cli/src/lib/workspaces/templates/workspace --skip-install
-    ```
+   ```
 
-2. Commit.
+1. Create workspace:
 
-3. Add backstage app:
+   ```
+   npx @backstage/create-app --path workspaces/$BACKSTAGE_APP_NAME --template-path=../../backstage/community-plugins/workspaces/repo-tools/packages/cli/src/lib/workspaces/templates/workspace --skip-install
+   ```
+
+   Commit.
+
+2. Add backstage app:
 
    ```
    npx @backstage/create-app --skip-install
@@ -34,9 +38,13 @@ From personal belongings, over your shared hardware resources, up to a data cent
    rm -rf $BACKSTAGE_APP_NAME/.yarn $BACKSTAGE_APP_NAME/plugins
    ```
 
-4. Install/update yarn.lock
+   Commit.
+
+3. Install/update yarn.lock
 
    ```
    cd workspaces/$BACKSTAGE_APP_NAME
    yarn
    ```
+
+   Commit.
