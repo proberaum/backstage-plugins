@@ -16,7 +16,7 @@ export const PlanningPokerPage = planningPokerPlugin.provide(
   createRoutableExtension({
     name: 'PlanningPokerPage',
     component: () =>
-      import('./components/ExampleComponent').then(m => m.ExampleComponent),
+      import('./components/PlanningPokerPage').then(m => m.PlanningPokerPage),
     mountPoint: rootRouteRef,
   }),
 );
