@@ -6,11 +6,22 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Tooltip from '@mui/material/Tooltip';
 
-const votes = [
+import RevealButton from './RevealButton';
+
+type Vote = {
+  userId: string;
+  displayName: string;
+  voted?: number;
+};
+
+type PositionedVote = Vote & {
+  position: number;
+}
+
+const votes: Vote[] = [
   {
     userId: 'alice',
     displayName: 'Alice',
-    voted: 0,
   },
   {
     userId: 'bob',
@@ -29,39 +40,52 @@ const votes = [
   },
 ];
 
-export const TestCard = () => {
-  const [resolved, setResolved] = React.useState(false);
+const pointingOptions = [1, 2, 3, 5, 8, 'Unknown'];
 
-  const sortedVotes = React.useMemo(() => {
-    if (resolved) {
-      return [...votes].sort((a, b) => {
+export const TestCard = () => {
+  const [revealed, setRevealed] = React.useState(false);
+
+  const canReveal = votes.some((vote) => vote.voted);
+
+  const positionedVotes = React.useMemo<PositionedVote[]>(() => {
+    if (revealed) {
+      const orderedUsers = [...votes].sort((a, b) => {
         if (!a.voted) return 1;
         if (!b.voted) return -1;
         return a.voted - b.voted;
-      });
+      }).map((vote) => vote.userId);
+
+      return votes.map<PositionedVote>((vote) => ({
+        ...vote,
+        position: orderedUsers.indexOf(vote.userId),
+      }));
     }
-    return [...votes];
-  }, [resolved]);
+
+    return votes.map<PositionedVote>((vote, index) => ({
+      ...vote,
+      position: index,
+    }));
+  }, [revealed]);
 
   return (
     <InfoCard title="Story 1234">
 
       <div style={{ height: '50px' }}>
-        {sortedVotes.map((vote, index) => (
+        {positionedVotes.map((vote) => (
           <div
             key={vote.userId}
             style={{
               position: 'absolute',
-              transition: 'all 3000ms ease-in-out',
-              transform: `translate(${index * 80}px)`,
-              opacity: resolved && !vote.voted ? 0.5 : 1,
+              transition: 'all 500ms ease-in-out',
+              transform: `translate(${vote.position * 80}px)`,
+              opacity: revealed && !vote.voted ? 0.5 : 1,
             }}
           >
             <Tooltip title={vote.displayName}>
               <div>
                 <Badge
                   badgeContent={
-                    resolved ?
+                    revealed ?
                       (vote.voted ? vote.voted : ' ') :
                       ' '
                   }
@@ -70,15 +94,15 @@ export const TestCard = () => {
                     horizontal: 'right',
                   }}
                   overlap="circular"
-                  color={vote.voted ? 'success' : resolved ? 'error' : 'warning'}
+                  color={vote.voted ? 'success' : revealed ? 'error' : 'warning'}
                   slotProps={{
                     badge: {
                       style: {
                         transition: 'all 300ms ease-in-out',
-                        width: resolved && vote.voted ? '36px' : undefined,
-                        height: resolved && vote.voted ? '36px' : undefined,
+                        width: revealed && vote.voted ? '36px' : undefined,
+                        height: revealed && vote.voted ? '36px' : undefined,
                         borderRadius: '50%',
-                        fontSize: resolved ? '22px' : undefined,
+                        fontSize: revealed ? '22px' : undefined,
                       },
                     }
                   }}
@@ -93,31 +117,31 @@ export const TestCard = () => {
 
       <br/><br/>
 
+      <ButtonGroup color="primary" variant="contained" size="large">
+        {pointingOptions.map((pointingOption) => (
+          <Button
+            key={pointingOption}
+          >
+            {pointingOption}
+          </Button>
+        ))}
+        <Button>Clear</Button>
+      </ButtonGroup>
+
+      <br/><br/>
+
       <Button
         color="primary"
         variant="contained"
-        onClick={() => setResolved(!resolved)}
+        onClick={() => setRevealed(!revealed)}
+        disabled={!canReveal && !revealed}
       >
-        {resolved ? 'Unreveal' : 'Reveal'}
+        {revealed ? 'Unreveal' : 'Reveal'}
       </Button>
 
       <br/><br/>
 
-      <ButtonGroup color="primary" variant="contained" size="large">
-        <Button>timer +10 sec</Button>
-        <Button>start / pause</Button>
-        <Button>clear</Button>
-      </ButtonGroup>
-
-      <br/><br/>
-
-      <ButtonGroup color="primary" variant="contained" size="large">
-        <Button>1</Button>
-        <Button>2</Button>
-        <Button>3</Button>
-        <Button>5</Button>
-        <Button>Clear</Button>
-      </ButtonGroup>
+      <RevealButton />
 
     </InfoCard>
   );
