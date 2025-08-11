@@ -1,41 +1,36 @@
 ---
-# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
 apiVersion: backstage.io/v1alpha1
-kind: System
+kind: Component
 metadata:
-  name: examples
+  name: another-service-without-notify-annotation
 spec:
-  owner: guests
+  type: plugin
+  lifecycle: experimental
+  owner: user:development/guest
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: example-website
+  name: rbac-plugin
+  annotations:
+    notify: user:development/guest
+    notify/topic: RBAC Plugin Notifications
 spec:
-  type: website
+  type: plugin
   lifecycle: experimental
-  owner: guests
-  system: examples
-  providesApis: [example-grpc-api]
+  owner: user:development/guest
 ---
-# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
 apiVersion: backstage.io/v1alpha1
-kind: API
+kind: Component
 metadata:
-  name: example-grpc-api
+  name: security-notifications
+  annotations:
+    notify: owner
+    notify/topic: Security Notifications
 spec:
-  type: grpc
+  type: security
   lifecycle: experimental
-  owner: guests
-  system: examples
-  definition: |
-    syntax = "proto3";
-
-    service Exampler {
-      rpc Example (ExampleMessage) returns (ExampleMessage) {};
-    }
-
-    message ExampleMessage {
-      string example = 1;
-    };
+  owner: development/security-notifications

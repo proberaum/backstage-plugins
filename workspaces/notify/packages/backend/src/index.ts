@@ -56,4 +56,7 @@ backend.add(import('@backstage/plugin-kubernetes-backend'));
 backend.add(import('@backstage/plugin-notifications-backend'));
 backend.add(import('@backstage/plugin-signals-backend'));
 
+// notify test plugins
+backend.add(import('@proberaum/plugin-notify-test-backend'));
+
 backend.start();
