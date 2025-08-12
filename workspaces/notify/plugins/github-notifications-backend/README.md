@@ -1,6 +1,6 @@
-# @proberaum/backstage-plugin-notifications-backend-module-github
+# GitHub Notifications Backend
 
-This is a Backstage backend plugin module that enables automated notifications for **new and updated GitHub issues** related to catalog entities. It integrates with Backstage notification system and catalog, allowing entities to specify GitHub repositories and notification preferences via annotations.
+This is a Backstage backend plugin that enables automated notifications for **new and updated GitHub issues** related to catalog entities. It integrates with Backstage notification system and catalog, allowing entities to specify GitHub repositories and notification preferences via annotations.
 
 ## Features
 
@@ -38,7 +38,7 @@ Add the following annotations to your catalog entities:
 
   When both filters are defined, notifications are generated when one of both matches.
 
-Examples:
+More examples:
 
 ```yaml
 ---
@@ -118,3 +118,30 @@ spec:
   lifecycle: experimental
   owner: user:development/guest
 ```
+
+## Installation
+
+This plugin is installed via the `@proberaum/backstage-plugin-github-notifications-backend` package.
+
+To install it to your backend package, run the following command:
+
+```bash
+# From your root directory
+yarn --cwd packages/backend add @proberaum/backstage-plugin-github-notifications-backend
+```
+
+Then add the plugin to your backend in `packages/backend/src/index.ts`:
+
+```ts
+const backend = createBackend();
+// ...
+backend.add(import('@proberaum/backstage-plugin-github-notifications-backend'));
+```
+
+## Development
+
+This plugin backend can be started in a standalone mode from directly in this
+package with `yarn start`. It is a limited setup that is most convenient when
+developing the plugin backend itself.
+
+If you want to run the entire project, including the frontend, run `yarn start` from the root directory.
