@@ -7,11 +7,11 @@ metadata:
   name: guest
 spec:
   memberOf:
-   - backstage-catalog-interested-people
-   - backstage-scaffolder-interested-people
-   - rbac-plugin-team
-   - servicenow-plugin-team
-   - proberaum-interested-people
+    - backstage-catalog-interested-people
+    - backstage-scaffolder-interested-people
+    - rbac-plugin-team
+    - servicenow-plugin-team
+    - proberaum-interested-people
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group
 apiVersion: backstage.io/v1alpha1

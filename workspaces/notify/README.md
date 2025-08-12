@@ -1,16 +1,10 @@
-# [Backstage](https://backstage.io)
+# Notification plugins for Backstage
 
-This is your newly scaffolded Backstage App, Good Luck!
+- GitHub Notifications plugins sends notifications for **new and updated GitHub issues** related to catalog entities.
 
-To start the app, run:
+To start the test app, run:
 
 ```sh
 yarn install
 yarn start
-```
-
-To generate knip reports for this app, run:
-
-```sh
-yarn backstage-repo-tools knip-reports
 ```

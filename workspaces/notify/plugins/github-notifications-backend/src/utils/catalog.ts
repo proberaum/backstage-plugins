@@ -5,31 +5,39 @@ import { CATALOG_FILTER_EXISTS } from '@backstage/catalog-client';
 
 import { NotificationsGitHubAnnotation } from '../annotations';
 
-export type GroupedEntity = { repo: string, entities: Entity[] };
+export type GroupedEntity = { repo: string; entities: Entity[] };
 
 export async function getEntities(auth: AuthService, catalog: CatalogService) {
-  const credentials = await auth.getOwnServiceCredentials()
+  const credentials = await auth.getOwnServiceCredentials();
   // TODO: add pagination to read catalog?
-  const entities = await catalog.getEntities({
-    filter: {
-      [`metadata.annotations.${NotificationsGitHubAnnotation.PROJECT_SLUG}`]: CATALOG_FILTER_EXISTS,
-      [`metadata.annotations.${NotificationsGitHubAnnotation.NOTIFY}`]: CATALOG_FILTER_EXISTS,
+  const entities = await catalog.getEntities(
+    {
+      filter: {
+        [`metadata.annotations.${NotificationsGitHubAnnotation.PROJECT_SLUG}`]:
+          CATALOG_FILTER_EXISTS,
+        [`metadata.annotations.${NotificationsGitHubAnnotation.NOTIFY}`]:
+          CATALOG_FILTER_EXISTS,
+      },
+      fields: [
+        'apiVersion',
+        'kind',
+        'metadata.namespace',
+        'metadata.name',
+        'metadata.annotations',
+      ],
     },
-    fields: [
-      'apiVersion',
-      'kind',
-      'metadata.namespace',
-      'metadata.name',
-      'metadata.annotations',
-    ],
-  }, {
-    credentials,
-  });
+    {
+      credentials,
+    },
+  );
   return entities.items;
 }
 
 function getRepo(entity: Entity): string | null {
-  return entity.metadata.annotations?.[NotificationsGitHubAnnotation.PROJECT_SLUG] ?? null;
+  return (
+    entity.metadata.annotations?.[NotificationsGitHubAnnotation.PROJECT_SLUG] ??
+    null
+  );
 }
 
 export function getGroupedEntities(entities: Entity[]): GroupedEntity[] {

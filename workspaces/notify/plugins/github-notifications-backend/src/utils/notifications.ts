@@ -1,5 +1,8 @@
 import { Entity, stringifyEntityRef } from '@backstage/catalog-model';
-import { NotificationPayload, NotificationSeverity } from '@backstage/plugin-notifications-common';
+import {
+  NotificationPayload,
+  NotificationSeverity,
+} from '@backstage/plugin-notifications-common';
 
 import { NotificationsGitHubAnnotation } from '../annotations';
 
@@ -13,31 +16,48 @@ import { Issue } from './github';
  * - `group:groupname`
  */
 export function getReceivers(entity: Entity): string[] {
-  const notify = entity.metadata.annotations?.[NotificationsGitHubAnnotation.NOTIFY];
+  const notify =
+    entity.metadata.annotations?.[NotificationsGitHubAnnotation.NOTIFY];
   if (!notify) {
     return [];
   }
 
   const entityRefs: string[] = [];
   // TODO: not sure if this notifies just the owner or other relationships as well
-  if (notify.split(',').map(ref => ref.trim()).includes('owner')) {
+  if (
+    notify
+      .split(',')
+      .map(ref => ref.trim())
+      .includes('owner')
+  ) {
     entityRefs.push(stringifyEntityRef(entity));
   }
-  entityRefs.push(...notify.split(',').map(ref => ref.trim()).filter(ref => ref.startsWith('user:') || ref.startsWith('group:')));
+  entityRefs.push(
+    ...notify
+      .split(',')
+      .map(ref => ref.trim())
+      .filter(ref => ref.startsWith('user:') || ref.startsWith('group:')),
+  );
   return entityRefs;
 }
 
 const severityLevels = ['critical', 'high', 'normal', 'low'];
 
 export function isIssueRelevant(entity: Entity, issue: Issue): boolean {
-  const labelFilter = entity.metadata.annotations?.[NotificationsGitHubAnnotation.LABEL_FILTER]?.split(',').map(label => label.trim()) || [];
+  const labelFilter =
+    entity.metadata.annotations?.[NotificationsGitHubAnnotation.LABEL_FILTER]
+      ?.split(',')
+      .map(label => label.trim()) || [];
   if (labelFilter.length > 0) {
     if (issue.labels.some(label => labelFilter.includes(label))) {
       return true;
     }
   }
 
-  const subjectFilter = entity.metadata.annotations?.[NotificationsGitHubAnnotation.SUBJECT_FILTER]?.split(',').map(subject => subject.trim().toLocaleLowerCase('en-US')) || [];
+  const subjectFilter =
+    entity.metadata.annotations?.[NotificationsGitHubAnnotation.SUBJECT_FILTER]
+      ?.split(',')
+      .map(subject => subject.trim().toLocaleLowerCase('en-US')) || [];
   if (subjectFilter.length > 0) {
     const subject = issue.title.toLocaleLowerCase('en-US');
     if (subjectFilter.some(filter => subject.includes(filter))) {
@@ -52,8 +72,13 @@ export function isIssueRelevant(entity: Entity, issue: Issue): boolean {
   return false;
 }
 
-export function getNotification(entity: Entity, issue: Issue): NotificationPayload {
-  const repo = entity.metadata.annotations?.[NotificationsGitHubAnnotation.PROJECT_SLUG] ?? 'unknown-repo';
+export function getNotification(
+  entity: Entity,
+  issue: Issue,
+): NotificationPayload {
+  const repo =
+    entity.metadata.annotations?.[NotificationsGitHubAnnotation.PROJECT_SLUG] ??
+    'unknown-repo';
 
   // TODO: replace demo payload with real payload
   let title = issue.title;
@@ -65,12 +90,17 @@ export function getNotification(entity: Entity, issue: Issue): NotificationPaylo
 
   const link = issue.url;
 
-  let severity = entity.metadata.annotations?.[NotificationsGitHubAnnotation.SEVERITY] as NotificationSeverity | undefined;
+  let severity = entity.metadata.annotations?.[
+    NotificationsGitHubAnnotation.SEVERITY
+  ] as NotificationSeverity | undefined;
   if (severity && !severityLevels.includes(severity)) {
     severity = undefined;
   }
 
-  const topic = entity.metadata.annotations?.[NotificationsGitHubAnnotation.TOPIC] ?? entity.metadata.title ?? entity.metadata.name;
+  const topic =
+    entity.metadata.annotations?.[NotificationsGitHubAnnotation.TOPIC] ??
+    entity.metadata.title ??
+    entity.metadata.name;
 
   const scope = issue.url;
 

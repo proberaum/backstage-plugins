@@ -1,12 +1,12 @@
-import { RootConfigService } from "@backstage/backend-plugin-api";
-import { ScmIntegrations } from "@backstage/integration";
+import { RootConfigService } from '@backstage/backend-plugin-api';
+import { ScmIntegrations } from '@backstage/integration';
 
-import { Octokit } from "@octokit/core";
+import { Octokit } from '@octokit/core';
 
 export interface Issue {
   number: number;
   title: string;
-  state:string;
+  state: string;
   url: string;
   createdAt: string;
   updatedAt: string;
@@ -21,7 +21,7 @@ interface GitHubIssuesResponse {
         node: {
           number: number;
           title: string;
-          state:string;
+          state: string;
           url: string;
           createdAt: string;
           updatedAt: string;
@@ -37,11 +37,13 @@ interface GitHubIssuesResponse {
           };
         };
       }[];
-    }
+    };
   };
 }
 
-function extractIssuesFromGitHubIssuesResponse(response: GitHubIssuesResponse): Issue[] {
+function extractIssuesFromGitHubIssuesResponse(
+  response: GitHubIssuesResponse,
+): Issue[] {
   return response.repository.issues.edges.map(edge => ({
     number: edge.node.number,
     state: edge.node.state,
@@ -68,7 +70,11 @@ function createOctokit(config: RootConfigService) {
   });
 }
 
-export async function getIssues(config: RootConfigService, repo: string, since: Date): Promise<Issue[]> {
+export async function getIssues(
+  config: RootConfigService,
+  repo: string,
+  since: Date,
+): Promise<Issue[]> {
   const octokit = createOctokit(config);
   const owner = repo.split('/')[0];
   const repoName = repo.split('/')[1];

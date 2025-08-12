@@ -1,11 +1,21 @@
-import { coreServices, createBackendPlugin } from '@backstage/backend-plugin-api';
+import {
+  coreServices,
+  createBackendPlugin,
+} from '@backstage/backend-plugin-api';
 import { catalogServiceRef } from '@backstage/plugin-catalog-node';
 import { stringifyEntityRef } from '@backstage/catalog-model';
-import { NotificationRecipients, notificationService } from '@backstage/plugin-notifications-node';
+import {
+  NotificationRecipients,
+  notificationService,
+} from '@backstage/plugin-notifications-node';
 
 import { getEntities, getGroupedEntities } from './utils/catalog';
 import { getIssues } from './utils/github';
-import { getNotification, getReceivers, isIssueRelevant } from './utils/notifications';
+import {
+  getNotification,
+  getReceivers,
+  isIssueRelevant,
+} from './utils/notifications';
 import { getSince, setSince } from './utils/lastrun';
 
 /**
@@ -26,7 +36,15 @@ export const githubNotificationsPlugin = createBackendPlugin({
         catalog: catalogServiceRef,
         notificationService: notificationService,
       },
-      async init({ logger, rootConfig, scheduler, cache, auth, catalog, notificationService }) {
+      async init({
+        logger,
+        rootConfig,
+        scheduler,
+        cache,
+        auth,
+        catalog,
+        notificationService,
+      }) {
         logger.info('initialize...');
 
         await scheduler.scheduleTask({
@@ -40,7 +58,9 @@ export const githubNotificationsPlugin = createBackendPlugin({
             const entities = await getEntities(auth, catalog);
             const groupedEntities = getGroupedEntities(entities);
 
-            logger.info(`found ${entities.length} entities and could reduce it to ${groupedEntities.length} repos...`);
+            logger.info(
+              `found ${entities.length} entities and could reduce it to ${groupedEntities.length} repos...`,
+            );
 
             let notificationsOverall = 0;
             for await (const groupedEntity of groupedEntities) {
@@ -48,17 +68,33 @@ export const githubNotificationsPlugin = createBackendPlugin({
               try {
                 const since = await getSince(cache, groupedEntity.repo);
 
-                logger.info(`will load issues for repo: ${groupedEntity.repo} since ${since.toISOString()}...`);
+                logger.info(
+                  `will load issues for repo: ${
+                    groupedEntity.repo
+                  } since ${since.toISOString()}...`,
+                );
 
-                const issues = await getIssues(rootConfig, groupedEntity.repo, since);
-                logger.info(`found ${issues.length} issues for repo ${groupedEntity.repo}`);
+                const issues = await getIssues(
+                  rootConfig,
+                  groupedEntity.repo,
+                  since,
+                );
+                logger.info(
+                  `found ${issues.length} issues for repo ${groupedEntity.repo}`,
+                );
 
                 // Loop over entities x issues
                 for await (const entity of groupedEntity.entities) {
-                  logger.debug(`process entity: ${stringifyEntityRef(entity)}...`);
+                  logger.debug(
+                    `process entity: ${stringifyEntityRef(entity)}...`,
+                  );
                   const receivers = getReceivers(entity);
                   if (receivers.length === 0) {
-                    logger.warn(`skip entity ${stringifyEntityRef(entity)} because there is no receiver configured correctly`);
+                    logger.warn(
+                      `skip entity ${stringifyEntityRef(
+                        entity,
+                      )} because there is no receiver configured correctly`,
+                    );
                     continue;
                   }
                   const recipients: NotificationRecipients = {
@@ -67,12 +103,16 @@ export const githubNotificationsPlugin = createBackendPlugin({
                   };
 
                   for (const issue of issues) {
-                    logger.debug(`process issue #${issue.number} ${issue.title}`);
+                    logger.debug(
+                      `process issue #${issue.number} ${issue.title}`,
+                    );
                     if (!isIssueRelevant(entity, issue)) {
                       continue;
                     }
                     const notification = getNotification(entity, issue);
-                    logger.info(`will send notification for issue #${issue.number} to ${receivers}`);
+                    logger.info(
+                      `will send notification for issue #${issue.number} to ${receivers}`,
+                    );
                     await notificationService.send({
                       recipients,
                       payload: notification,
@@ -83,17 +123,31 @@ export const githubNotificationsPlugin = createBackendPlugin({
                 }
 
                 // >1 is used here instead of >0 so that we don't get load that issue again and again because it has the (exact) same updatedAt timestamp ;)
-                const lastUpdatedAt = issues.length > 1 ? new Date(issues[issues.length - 1].updatedAt ?? issues[issues.length - 1].createdAt) : new Date();
-                logger.info(`will check repo ${groupedEntity.repo} for updates after ${lastUpdatedAt}`);
+                const lastUpdatedAt =
+                  issues.length > 1
+                    ? new Date(
+                        issues[issues.length - 1].updatedAt ??
+                          issues[issues.length - 1].createdAt,
+                      )
+                    : new Date();
+                logger.info(
+                  `will check repo ${groupedEntity.repo} for updates after ${lastUpdatedAt}`,
+                );
 
                 await setSince(cache, groupedEntity.repo, lastUpdatedAt);
 
-                logger.info(`created ${notificationsForRepo} notifications for repo ${groupedEntity.repo}`);
+                logger.info(
+                  `created ${notificationsForRepo} notifications for repo ${groupedEntity.repo}`,
+                );
               } catch (error) {
-                logger.error(`failed to load issues for repo ${groupedEntity.repo}: ${error}`);
+                logger.error(
+                  `failed to load issues for repo ${groupedEntity.repo}: ${error}`,
+                );
               }
             }
-            logger.info(`created ${notificationsOverall} notifications overall`);
+            logger.info(
+              `created ${notificationsOverall} notifications overall`,
+            );
           },
         });
       },

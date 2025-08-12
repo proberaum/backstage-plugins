@@ -121,6 +121,8 @@ spec:
 
 ## Installation
 
+This plugin requires that the [Backstage Notifications plugins](https://backstage.io/docs/notifications/) is installed.
+
 This plugin is installed via the `@proberaum/backstage-plugin-github-notifications-backend` package.
 
 To install it to your backend package, run the following command:
@@ -136,6 +138,16 @@ Then add the plugin to your backend in `packages/backend/src/index.ts`:
 const backend = createBackend();
 // ...
 backend.add(import('@proberaum/backstage-plugin-github-notifications-backend'));
+```
+
+## Configuration
+
+```yaml
+# Backstage override configuration for your local development environment
+integrations:
+  github:
+    - host: github.com
+      token: ${GITHUB_TOKEN}
 ```
 
 ## Development

@@ -1,4 +1,7 @@
-import { mockCredentials, startTestBackend } from '@backstage/backend-test-utils';
+import {
+  mockCredentials,
+  startTestBackend,
+} from '@backstage/backend-test-utils';
 import { catalogServiceMock } from '@backstage/plugin-catalog-node/testUtils';
 import request from 'supertest';
 
