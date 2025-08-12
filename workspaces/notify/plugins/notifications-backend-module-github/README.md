@@ -1,13 +1,46 @@
----
-# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  name: another-service-without-notify-annotation
-spec:
-  type: plugin
-  lifecycle: experimental
-  owner: user:development/guest
+# @proberaum/backstage-plugin-notifications-backend-module-github
+
+This is a Backstage backend plugin module that enables automated notifications for **new and updated GitHub issues** related to catalog entities. It integrates with Backstage notification system and catalog, allowing entities to specify GitHub repositories and notification preferences via annotations.
+
+## Features
+
+- Periodically checks for new and updated GitHub issues
+- Sends notifications to entity owners, users, or groups as specified in the entity's annotations
+- The notification includes the repo and issue number, title, link, severity, and a GitHub icon
+- Notifications are grouped by a topic
+
+## Not yet implemented (contributions are welcome!)
+
+- Configuration option for the scheduler (currently it runs every 10 minutes)
+- Notifications for PRs
+- Support for on-prem GitHub instances
+
+## Usage
+
+Add the following annotations to your catalog entities:
+
+- `github.com/project-slug`: The GitHub repository slug (e.g., `owner/repo`).
+- `github.com/notify-on-issues`: Comma-separated list of receivers (`owner`, `user:username`, `group:groupname`).
+
+  Example:
+
+  ```yaml
+  metadata:
+    annotations:
+      github.com/project-slug: org/repo
+      github.com/notify-on-issues: owner, user:alice, group:devs
+  ```
+
+- `github.com/notify-topic`: topic for the notification. If not specified the entity title or name is used as fallback
+- `github.com/notify-severity`: specify the notification severity. Valid values: critical, high, normal (default), or low
+- `github.com/notify-subject-filter`: Comma-separated list of keywords that must be included in the issue
+- `github.com/notify-label-filter`: Comma-separated list of labels that must be assigned to the issue
+
+  When both filters are defined, notifications are generated when one of both matches.
+
+Examples:
+
+```yaml
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
 apiVersion: backstage.io/v1alpha1
@@ -84,3 +117,4 @@ spec:
   type: plugin
   lifecycle: experimental
   owner: user:development/guest
+```

@@ -30,34 +30,38 @@ export function getReceivers(entity: Entity): string[] {
 const severityLevels = ['critical', 'high', 'normal', 'low'];
 
 export function isIssueRelevant(entity: Entity, issue: Issue): boolean {
-  const labelFilter = entity.metadata.annotations?.[NotificationsGitHubAnnotation.LABEL_FILTER]?.split(',').map(label => label.trim());
-  if (labelFilter && labelFilter.length > 0) {
-    if (!issue.labels.some(label => labelFilter.includes(label))) {
-      return false;
+  const labelFilter = entity.metadata.annotations?.[NotificationsGitHubAnnotation.LABEL_FILTER]?.split(',').map(label => label.trim()) || [];
+  if (labelFilter.length > 0) {
+    if (issue.labels.some(label => labelFilter.includes(label))) {
+      return true;
     }
   }
 
-  const subjectFilter = entity.metadata.annotations?.[NotificationsGitHubAnnotation.SUBJECT_FILTER]?.split(',').map(subject => subject.trim().toLocaleLowerCase('en-US'));
-  if (subjectFilter) {
+  const subjectFilter = entity.metadata.annotations?.[NotificationsGitHubAnnotation.SUBJECT_FILTER]?.split(',').map(subject => subject.trim().toLocaleLowerCase('en-US')) || [];
+  if (subjectFilter.length > 0) {
     const subject = issue.title.toLocaleLowerCase('en-US');
-    if (!subjectFilter.some(filter => subject.includes(filter))) {
-      return false;
+    if (subjectFilter.some(filter => subject.includes(filter))) {
+      return true;
     }
   }
 
-  return true;
+  if (labelFilter.length === 0 && subjectFilter.length === 0) {
+    return true;
+  }
+
+  return false;
 }
 
 export function getNotification(entity: Entity, issue: Issue): NotificationPayload {
   const repo = entity.metadata.annotations?.[NotificationsGitHubAnnotation.PROJECT_SLUG] ?? 'unknown-repo';
 
   // TODO: replace demo payload with real payload
-  const title = issue.title;
-
-  let description = `GitHub issue #${issue.number} in ${repo} by ${issue.author}`;
-  if (issue.state === 'CLOSED') {
-    description += ' (closed)';
+  let title = issue.title;
+  if (issue.state !== 'OPEN') {
+    title += ` (${issue.state})`;
   }
+
+  const description = `GitHub issue #${issue.number} in ${repo} by ${issue.author}`;
 
   const link = issue.url;
 
@@ -66,7 +70,7 @@ export function getNotification(entity: Entity, issue: Issue): NotificationPaylo
     severity = undefined;
   }
 
-  const topic = entity.metadata.annotations?.[NotificationsGitHubAnnotation.TOPIC] ?? `${entity.metadata.name} notifications`;
+  const topic = entity.metadata.annotations?.[NotificationsGitHubAnnotation.TOPIC] ?? entity.metadata.title ?? entity.metadata.name;
 
   const scope = issue.url;
 

@@ -10122,9 +10122,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@proberaum/backstage-plugin-notifications-backend-module-github-issues@workspace:^, @proberaum/backstage-plugin-notifications-backend-module-github-issues@workspace:plugins/notifications-backend-module-github-issues":
+"@proberaum/backstage-plugin-notifications-backend-module-github@workspace:^, @proberaum/backstage-plugin-notifications-backend-module-github@workspace:plugins/notifications-backend-module-github":
   version: 0.0.0-use.local
-  resolution: "@proberaum/backstage-plugin-notifications-backend-module-github-issues@workspace:plugins/notifications-backend-module-github-issues"
+  resolution: "@proberaum/backstage-plugin-notifications-backend-module-github@workspace:plugins/notifications-backend-module-github"
   dependencies:
     "@backstage/backend-plugin-api": "npm:^1.4.1"
     "@backstage/backend-test-utils": "npm:^1.7.0"
@@ -17733,7 +17733,7 @@ __metadata:
     "@backstage/plugin-search-backend-node": "npm:^1.3.13"
     "@backstage/plugin-signals-backend": "npm:^0.3.6"
     "@backstage/plugin-techdocs-backend": "npm:^2.0.4"
-    "@proberaum/backstage-plugin-notifications-backend-module-github-issues": "workspace:^"
+    "@proberaum/backstage-plugin-notifications-backend-module-github": "workspace:^"
     app: "link:../app"
     better-sqlite3: "npm:^9.0.0"
     node-gyp: "npm:^10.0.0"

@@ -1,5 +1,5 @@
 /**
- * The github-issues backend module for the notifications plugin.
+ * The github backend module for the notifications plugin.
  *
  * @packageDocumentation
  */

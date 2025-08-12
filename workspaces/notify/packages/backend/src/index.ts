@@ -57,6 +57,6 @@ backend.add(import('@backstage/plugin-notifications-backend'));
 backend.add(import('@backstage/plugin-signals-backend'));
 
 // notify modules
-backend.add(import('@proberaum/backstage-plugin-notifications-backend-module-github-issues'));
+backend.add(import('@proberaum/backstage-plugin-notifications-backend-module-github'));
 
 backend.start();

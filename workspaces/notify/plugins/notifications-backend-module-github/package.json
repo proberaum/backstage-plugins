@@ -1,9 +1,8 @@
 {
-  "name": "@proberaum/backstage-plugin-notifications-backend-module-github-issues",
-  "version": "0.1.0",
+  "name": "@proberaum/backstage-plugin-notifications-backend-module-github",
+  "version": "0.0.0",
   "license": "Apache-2.0",
-  "private": true,
-  "description": "The github-issues backend module for the notifications plugin.",
+  "description": "The github backend module for the notifications plugin.",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "publishConfig": {
