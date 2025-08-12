@@ -15,22 +15,26 @@ kind: Component
 metadata:
   name: rbac-plugin
   annotations:
-    notify: user:development/guest
-    notify/topic: RBAC Plugin Notifications
+    github.com/project-slug: backstage/community-plugins
+    github.com/notify-on-issues: group:development/rbac-plugin-team
+    github.com/notify-topic: RBAC Plugin
+    github.com/notify-subject-filter: RBAC
 spec:
   type: plugin
   lifecycle: experimental
-  owner: user:development/guest
+  owner: development/rbac-plugin-team
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: security-notifications
+  name: servicenow-plugin
   annotations:
-    notify: owner
-    notify/topic: Security Notifications
+    github.com/project-slug: backstage/community-plugins
+    github.com/notify-on-issues: owner
+    github.com/notify-topic: ServiceNow Plugin
+    github.com/notify-subject-filter: ServiceNow
 spec:
-  type: security
+  type: plugin
   lifecycle: experimental
-  owner: development/security-notifications
+  owner: development/servicenow-plugin-team

@@ -6,14 +6,24 @@ metadata:
   namespace: development
   name: guest
 spec:
-  memberOf: [security-notifications]
+  memberOf: [rbac-plugin-team, servicenow-plugin-team]
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
   namespace: development
-  name: security-notifications
+  name: rbac-plugin-team
+spec:
+  type: team
+  children: []
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  namespace: development
+  name: servicenow-plugin-team
 spec:
   type: team
   children: []
