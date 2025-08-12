@@ -1,0 +1,64 @@
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-user
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  namespace: development
+  name: guest
+spec:
+  memberOf:
+    - backstage-catalog-interested-people
+    - backstage-scaffolder-interested-people
+    - rbac-plugin-team
+    - servicenow-plugin-team
+    - proberaum-interested-people
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  namespace: development
+  name: backstage-catalog-interested-people
+spec:
+  type: team
+  children: []
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  namespace: development
+  name: backstage-scaffolder-interested-people
+spec:
+  type: team
+  children: []
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  namespace: development
+  name: rbac-plugin-team
+spec:
+  type: team
+  children: []
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  namespace: development
+  name: servicenow-plugin-team
+spec:
+  type: team
+  children: []
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  namespace: development
+  name: proberaum-interested-people
+spec:
+  type: team
+  children: []

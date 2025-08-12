@@ -1,0 +1,86 @@
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: another-service-without-notify-annotation
+spec:
+  type: plugin
+  lifecycle: experimental
+  owner: user:development/guest
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: backstage-catalog
+  annotations:
+    github.com/project-slug: backstage/backstage
+    github.com/notify-on-issues: group:development/backstage-catalog-interested-people
+    github.com/notify-topic: Backstage Catalog
+    github.com/notify-subject-filter: catalog
+    github.com/notify-label-filter: area:catalog
+spec:
+  type: plugin
+  lifecycle: experimental
+  owner: backstage-team
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: backstage-scaffolder
+  annotations:
+    github.com/project-slug: backstage/backstage
+    github.com/notify-on-issues: group:development/backstage-scaffolder-interested-people
+    github.com/notify-topic: Backstage Scaffolder
+    github.com/notify-subject-filter: scaffolder
+    github.com/notify-label-filter: area:scaffolder
+spec:
+  type: plugin
+  lifecycle: experimental
+  owner: backstage-team
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: rbac-plugin
+  annotations:
+    github.com/project-slug: backstage/community-plugins
+    github.com/notify-on-issues: group:development/rbac-plugin-team
+    github.com/notify-topic: RBAC Plugin
+    github.com/notify-subject-filter: RBAC
+spec:
+  type: plugin
+  lifecycle: experimental
+  owner: development/rbac-plugin-team
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: servicenow-plugin
+  annotations:
+    github.com/project-slug: backstage/community-plugins
+    github.com/notify-on-issues: owner
+    github.com/notify-topic: ServiceNow Plugin
+    github.com/notify-subject-filter: ServiceNow
+spec:
+  type: plugin
+  lifecycle: experimental
+  owner: development/servicenow-plugin-team
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: proberaum
+  annotations:
+    github.com/project-slug: proberaum/backstage-plugins
+    github.com/notify-on-issues: group:development/proberaum-interested-people
+    github.com/notify-topic: Proberaum
+spec:
+  type: plugin
+  lifecycle: experimental
+  owner: user:development/guest
