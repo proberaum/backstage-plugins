@@ -9937,7 +9937,6 @@ __metadata:
     "@backstage/catalog-client": "npm:^1.10.2"
     "@backstage/catalog-model": "npm:^1.7.5"
     "@backstage/cli": "npm:^0.33.1"
-    "@backstage/errors": "npm:^1.2.7"
     "@backstage/integration": "npm:^1.17.1"
     "@backstage/plugin-catalog-node": "npm:^1.17.2"
     "@backstage/plugin-notifications-common": "npm:^0.0.10"
