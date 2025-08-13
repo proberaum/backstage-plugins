@@ -56,7 +56,7 @@ backend.add(import('@backstage/plugin-kubernetes-backend'));
 backend.add(import('@backstage/plugin-notifications-backend'));
 backend.add(import('@backstage/plugin-signals-backend'));
 
-// notify modules
+// github-notifications plugin
 backend.add(import('@proberaum/backstage-plugin-github-notifications-backend'));
 
 backend.start();
