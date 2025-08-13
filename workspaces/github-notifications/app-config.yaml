@@ -1,5 +1,5 @@
 app:
-  title: Notify Backstage App
+  title: GitHub Notifications Backstage App
   baseUrl: http://localhost:3000
 
 organization:

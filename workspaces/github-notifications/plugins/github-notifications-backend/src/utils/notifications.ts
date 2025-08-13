@@ -16,16 +16,18 @@ import { Issue } from './github';
  * - `group:groupname`
  */
 export function getReceivers(entity: Entity): string[] {
-  const notify =
-    entity.metadata.annotations?.[NotificationsGitHubAnnotation.NOTIFY];
-  if (!notify) {
+  const notifyOnIssues =
+    entity.metadata.annotations?.[
+      NotificationsGitHubAnnotation.NOTIFY_ON_ISSUES
+    ];
+  if (!notifyOnIssues) {
     return [];
   }
 
   const entityRefs: string[] = [];
   // TODO: not sure if this notifies just the owner or other relationships as well
   if (
-    notify
+    notifyOnIssues
       .split(',')
       .map(ref => ref.trim())
       .includes('owner')
@@ -33,7 +35,7 @@ export function getReceivers(entity: Entity): string[] {
     entityRefs.push(stringifyEntityRef(entity));
   }
   entityRefs.push(
-    ...notify
+    ...notifyOnIssues
       .split(',')
       .map(ref => ref.trim())
       .filter(ref => ref.startsWith('user:') || ref.startsWith('group:')),

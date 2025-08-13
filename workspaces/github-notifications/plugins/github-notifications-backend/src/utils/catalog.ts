@@ -15,7 +15,7 @@ export async function getEntities(auth: AuthService, catalog: CatalogService) {
       filter: {
         [`metadata.annotations.${NotificationsGitHubAnnotation.PROJECT_SLUG}`]:
           CATALOG_FILTER_EXISTS,
-        [`metadata.annotations.${NotificationsGitHubAnnotation.NOTIFY}`]:
+        [`metadata.annotations.${NotificationsGitHubAnnotation.NOTIFY_ON_ISSUES}`]:
           CATALOG_FILTER_EXISTS,
       },
       fields: [

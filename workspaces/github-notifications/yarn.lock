@@ -7259,9 +7259,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@internal/notify@workspace:.":
+"@internal/github-notifications@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@internal/notify@workspace:."
+  resolution: "@internal/github-notifications@workspace:."
   dependencies:
     "@backstage/cli": "npm:^0.33.1"
     "@backstage/e2e-test-utils": "npm:^0.1.1"
