@@ -24,4 +24,3 @@
 | :----------------------------------- | :------------ | :------- |
 | @backstage/plugin-notifications-node | src/plugin.ts | error    |
 | @backstage/catalog-model             | src/plugin.ts | error    |
-

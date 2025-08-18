@@ -17,4 +17,3 @@
 | @backstage/plugin-catalog-node       | src/utils/catalog.ts                                   | error    |
 | @backstage/plugin-notifications-node | src/module.ts                                          | error    |
 | @backstage/plugin-catalog-node       | src/module.ts                                          | error    |
-

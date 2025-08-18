@@ -7,6 +7,7 @@ export function isSchedulerNotificationEntity(
 ): entity is SchedulerNotificationEntity {
   return (
     !!entity &&
-    (entity.apiVersion === 'scheduler.backstage.io/v1alpha1') &&
-    entity.kind === 'Notification');
+    entity.apiVersion === 'scheduler.backstage.io/v1alpha1' &&
+    entity.kind === 'Notification'
+  );
 }

@@ -30,13 +30,11 @@ import {
 // import { getEntity } from '../utils/catalog';
 
 export class SchedulerNotificationCatalogProcessor implements CatalogProcessor {
-  constructor(
-    private logger: LoggerService,
-    // private auth: AuthService,
-    // private catalog: CatalogService,
-    // private scheduler: SchedulerService,
-    // private notificationService: NotificationService,
-  ) {}
+  constructor(private logger: LoggerService) {}
+  // private auth: AuthService,
+  // private catalog: CatalogService,
+  // private scheduler: SchedulerService,
+  // private notificationService: NotificationService,
 
   getProcessorName(): string {
     return 'SchedulerNotificationCatalogProcessor';
@@ -53,7 +51,7 @@ export class SchedulerNotificationCatalogProcessor implements CatalogProcessor {
     entity: Entity,
     _location: LocationSpec,
     emit: CatalogProcessorEmit,
-    _cache: CatalogProcessorCache
+    _cache: CatalogProcessorCache,
   ): Promise<Entity> {
     if (isSchedulerNotificationEntity(entity)) {
       //
@@ -105,7 +103,7 @@ export class SchedulerNotificationCatalogProcessor implements CatalogProcessor {
       //
       const thisEntityRef = getCompoundEntityRef(entity);
 
-      entity.spec.receivers?.forEach((receiver) => {
+      entity.spec.receivers?.forEach(receiver => {
         if (typeof receiver === 'string') {
           this.logger.info(`Processing string receiver: ${receiver}`);
 

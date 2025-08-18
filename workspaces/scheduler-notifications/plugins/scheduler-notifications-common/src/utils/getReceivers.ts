@@ -12,7 +12,7 @@ import { SchedulerNotificationEntity } from '@proberaum/backstage-plugin-schedul
 export function getReceivers(entity: SchedulerNotificationEntity): string[] {
   const entityRefs: string[] = [];
 
-  entity.spec.receivers?.forEach((receiver) => {
+  entity.spec.receivers?.forEach(receiver => {
     if (typeof receiver === 'string') {
       const receiverRef = parseEntityRef(receiver as string, {
         // defaultKind: 'Group',

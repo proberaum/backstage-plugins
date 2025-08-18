@@ -9,4 +9,3 @@
 | @backstage/plugin-notifications-common | src/types.ts                               | error    |
 | @backstage/catalog-model               | src/types.ts                               | error    |
 | @backstage/types                       | src/types.ts                               | error    |
-

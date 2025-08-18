@@ -1,9 +1,18 @@
-import { coreServices, createBackendPlugin } from '@backstage/backend-plugin-api';
+import {
+  coreServices,
+  createBackendPlugin,
+} from '@backstage/backend-plugin-api';
 import { stringifyEntityRef } from '@backstage/catalog-model';
 import { catalogServiceRef } from '@backstage/plugin-catalog-node';
-import { NotificationRecipients, notificationService } from '@backstage/plugin-notifications-node';
+import {
+  NotificationRecipients,
+  notificationService,
+} from '@backstage/plugin-notifications-node';
 
-import { isSchedulerNotificationEntity, getReceivers } from '@proberaum/backstage-plugin-scheduler-notifications-common';
+import {
+  isSchedulerNotificationEntity,
+  getReceivers,
+} from '@proberaum/backstage-plugin-scheduler-notifications-common';
 
 import { getEntities } from './utils/catalog';
 
@@ -54,37 +63,40 @@ export const schedulerNotificationsPlugin = createBackendPlugin({
                 // TODO: how to cancel scheduled tasks?!
 
                 if (entity.metadata.name === 'all-teams-sprint-end-tomorrow') {
-                  scheduler.createScheduledTaskRunner({
-                    frequency: entity.spec.frequency,
-                    timeout: {
-                      seconds: 10,
-                    },
-                  }).run({
-                    id: `scheduler-notifications:${entityRef}`,
-                    fn: async () => {
-                      logger.info(`run... ${entityRef}`);
-                      try {
-                        const receivers = getReceivers(entity);
+                  scheduler
+                    .createScheduledTaskRunner({
+                      frequency: entity.spec.frequency,
+                      timeout: {
+                        seconds: 10,
+                      },
+                    })
+                    .run({
+                      id: `scheduler-notifications:${entityRef}`,
+                      fn: async () => {
+                        logger.info(`run... ${entityRef}`);
+                        try {
+                          const receivers = getReceivers(entity);
 
-                        const recipients: NotificationRecipients = {
-                          type: 'entity',
-                          entityRef: receivers,
-                        };
+                          const recipients: NotificationRecipients = {
+                            type: 'entity',
+                            entityRef: receivers,
+                          };
 
-                        logger.info(
-                          `will send notification for entity #${entityRef} to ${receivers}`,
-                        );
-                        await notificationService.send({
-                          recipients,
-                          payload: entity.spec.message,
-                        });
-
-                      } catch (error) {
-                        logger.error(`Error occurred while running task for entity ${entityRef}: ${error}`);
-                        throw error;
-                      }
-                    },
-                  });
+                          logger.info(
+                            `will send notification for entity #${entityRef} to ${receivers}`,
+                          );
+                          await notificationService.send({
+                            recipients,
+                            payload: entity.spec.message,
+                          });
+                        } catch (error) {
+                          logger.error(
+                            `Error occurred while running task for entity ${entityRef}: ${error}`,
+                          );
+                          throw error;
+                        }
+                      },
+                    });
                 } else {
                   scheduler.scheduleTask({
                     id: `scheduler-notifications:${entityRef}`,
@@ -105,9 +117,10 @@ export const schedulerNotificationsPlugin = createBackendPlugin({
                           recipients,
                           payload: entity.spec.message,
                         });
-
                       } catch (error) {
-                        logger.error(`Error occurred while running task for entity ${entityRef}: ${error}`);
+                        logger.error(
+                          `Error occurred while running task for entity ${entityRef}: ${error}`,
+                        );
                         throw error;
                       }
                     },
@@ -132,7 +145,6 @@ export const schedulerNotificationsPlugin = createBackendPlugin({
             seconds: 30,
           },
         });
-
       },
     });
   },

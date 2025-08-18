@@ -14,4 +14,3 @@
 | @backstage/test-utils       | package.json:52:6 | error    |
 | @testing-library/dom        | package.json:54:6 | error    |
 | cross-env                   | package.json:59:6 | error    |
-
