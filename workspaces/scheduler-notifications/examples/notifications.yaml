@@ -1,0 +1,46 @@
+---
+apiVersion: scheduler.backstage.io/v1alpha1
+kind: Notification
+metadata:
+  namespace: development
+  name: all-teams-sprint-end-tomorrow
+spec:
+  # https://crontab.guru/
+  frequency:
+    cron: '0 59 0 * * *'
+  receivers:
+    - group:example-team
+  message:
+    title: Sprint ends tomorrow, please update your tasks.
+    description: This notification is send to all example-team members.
+    link: https://jira.example.com/
+    topic: Sprints
+    # https://backstage.io/docs/getting-started/app-custom-theme/#icons
+    # https://github.com/backstage/backstage/blob/master/packages/app-defaults/src/defaults/icons.tsx
+    icon: dashboard
+---
+apiVersion: scheduler.backstage.io/v1alpha1
+kind: Notification
+metadata:
+  namespace: development
+  name: example-team-triage-bugs
+spec:
+  # https://crontab.guru/
+  frequency:
+    cron: '0 0 1 * * *'
+  receivers:
+    - user:guest
+    - group:example-team
+    - pick: 2
+      from: all-rhdh-contributors
+      after: date
+      before: date
+  message:
+    title: You have selected to triage example-team bugs today.
+    description: You were randomly selected from the example-team members.
+    link: https://jira.example.com/
+    severity: high
+    topic: Example team
+    # https://backstage.io/docs/getting-started/app-custom-theme/#icons
+    # https://github.com/backstage/backstage/blob/master/packages/app-defaults/src/defaults/icons.tsx
+    icon: warning

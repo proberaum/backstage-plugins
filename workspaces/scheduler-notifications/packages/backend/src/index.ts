@@ -56,4 +56,8 @@ backend.add(import('@backstage/plugin-kubernetes-backend'));
 backend.add(import('@backstage/plugin-notifications-backend'));
 backend.add(import('@backstage/plugin-signals-backend'));
 
+// scheduler-notifications
+backend.add(import('@proberaum/backstage-plugin-scheduler-notifications-backend'));
+backend.add(import('@proberaum/backstage-plugin-catalog-backend-module-scheduler-notifications'));
+
 backend.start();

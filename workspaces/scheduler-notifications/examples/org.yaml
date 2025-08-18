@@ -3,15 +3,17 @@
 apiVersion: backstage.io/v1alpha1
 kind: User
 metadata:
+  namespace: development
   name: guest
 spec:
-  memberOf: [guests]
+  memberOf: [example-team]
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
-  name: guests
+  namespace: development
+  name: example-team
 spec:
   type: team
   children: []
