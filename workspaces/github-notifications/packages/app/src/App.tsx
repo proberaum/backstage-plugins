@@ -110,7 +110,6 @@ const routes = (
       </SettingsLayout.Route>
     </Route>
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
-    // ...
     <Route path="/notifications" element={<NotificationsPage />} />
   </FlatRoutes>
 );
