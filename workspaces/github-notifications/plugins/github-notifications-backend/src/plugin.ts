@@ -50,7 +50,7 @@ export const githubNotificationsPlugin = createBackendPlugin({
         await scheduler.scheduleTask({
           id: 'github-notifications-scheduler',
           initialDelay: { seconds: 10 },
-          frequency: { seconds: 20 },
+          frequency: { minutes: 10 },
           timeout: { minutes: 1 },
           fn: async () => {
             logger.debug('scheduler is running...');
