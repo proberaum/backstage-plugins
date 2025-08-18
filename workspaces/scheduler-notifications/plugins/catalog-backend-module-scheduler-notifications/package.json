@@ -10,9 +10,15 @@
     "main": "dist/index.cjs.js",
     "types": "dist/index.d.ts"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/backstage/community-plugins",
+    "directory": "workspaces/scheduler-notifications/plugins/catalog-backend-module-scheduler-notifications"
+  },
   "backstage": {
     "role": "backend-plugin-module",
-    "pluginId": "catalog"
+    "pluginId": "catalog",
+    "pluginPackage": "@backstage/plugin-catalog-backend"
   },
   "scripts": {
     "start": "backstage-cli package start",

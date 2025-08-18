@@ -9,9 +9,18 @@
     "main": "dist/index.cjs.js",
     "types": "dist/index.d.ts"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/backstage/community-plugins",
+    "directory": "workspaces/scheduler-notifications/plugins/scheduler-notifications-backend"
+  },
   "backstage": {
     "role": "backend-plugin",
-    "pluginId": "scheduler-notifications"
+    "pluginId": "scheduler-notifications",
+    "pluginPackages": [
+      "@proberaum/backstage-plugin-scheduler-notifications-backend",
+      "@proberaum/backstage-plugin-scheduler-notifications-common"
+    ]
   },
   "scripts": {
     "start": "backstage-cli package start",

@@ -11,9 +11,18 @@
     "module": "dist/index.esm.js",
     "types": "dist/index.d.ts"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/backstage/community-plugins",
+    "directory": "workspaces/scheduler-notifications/plugins/scheduler-notifications-common"
+  },
   "backstage": {
     "role": "common-library",
-    "pluginId": "scheduler-notifications"
+    "pluginId": "scheduler-notifications",
+    "pluginPackages": [
+      "@proberaum/backstage-plugin-scheduler-notifications-backend",
+      "@proberaum/backstage-plugin-scheduler-notifications-common"
+    ]
   },
   "sideEffects": false,
   "scripts": {
