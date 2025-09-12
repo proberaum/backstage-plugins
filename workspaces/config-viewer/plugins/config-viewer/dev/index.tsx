@@ -5,7 +5,7 @@ createDevApp()
   .registerPlugin(configViewerPlugin)
   .addPage({
     element: <ConfigViewerPage />,
-    title: 'Root Page',
+    title: 'Config Viewer',
     path: '/config-viewer',
   })
   .render();
