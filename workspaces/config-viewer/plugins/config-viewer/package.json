@@ -9,9 +9,17 @@
     "main": "dist/index.esm.js",
     "types": "dist/index.d.ts"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/backstage/community-plugins",
+    "directory": "workspaces/config-viewer/plugins/config-viewer"
+  },
   "backstage": {
     "role": "frontend-plugin",
-    "pluginId": "config-viewer"
+    "pluginId": "config-viewer",
+    "pluginPackages": [
+      "@proberaum/backstage-plugin-config-viewer"
+    ]
   },
   "sideEffects": false,
   "scripts": {
