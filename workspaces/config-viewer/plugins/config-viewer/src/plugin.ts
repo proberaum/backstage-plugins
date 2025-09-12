@@ -16,7 +16,7 @@ export const ConfigViewerPage = configViewerPlugin.provide(
   createRoutableExtension({
     name: 'ConfigViewerPage',
     component: () =>
-      import('./components/ExampleComponent').then(m => m.ExampleComponent),
+      import('./components/ConfigViewerPage').then(m => m.ConfigViewerPage),
     mountPoint: rootRouteRef,
   }),
 );
