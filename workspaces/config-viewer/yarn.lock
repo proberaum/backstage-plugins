@@ -8626,7 +8626,7 @@ __metadata:
     "@backstage/dev-utils": "npm:^1.1.13"
     "@backstage/test-utils": "npm:^1.7.11"
     "@backstage/theme": "npm:^0.6.8"
-    "@material-ui/core": "npm:^4.9.13"
+    "@backstage/ui": "npm:^0.7.0"
     "@testing-library/jest-dom": "npm:^6.0.0"
     "@testing-library/react": "npm:^14.0.0"
     "@testing-library/user-event": "npm:^14.0.0"
