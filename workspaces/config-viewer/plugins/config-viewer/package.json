@@ -18,7 +18,8 @@
     "role": "frontend-plugin",
     "pluginId": "config-viewer",
     "pluginPackages": [
-      "@proberaum/backstage-plugin-config-viewer"
+      "@proberaum/backstage-plugin-config-viewer",
+      "@proberaum/backstage-plugin-config-viewer-backend"
     ]
   },
   "sideEffects": false,

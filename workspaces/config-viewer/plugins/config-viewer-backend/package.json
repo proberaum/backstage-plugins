@@ -10,9 +10,18 @@
     "main": "dist/index.cjs.js",
     "types": "dist/index.d.ts"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/backstage/community-plugins",
+    "directory": "workspaces/config-viewer/plugins/config-viewer-backend"
+  },
   "backstage": {
     "role": "backend-plugin",
-    "pluginId": "config-viewer"
+    "pluginId": "config-viewer",
+    "pluginPackages": [
+      "@proberaum/backstage-plugin-config-viewer",
+      "@proberaum/backstage-plugin-config-viewer-backend"
+    ]
   },
   "scripts": {
     "start": "backstage-cli package start",
