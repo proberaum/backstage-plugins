@@ -5,7 +5,7 @@ import { ConfigViewerContent } from './ConfigViewerContent';
 export const ConfigViewerPage = () => {
   return (
     <Page themeId="tool">
-      <Header title="Config Viewer" />
+      <Header title="Config viewer" />
       <Content>
         <ConfigViewerContent />
       </Content>

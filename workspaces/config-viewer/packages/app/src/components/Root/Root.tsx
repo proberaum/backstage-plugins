@@ -81,7 +81,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
         <SidebarItem
           icon={ExtensionIcon}
           to="config-viewer"
-          text="Config Viewer"
+          text="Config viewer"
         />
         <SidebarDivider />
         <SidebarScrollWrapper>
