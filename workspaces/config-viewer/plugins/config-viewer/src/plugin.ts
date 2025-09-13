@@ -5,6 +5,9 @@ import {
 
 import { rootRouteRef } from './routes';
 
+/**
+ * @public
+ */
 export const configViewerPlugin = createPlugin({
   id: 'config-viewer',
   routes: {
@@ -12,6 +15,9 @@ export const configViewerPlugin = createPlugin({
   },
 });
 
+/**
+ * @public
+ */
 export const ConfigViewerPage = configViewerPlugin.provide(
   createRoutableExtension({
     name: 'ConfigViewerPage',
