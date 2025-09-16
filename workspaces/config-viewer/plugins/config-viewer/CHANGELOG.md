@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-config-viewer
 
+## 0.3.0
+
+### Minor Changes
+
+- cbcc57c: downgrade to Backstage 1.39
+
 ## 0.2.0
 
 ### Minor Changes
