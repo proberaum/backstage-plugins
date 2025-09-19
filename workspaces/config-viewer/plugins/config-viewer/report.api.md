@@ -25,8 +25,8 @@ export const configViewerPlugin: BackstagePlugin<
 export const configViewerTranslationRef: TranslationRef<
   'plugin.config-viewer.translation-ref',
   {
-    readonly 'page.title': 'Config Viewer';
-    readonly 'sidebar.title': 'Config Viewer';
+    readonly 'page.title': 'Config viewer';
+    readonly 'sidebar.title': 'Config viewer';
     readonly 'common.filterPlaceholder': 'Filter config keys';
   }
 >;
