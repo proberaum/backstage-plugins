@@ -7,10 +7,10 @@ export const configViewerTranslationRef = createTranslationRef({
   id: 'plugin.config-viewer.translation-ref',
   messages: {
     sidebar: {
-      title: 'Config Viewer',
+      title: 'Config viewer',
     },
     page: {
-      title: 'Config Viewer',
+      title: 'Config viewer',
     },
     common: {
       filterPlaceholder: 'Filter config keys',
