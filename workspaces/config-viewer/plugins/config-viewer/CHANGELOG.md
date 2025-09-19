@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-config-viewer
 
+## 0.4.1
+
+### Patch Changes
+
+- 1f738c7: Change from Config Viewer to Config viewer
+
 ## 0.4.0
 
 ### Minor Changes
