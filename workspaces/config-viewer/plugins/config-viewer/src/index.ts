@@ -1,1 +1,2 @@
-export { configViewerPlugin, ConfigViewerPage } from './plugin';
+export * from './plugin';
+export * from './translations';
