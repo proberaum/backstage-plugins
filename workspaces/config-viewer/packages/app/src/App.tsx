@@ -39,6 +39,7 @@ import { NotificationsPage } from '@backstage/plugin-notifications';
 import { SignalsDisplay } from '@backstage/plugin-signals';
 
 import { ConfigViewerPage } from '@proberaum/backstage-plugin-config-viewer';
+import { configViewerTranslations } from '@proberaum/backstage-plugin-config-viewer';
 
 const app = createApp({
   apis,
@@ -61,6 +62,11 @@ const app = createApp({
   },
   components: {
     SignInPage: props => <SignInPage {...props} auto providers={['guest']} />,
+  },
+  __experimentalTranslations: {
+    defaultLanguage: 'en',
+    availableLanguages: ['en', 'de', 'fr'],
+    resources: [configViewerTranslations],
   },
 });
 
