@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-config-viewer
 
+## 0.4.0
+
+### Minor Changes
+
+- 1eebe81: Add translation support
+
 ## 0.3.0
 
 ### Minor Changes
