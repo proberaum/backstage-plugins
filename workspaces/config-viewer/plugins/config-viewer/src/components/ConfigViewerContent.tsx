@@ -1,8 +1,8 @@
-import { ChangeEventHandler, useMemo } from 'react';
+import { useMemo } from 'react';
 import { CodeSnippet, useQueryParamState } from '@backstage/core-components';
 import { useApi, configApiRef } from '@backstage/core-plugin-api';
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
-import { TextField as SearchField } from '@backstage/canon';
+import { SearchField } from '@backstage/ui';
 
 import YAML from 'yaml';
 
@@ -13,8 +13,7 @@ export const ConfigViewerContent = () => {
   const [searchTerm, setSearchTerm] = useQueryParamState<string | undefined>(
     'q',
   );
-  const handleSearchChange: ChangeEventHandler<HTMLInputElement> = event => {
-    const value = event.target.value;
+  const handleSearchChange = (value: string) => {
     setSearchTerm(value || undefined);
   };
 
@@ -36,7 +35,6 @@ export const ConfigViewerContent = () => {
   return (
     <>
       <SearchField
-        name="q" // can be removed with @backstage/ui
         placeholder={t('common.filterPlaceholder')}
         defaultValue={searchTerm}
         onChange={handleSearchChange}
