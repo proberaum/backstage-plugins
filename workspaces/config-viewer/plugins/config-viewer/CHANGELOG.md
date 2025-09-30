@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-config-viewer
 
+## 0.7.1
+
+### Patch Changes
+
+- b248c00: Replace @backstage/canon with @backstage/ui
+
 ## 0.7.0
 
 ### Minor Changes
