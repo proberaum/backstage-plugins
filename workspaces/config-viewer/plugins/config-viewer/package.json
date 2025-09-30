@@ -33,10 +33,10 @@
     "postpack": "backstage-cli package postpack"
   },
   "dependencies": {
-    "@backstage/canon": "^0.6.0",
     "@backstage/core-components": "^0.17.5",
     "@backstage/core-plugin-api": "^1.10.9",
     "@backstage/theme": "^0.6.8",
+    "@backstage/ui": "^0.7.0",
     "react-use": "^17.2.4",
     "yaml": "^2.8.1"
   },
