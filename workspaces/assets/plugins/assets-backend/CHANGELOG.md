@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-assets-backend
 
+## 0.1.0
+
+### Minor Changes
+
+- c8de072: Backstage upgrade to 1.36.1
+
 ## 0.0.1
 
 ### Patch Changes
