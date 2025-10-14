@@ -6,7 +6,7 @@ import {
   RELATION_HAS_PART,
   RELATION_PART_OF,
 } from '@backstage/catalog-model';
-import { LocationSpec } from '@backstage/plugin-catalog-common/index';
+import { LocationSpec } from '@backstage/plugin-catalog-common';
 import {
   CatalogProcessor,
   CatalogProcessorCache,
