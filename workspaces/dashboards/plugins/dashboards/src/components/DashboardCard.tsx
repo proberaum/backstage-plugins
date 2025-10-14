@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import {
   CodeSnippet,
   InfoCard,
@@ -19,7 +19,7 @@ export const DashboardCard = () => {
     queryFn: () => dashboardsApi.getDashboard(name),
   });
 
-  let content: React.ReactNode;
+  let content: ReactNode;
   if (isLoading) {
     content = <Progress />;
   } else if (error) {

@@ -1,5 +1,4 @@
-import React from 'react';
-
+import { useMemo, useState } from 'react';
 import {
   CodeSnippet,
   ErrorBoundary,
@@ -75,15 +74,15 @@ export const DashboardGrid = () => {
     },
   ];
 
-  const [currentLayout, setCurrentLayout] = React.useState<any>();
-  const [allLayouts, setAllLayout] = React.useState<any>();
+  const [currentLayout, setCurrentLayout] = useState<any>();
+  const [allLayouts, setAllLayout] = useState<any>();
   const onLayoutChange = (currentLayout: Layout[], allLayouts: Layouts) => {
     console.log('xxx onLayoutChange', currentLayout, allLayouts);
     setCurrentLayout(currentLayout);
     setAllLayout(allLayouts);
   };
 
-  const children = React.useMemo(() => {
+  const children = useMemo(() => {
     return cards.map(card => (
       <div
         key={card.id}
