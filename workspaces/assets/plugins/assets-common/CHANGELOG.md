@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-assets-common
 
+## 0.2.0
+
+### Minor Changes
+
+- 18ada83: Backstage upgrade to 1.39.1
+
 ## 0.1.0
 
 ### Minor Changes
