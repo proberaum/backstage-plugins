@@ -5,6 +5,7 @@ import {
 
 import { rootRouteRef } from './routes';
 
+/** @public */
 export const planningPokerPlugin = createPlugin({
   id: 'planning-poker',
   routes: {
@@ -12,6 +13,7 @@ export const planningPokerPlugin = createPlugin({
   },
 });
 
+/** @public */
 export const PlanningPokerPage = planningPokerPlugin.provide(
   createRoutableExtension({
     name: 'PlanningPokerPage',

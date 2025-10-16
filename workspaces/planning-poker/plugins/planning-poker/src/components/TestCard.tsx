@@ -16,7 +16,7 @@ type Vote = {
 
 type PositionedVote = Vote & {
   position: number;
-}
+};
 
 const votes: Vote[] = [
   {
@@ -45,17 +45,19 @@ const pointingOptions = [1, 2, 3, 5, 8, 'Unknown'];
 export const TestCard = () => {
   const [revealed, setRevealed] = React.useState(false);
 
-  const canReveal = votes.some((vote) => vote.voted);
+  const canReveal = votes.some(vote => vote.voted);
 
   const positionedVotes = React.useMemo<PositionedVote[]>(() => {
     if (revealed) {
-      const orderedUsers = [...votes].sort((a, b) => {
-        if (!a.voted) return 1;
-        if (!b.voted) return -1;
-        return a.voted - b.voted;
-      }).map((vote) => vote.userId);
+      const orderedUsers = [...votes]
+        .sort((a, b) => {
+          if (!a.voted) return 1;
+          if (!b.voted) return -1;
+          return a.voted - b.voted;
+        })
+        .map(vote => vote.userId);
 
-      return votes.map<PositionedVote>((vote) => ({
+      return votes.map<PositionedVote>(vote => ({
         ...vote,
         position: orderedUsers.indexOf(vote.userId),
       }));
@@ -69,9 +71,8 @@ export const TestCard = () => {
 
   return (
     <InfoCard title="Story 1234">
-
       <div style={{ height: '50px' }}>
-        {positionedVotes.map((vote) => (
+        {positionedVotes.map(vote => (
           <div
             key={vote.userId}
             style={{
@@ -85,16 +86,16 @@ export const TestCard = () => {
               <div>
                 <Badge
                   badgeContent={
-                    revealed ?
-                      (vote.voted ? vote.voted : ' ') :
-                      ' '
+                    revealed ? (vote.voted ? vote.voted : ' ') : ' '
                   }
                   anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'right',
                   }}
                   overlap="circular"
-                  color={vote.voted ? 'success' : revealed ? 'error' : 'warning'}
+                  color={
+                    vote.voted ? 'success' : revealed ? 'error' : 'warning'
+                  }
                   slotProps={{
                     badge: {
                       style: {
@@ -104,7 +105,7 @@ export const TestCard = () => {
                         borderRadius: '50%',
                         fontSize: revealed ? '22px' : undefined,
                       },
-                    }
+                    },
                   }}
                 >
                   <Avatar displayName={vote.displayName} />
@@ -115,20 +116,18 @@ export const TestCard = () => {
         ))}
       </div>
 
-      <br/><br/>
+      <br />
+      <br />
 
       <ButtonGroup color="primary" variant="contained" size="large">
-        {pointingOptions.map((pointingOption) => (
-          <Button
-            key={pointingOption}
-          >
-            {pointingOption}
-          </Button>
+        {pointingOptions.map(pointingOption => (
+          <Button key={pointingOption}>{pointingOption}</Button>
         ))}
         <Button>Clear</Button>
       </ButtonGroup>
 
-      <br/><br/>
+      <br />
+      <br />
 
       <Button
         color="primary"
@@ -139,10 +138,10 @@ export const TestCard = () => {
         {revealed ? 'Unreveal' : 'Reveal'}
       </Button>
 
-      <br/><br/>
+      <br />
+      <br />
 
       <RevealButton />
-
     </InfoCard>
   );
-}
+};

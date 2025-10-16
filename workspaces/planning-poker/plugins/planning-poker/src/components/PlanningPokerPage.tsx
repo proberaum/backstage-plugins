@@ -1,6 +1,6 @@
 import { Page, Header, Content } from '@backstage/core-components';
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { ConfigCard } from './ConfigCard';
 import { TestCard } from './TestCard';
@@ -13,7 +13,8 @@ export const PlanningPokerPage = () => (
     <Content>
       <QueryClientProvider client={queryClient}>
         <ConfigCard />
-        <br/><br/>
+        <br />
+        <br />
         <TestCard />
       </QueryClientProvider>
     </Content>
