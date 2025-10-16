@@ -9,9 +9,10 @@ on:
     branches:
       - main
     paths:
+      - 'scripts/generate-upgrade-dashboard.js'
       - 'workspaces/*/backstage.json'
   schedule:
-    - cron: '0 6 * * *'  # run at 6 AM UTC every day
+    - cron: '0 6 * * *'  # run at 6 AM UTC every Monday
   workflow_dispatch: # allow manual triggers
 
 jobs:
