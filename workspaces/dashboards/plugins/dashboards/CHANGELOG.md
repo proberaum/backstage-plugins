@@ -1,5 +1,16 @@
 # @proberaum/backstage-plugin-dashboards
 
+## 0.2.0
+
+### Minor Changes
+
+- 84c23ff: Backstage upgrade to 1.39.1
+
+### Patch Changes
+
+- Updated dependencies [84c23ff]
+  - @proberaum/backstage-plugin-dashboards-common@0.2.0
+
 ## 0.1.0
 
 ### Minor Changes
