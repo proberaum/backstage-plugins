@@ -9,8 +9,17 @@
     "main": "dist/index.esm.js",
     "types": "dist/index.d.ts"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/backstage/community-plugins",
+    "directory": "workspaces/planning-poker/plugins/planning-poker"
+  },
   "backstage": {
-    "role": "frontend-plugin"
+    "role": "frontend-plugin",
+    "pluginId": "planning-poker",
+    "pluginPackages": [
+      "@proberaum/backstage-plugin-planning-poker"
+    ]
   },
   "sideEffects": false,
   "scripts": {
@@ -23,9 +32,9 @@
     "postpack": "backstage-cli package postpack"
   },
   "dependencies": {
-    "@backstage/core-components": "^0.17.1",
-    "@backstage/core-plugin-api": "^1.10.6",
-    "@backstage/theme": "^0.6.5",
+    "@backstage/core-components": "^0.18.2",
+    "@backstage/core-plugin-api": "^1.11.1",
+    "@backstage/theme": "^0.7.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^7.1.0",
@@ -36,10 +45,10 @@
     "react": "^16.13.1 || ^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
-    "@backstage/cli": "^0.32.0",
-    "@backstage/core-app-api": "^1.16.1",
-    "@backstage/dev-utils": "^1.1.9",
-    "@backstage/test-utils": "^1.7.7",
+    "@backstage/cli": "^0.34.4",
+    "@backstage/core-app-api": "^1.19.1",
+    "@backstage/dev-utils": "^1.1.16",
+    "@backstage/test-utils": "^1.7.12",
     "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.0.0",

@@ -81,7 +81,11 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
         {/* End global nav */}
         <SidebarDivider />
 
-        <SidebarItem icon={PlanningPokerIcon} to="planning-poker" text="Planning Poker" />
+        <SidebarItem
+          icon={PlanningPokerIcon}
+          to="planning-poker"
+          text="Planning Poker"
+        />
 
         <SidebarScrollWrapper>
           {/* Items in this group will be scrollable if they run out of space */}

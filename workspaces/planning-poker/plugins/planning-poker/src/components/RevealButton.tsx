@@ -10,7 +10,11 @@ import MenuList from '@mui/material/MenuList';
 import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 
-const options = ['Reveal', 'Auto reveal (after x votes)', 'Auto reveal (timer)'];
+const options = [
+  'Reveal',
+  'Auto reveal (after x votes)',
+  'Auto reveal (timer)',
+];
 
 export default function RevealButton() {
   const [open, setOpen] = React.useState(false);
@@ -30,7 +34,7 @@ export default function RevealButton() {
   };
 
   const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+    setOpen(prevOpen => !prevOpen);
   };
 
   const handleClose = (event: Event) => {
@@ -83,7 +87,7 @@ export default function RevealButton() {
                       key={option}
                       disabled={index === 2}
                       selected={index === selectedIndex}
-                      onClick={(event) => handleMenuItemClick(event, index)}
+                      onClick={event => handleMenuItemClick(event, index)}
                     >
                       {option}
                     </MenuItem>

@@ -21,25 +21,25 @@ export const ConfigCard = () => {
 
   const usersQuery = useQuery({
     queryKey: ['users', search],
-    queryFn: () => catalogApi.queryEntities({
-      filter: {
-        kind: 'User',
-      },
-      fullTextFilter: {
-        term: search,
-      },
-      orderFields: {
-        field: 'metadata.name',
-        order: 'asc',
-      },
-    }),
+    queryFn: () =>
+      catalogApi.queryEntities({
+        filter: {
+          kind: 'User',
+        },
+        fullTextFilter: {
+          term: search,
+        },
+        orderFields: {
+          field: 'metadata.name',
+          order: 'asc',
+        },
+      }),
   });
 
   const users = usersQuery.data?.items || [];
 
   return (
     <InfoCard title="Config">
-
       <Autocomplete
         value={null}
         inputValue={search}
@@ -48,22 +48,29 @@ export const ConfigCard = () => {
           setSearch('');
           if (value) {
             const selectedValueRef = stringifyEntityRef(value);
-            if (!selectedUsers.some((u) => stringifyEntityRef(u) === selectedValueRef)) {
+            if (
+              !selectedUsers.some(
+                u => stringifyEntityRef(u) === selectedValueRef,
+              )
+            ) {
               setSelectedUsers([...selectedUsers, value]);
             }
           }
         }}
-        renderInput={(params) => <TextField {...params} label="Search users..." />}
+        renderInput={params => (
+          <TextField {...params} label="Search users..." />
+        )}
         loading={usersQuery.isLoading}
         options={users}
         noOptionsText="No user found"
         getOptionKey={stringifyEntityRef}
-        getOptionLabel={(entity) => entity.metadata.name} // TODO: profile displayName
+        getOptionLabel={entity => entity.metadata.name} // TODO: profile displayName
         sx={{ width: 300 }}
         disablePortal
       />
 
-      <br/><br/>
+      <br />
+      <br />
 
       <div style={{ height: '50px' }}>
         {selectedUsers.map((user, index) => (
@@ -93,8 +100,8 @@ export const ConfigCard = () => {
         ))}
       </div>
 
-      <br/><br/>
-
+      <br />
+      <br />
     </InfoCard>
   );
-}
+};
