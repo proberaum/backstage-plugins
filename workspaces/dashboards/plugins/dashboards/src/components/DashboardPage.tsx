@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import {
   Page,
   Header,
@@ -25,7 +25,7 @@ const AddIconTab = (props: any) => (
 );
 
 export const DashboardPage = () => {
-  const [isFavorite, setIsFavorite] = React.useState(true);
+  const [isFavorite, setIsFavorite] = useState(true);
 
   const title = 'My dashboard';
 
