@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-config-viewer
 
+## 0.8.0
+
+### Minor Changes
+
+- ef0946b: Backstage upgrade to 1.43.3
+
 ## 0.7.1
 
 ### Patch Changes
