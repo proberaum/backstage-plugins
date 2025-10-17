@@ -1,5 +1,16 @@
 # @proberaum/backstage-plugin-dashboards-backend
 
+## 0.3.0
+
+### Minor Changes
+
+- d1c0e4c: Backstage upgrade to 1.42.5
+
+### Patch Changes
+
+- Updated dependencies [d1c0e4c]
+  - @proberaum/backstage-plugin-dashboards-common@0.3.0
+
 ## 0.2.0
 
 ### Minor Changes
