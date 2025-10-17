@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-github-notifications-backend
 
+## 0.9.0
+
+### Minor Changes
+
+- ef0946b: Backstage upgrade to 1.43.3
+
 ## 0.8.0
 
 ### Minor Changes
