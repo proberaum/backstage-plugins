@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-assets-backend
 
+## 0.3.0
+
+### Minor Changes
+
+- d1c0e4c: Backstage upgrade to 1.42.5
+
 ## 0.2.0
 
 ### Minor Changes
