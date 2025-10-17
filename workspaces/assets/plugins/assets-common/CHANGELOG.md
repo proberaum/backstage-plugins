@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-assets-common
 
+## 0.5.0
+
+### Minor Changes
+
+- 8648528: Backstage upgrade to 1.44.1
+
 ## 0.4.0
 
 ### Minor Changes
