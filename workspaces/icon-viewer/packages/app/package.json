@@ -3,6 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "bundled": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/backstage/community-plugins",
+    "directory": "workspaces/icon-viewer/packages/app"
+  },
   "backstage": {
     "role": "frontend"
   },
@@ -43,6 +48,7 @@
     "@backstage/ui": "^0.8.0",
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.9.1",
+    "@proberaum/backstage-plugin-icon-viewer": "workspace:^",
     "react": "^18.0.2",
     "react-dom": "^18.0.2",
     "react-router": "^6.3.0",
