@@ -1,5 +1,16 @@
 # @proberaum/backstage-plugin-catalog-backend-module-scheduler-notifications
 
+## 0.3.0
+
+### Minor Changes
+
+- 8648528: Backstage upgrade to 1.44.1
+
+### Patch Changes
+
+- Updated dependencies [8648528]
+  - @proberaum/backstage-plugin-scheduler-notifications-common@0.3.0
+
 ## 0.2.0
 
 ### Minor Changes
