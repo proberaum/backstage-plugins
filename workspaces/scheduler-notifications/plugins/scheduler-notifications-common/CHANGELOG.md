@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-scheduler-notifications-common
 
+## 0.3.0
+
+### Minor Changes
+
+- 8648528: Backstage upgrade to 1.44.1
+
 ## 0.2.0
 
 ### Minor Changes
