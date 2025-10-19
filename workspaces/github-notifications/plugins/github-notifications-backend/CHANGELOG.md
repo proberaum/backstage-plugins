@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-github-notifications-backend
 
+## 0.10.1
+
+### Patch Changes
+
+- 424d175: fix git repository in package.json
+
 ## 0.10.0
 
 ### Minor Changes
