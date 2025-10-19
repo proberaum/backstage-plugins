@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-config-viewer
 
+## 0.9.1
+
+### Patch Changes
+
+- 424d175: fix git repository in package.json
+
 ## 0.9.0
 
 ### Minor Changes
