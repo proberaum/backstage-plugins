@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-scheduler-notifications-common
 
+## 0.3.1
+
+### Patch Changes
+
+- 424d175: fix git repository in package.json
+
 ## 0.3.0
 
 ### Minor Changes

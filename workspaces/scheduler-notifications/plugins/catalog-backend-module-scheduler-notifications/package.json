@@ -1,6 +1,6 @@
 {
   "name": "@proberaum/backstage-plugin-catalog-backend-module-scheduler-notifications",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "license": "Apache-2.0",
   "description": "The scheduler-notifications backend module for the catalog plugin.",
   "main": "src/index.ts",
