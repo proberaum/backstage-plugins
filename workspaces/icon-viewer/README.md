@@ -1,16 +1,7 @@
-# [Backstage](https://backstage.io)
+# Icon viewer for Backstage
 
-This is your newly scaffolded Backstage App, Good Luck!
+A small Backstage plugin that allows admin and users see the available icons.
 
-To start the app, run:
+These icons can be registered by frontend plugin at runtime.
 
-```sh
-yarn install
-yarn start
-```
-
-To generate knip reports for this app, run:
-
-```sh
-yarn backstage-repo-tools knip-reports
-```
+![Screenshot of the Icon viewer plugin](./plugins/icon-viewer/screenshot.png)
