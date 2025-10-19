@@ -6,7 +6,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/backstage/community-plugins",
+    "url": "https://github.com/proberaum/backstage-plugins",
     "directory": "workspaces/scheduler-notifications/packages/backend"
   },
   "backstage": {

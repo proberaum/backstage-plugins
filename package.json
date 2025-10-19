@@ -2,7 +2,7 @@
   "name": "@proberaum/backstage-plugins",
   "private": true,
   "version": "0.0.0",
-  "repository": "git@github.com:backstage/community-plugins.git",
+  "repository": "git@github.com:proberaum/backstage-plugins.git",
   "engines": {
     "node": "20 || 22"
   },

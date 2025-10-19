@@ -5,7 +5,7 @@
   "bundled": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/backstage/community-plugins",
+    "url": "https://github.com/proberaum/backstage-plugins",
     "directory": "workspaces/icon-viewer/packages/app"
   },
   "backstage": {
