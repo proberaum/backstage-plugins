@@ -1,14 +1,14 @@
 import { createTranslationMessages } from '@backstage/core-plugin-api/alpha';
 
-import { iconViewerTranslationRef } from './ref';
+import { envViewerTranslationRef } from './ref';
 
 const de = createTranslationMessages({
-  ref: iconViewerTranslationRef,
+  ref: envViewerTranslationRef,
   full: true, // False means that this is a partial translation
   messages: {
-    'sidebar.title': 'Icons',
-    'page.title': 'Icons',
-    'common.filterPlaceholder': 'Icons filtern',
+    'sidebar.title': 'Umgebungsvariablen',
+    'page.title': 'Umgebungsvariablen',
+    'common.filterPlaceholder': 'Umgebungsvariablen filtern',
   },
 });
 
