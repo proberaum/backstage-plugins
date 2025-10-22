@@ -8,6 +8,9 @@ const de = createTranslationMessages({
   messages: {
     'sidebar.title': 'Konfiguration',
     'page.title': 'Konfiguration',
+    'page.subtitleWithoutAppTitle': 'Einsicht in Konfigurationsdateien',
+    'page.subtitleWithAppTitle':
+      'Einsicht in Konfigurationsdateien von {{appTitle}}',
     'common.filterPlaceholder': 'Konfiguration filtern',
   },
 });

@@ -1,50 +1,54 @@
-import { HttpAuthService } from '@backstage/backend-plugin-api';
-import { InputError } from '@backstage/errors';
-import { z } from 'zod';
+// import { HttpAuthService } from '@backstage/backend-plugin-api';
+import { NotAllowedError, InputError } from '@backstage/errors';
+
 import express from 'express';
 import Router from 'express-promise-router';
-import { TodoListService } from './services/TodoListService/types';
+
+import { glob } from 'glob';
+
+import { ConfigViewerConfig } from '../config';
+
+const getFiles = async (config: ConfigViewerConfig) => {
+  if (!config.dangerouslyAnyoneCanReadAllTheFiles) {
+    throw new NotAllowedError();
+  }
+  const resolvedFiles = await glob(config.files, {
+    cwd: config.workingDirectory,
+    ignore: config.ignore,
+    nodir: true,
+  });
+  return resolvedFiles;
+};
 
 export async function createRouter({
-  httpAuth,
-  todoListService,
-}: {
-  httpAuth: HttpAuthService;
-  todoListService: TodoListService;
+  config,
+}: // httpAuth,
+{
+  config: ConfigViewerConfig;
+  // httpAuth: HttpAuthService;
 }): Promise<express.Router> {
   const router = Router();
   router.use(express.json());
 
-  // TEMPLATE NOTE:
-  // Zod is a powerful library for data validation and recommended in particular
-  // for user-defined schemas. In this case we use it for input validation too.
-  //
-  // If you want to define a schema for your API we recommend using Backstage's
-  // OpenAPI tooling: https://backstage.io/docs/next/openapi/01-getting-started
-  const todoSchema = z.object({
-    title: z.string(),
-    entityRef: z.string().optional(),
+  router.get('/files', async (_req, res) => {
+    const resolvedFiles = await getFiles(config);
+    resolvedFiles.sort();
+    res.json(resolvedFiles);
   });
 
-  router.post('/todos', async (req, res) => {
-    const parsed = todoSchema.safeParse(req.body);
-    if (!parsed.success) {
-      throw new InputError(parsed.error.toString());
+  router.get('/content', async (req, res) => {
+    const filename = req.query['filename'];
+    if (!filename || typeof filename !== 'string') {
+      throw new InputError();
     }
-
-    const result = await todoListService.createTodo(parsed.data, {
-      credentials: await httpAuth.credentials(req, { allow: ['user'] }),
+    const resolvedFiles = await getFiles(config);
+    if (!resolvedFiles.includes(filename)) {
+      throw new NotAllowedError();
+    }
+    res.sendFile(filename, {
+      root: config.workingDirectory,
+      index: false,
     });
-
-    res.status(201).json(result);
-  });
-
-  router.get('/todos', async (_req, res) => {
-    res.json(await todoListService.listTodos());
-  });
-
-  router.get('/todos/:id', async (req, res) => {
-    res.json(await todoListService.getTodo({ id: req.params.id }));
   });
 
   return router;

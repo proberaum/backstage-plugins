@@ -111,3 +111,15 @@ kubernetes:
 permission:
   # setting this to `false` will disable permissions
   enabled: true
+
+configViewer:
+  dangerouslyAnyoneCanReadAllTheFiles: true
+  workingDirectory: ../..
+  files:
+    - catalog-info.yaml
+    - package.json
+    - app-config.yaml
+    - app-config.*.yaml
+    - . # folders are not allowed!
+  ignore:
+    - catalog-info.yaml

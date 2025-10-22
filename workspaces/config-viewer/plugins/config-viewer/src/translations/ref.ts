@@ -11,6 +11,8 @@ export const configViewerTranslationRef = createTranslationRef({
     },
     page: {
       title: 'Config viewer',
+      subtitleWithoutAppTitle: 'Inspect configuration files',
+      subtitleWithAppTitle: 'Inspect configuration files of {{appTitle}}',
     },
     common: {
       filterPlaceholder: 'Filter config keys',
