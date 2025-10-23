@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-config-viewer
 
+## 0.10.0
+
+### Minor Changes
+
+- bbaacdb: Add new backend to read backend files (optional feature)
+
 ## 0.9.1
 
 ### Patch Changes
