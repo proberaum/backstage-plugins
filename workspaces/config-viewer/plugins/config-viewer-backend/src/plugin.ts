@@ -2,9 +2,9 @@ import {
   coreServices,
   createBackendPlugin,
 } from '@backstage/backend-plugin-api';
+
+import type { ConfigViewerConfig } from '../config';
 import { createRouter } from './router';
-import { catalogServiceRef } from '@backstage/plugin-catalog-node';
-import { createTodoListService } from './services/TodoListService';
 
 /**
  * configViewerPlugin backend plugin
@@ -16,21 +16,23 @@ export const configViewerPlugin = createBackendPlugin({
   register(env) {
     env.registerInit({
       deps: {
+        rootConfig: coreServices.rootConfig,
         logger: coreServices.logger,
-        httpAuth: coreServices.httpAuth,
+        // httpAuth: coreServices.httpAuth,
         httpRouter: coreServices.httpRouter,
-        catalog: catalogServiceRef,
       },
-      async init({ logger, httpAuth, httpRouter, catalog }) {
-        const todoListService = await createTodoListService({
-          logger,
-          catalog,
-        });
+      async init({ rootConfig, /*httpAuth,*/ httpRouter }) {
+        const config =
+          rootConfig.getOptional<ConfigViewerConfig>('configViewer');
+
+        if (!config) {
+          return;
+        }
 
         httpRouter.use(
           await createRouter({
-            httpAuth,
-            todoListService,
+            config,
+            // httpAuth,
           }),
         );
       },
