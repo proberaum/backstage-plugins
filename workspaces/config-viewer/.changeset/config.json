@@ -3,8 +3,7 @@
   "changelog": "@changesets/cli/changelog",
   "commit": false,
   "fixed": [[
-    "@proberaum/backstage-plugin-config-viewer",
-    "@proberaum/backstage-plugin-config-viewer-backend"
+    "@proberaum/*"
   ]],
   "linked": [],
   "access": "public",
