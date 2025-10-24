@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-config-viewer
 
+## 0.11.0
+
+### Minor Changes
+
+- acc547b: Align frontend and backend version numbers
+
 ## 0.10.0
 
 ### Minor Changes
