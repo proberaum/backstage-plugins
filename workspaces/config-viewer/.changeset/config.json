@@ -2,7 +2,10 @@
   "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
   "changelog": "@changesets/cli/changelog",
   "commit": false,
-  "fixed": [["*"]],
+  "fixed": [[
+    "@proberaum/backstage-plugin-config-viewer",
+    "@proberaum/backstage-plugin-config-viewer-backend"
+  ]],
   "linked": [],
   "access": "public",
   "baseBranch": "main",
