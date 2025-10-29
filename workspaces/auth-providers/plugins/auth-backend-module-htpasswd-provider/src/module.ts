@@ -72,6 +72,9 @@ class CustomAuthProvider implements AuthProviderRouteHandlers {
   }
 }
 
+/**
+ * @public
+ */
 export const authModuleHtpasswdProvider = createBackendModule({
   pluginId: 'auth',
   moduleId: 'htpasswd-provider',
