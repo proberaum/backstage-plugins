@@ -12,32 +12,37 @@ import {
 class CustomAuthProvider implements AuthProviderRouteHandlers {
   private logger: LoggerService;
   private resolverContext: AuthResolverContext;
-  private baseUrl: string;
-  private appUrl: string;
 
-  constructor({ logger, resolverContext, baseUrl, appUrl }: { logger: LoggerService, resolverContext: AuthResolverContext, baseUrl: string, appUrl: string }) {
+  constructor({
+    logger,
+    resolverContext,
+  }: {
+    logger: LoggerService;
+    resolverContext: AuthResolverContext;
+  }) {
     this.logger = logger;
     this.resolverContext = resolverContext;
-    this.baseUrl = baseUrl;
-    this.appUrl = appUrl;
   }
 
-  async start(req: any, res: any): Promise<void> {
-    console.log('xxx CustomAuthProvider start');
+  async start(_req: any, res: any): Promise<void> {
+    this.logger.warn('xxx CustomAuthProvider start');
 
     const { entity } = await this.resolverContext.findCatalogUser({
       entityRef: {
         name: 'guest',
       },
     });
-    console.log('xxx CustomAuthProvider start entity', entity);
+    this.logger.warn('xxx CustomAuthProvider start entity', entity);
 
     const signin1 = await this.resolverContext.signInWithCatalogUser({
       entityRef: {
         name: 'guest',
       },
     });
-    console.log('xxx CustomAuthProvider start signin1', signin1);
+    this.logger.warn('xxx CustomAuthProvider start signin1', {
+      token: signin1.token,
+      identity: signin1.identity,
+    });
 
     const signin2 = await this.resolverContext.issueToken({
       claims: {
@@ -46,23 +51,26 @@ class CustomAuthProvider implements AuthProviderRouteHandlers {
         displayName: 'no',
       },
     });
-    console.log('xxx CustomAuthProvider start signin2', signin2);
+    this.logger.warn('xxx CustomAuthProvider start signin2', {
+      token: signin2.token,
+      identity: signin2.identity,
+    });
 
     res.status(200).json({ entity, ...signin1 });
   }
 
-  async frameHandler(req: any, res: any): Promise<void> {
-    console.log('xxx CustomAuthProvider frameHandler');
+  async frameHandler(_req: any, _res: any): Promise<void> {
+    this.logger.warn('xxx CustomAuthProvider frameHandler');
   }
 
-  async refresh(req: any, res: any): Promise<void> {
-    console.log('xxx CustomAuthProvider refresh');
+  async refresh(_req: any, _res: any): Promise<void> {
+    this.logger.warn('xxx CustomAuthProvider refresh');
   }
 
-  async logout(req: any, res: any): Promise<void> {
-    console.log('xxx CustomAuthProvider logout');
+  async logout(_req: any, _res: any): Promise<void> {
+    this.logger.warn('xxx CustomAuthProvider logout');
   }
-};
+}
 
 export const authModuleHtpasswdProvider = createBackendModule({
   pluginId: 'auth',
@@ -79,16 +87,28 @@ export const authModuleHtpasswdProvider = createBackendModule({
 
         authProviders.registerProvider({
           providerId: 'htpasswd',
-          factory: ({ logger, resolverContext, baseUrl, appUrl, cookieConfigurer }) => {
+          factory: ({
+            logger,
+            resolverContext,
+            baseUrl,
+            appUrl,
+            cookieConfigurer,
+          }) => {
             logger.info('log something...');
             console.log('xxx authProviders factory logger', logger);
-            console.log('xxx authProviders factory resolverContext', resolverContext);
+            console.log(
+              'xxx authProviders factory resolverContext',
+              resolverContext,
+            );
             console.log('xxx authProviders factory baseUrl', baseUrl);
             console.log('xxx authProviders factory appUrl', appUrl);
-            console.log('xxx authProviders factory cookieConfigurer', cookieConfigurer);
-            return new CustomAuthProvider({ logger, resolverContext, baseUrl, appUrl });
+            console.log(
+              'xxx authProviders factory cookieConfigurer',
+              cookieConfigurer,
+            );
+            return new CustomAuthProvider({ logger, resolverContext });
           },
-        })
+        });
       },
     });
   },

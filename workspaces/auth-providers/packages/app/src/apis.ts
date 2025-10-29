@@ -29,7 +29,9 @@ export const customAuthApiRef: ApiRef<
   id: 'auth.my-custom-provider',
 });
 
-class CustomAuthApi implements ProfileInfoApi, BackstageIdentityApi, SessionApi {
+class CustomAuthApi
+  implements ProfileInfoApi, BackstageIdentityApi, SessionApi
+{
   private providerId = 'htpasswd';
   private discoveryApi: DiscoveryApi;
 
@@ -40,7 +42,9 @@ class CustomAuthApi implements ProfileInfoApi, BackstageIdentityApi, SessionApi 
     this.discoveryApi = discoveryApi;
   }
 
-  async getProfile(options?: AuthRequestOptions): Promise<ProfileInfo | undefined> {
+  async getProfile(
+    options?: AuthRequestOptions,
+  ): Promise<ProfileInfo | undefined> {
     console.log('xxx CustomAuthApi getProfile', options);
     if (!this.backstageIdentity) {
       return undefined;
@@ -49,31 +53,45 @@ class CustomAuthApi implements ProfileInfoApi, BackstageIdentityApi, SessionApi 
       displayName: this.entity?.spec.profile?.displayName,
       email: this.entity?.spec.profile?.email,
       picture: this.entity?.spec.profile?.picture,
-    }
+    };
   }
 
-  async getBackstageIdentity(options?: AuthRequestOptions): Promise<BackstageIdentityResponse | undefined> {
+  async getBackstageIdentity(
+    options?: AuthRequestOptions,
+  ): Promise<BackstageIdentityResponse | undefined> {
     if (this.backstageIdentity) {
-      console.log('xxx CustomAuthApi getBackstageIdentity return existing backstageIdentity', this.backstageIdentity);
+      console.log(
+        'xxx CustomAuthApi getBackstageIdentity return existing backstageIdentity',
+        this.backstageIdentity,
+      );
       return this.backstageIdentity;
     }
 
     if (options?.instantPopup) {
-      console.log('xxx CustomAuthApi getBackstageIdentity with instantPopup', options);
+      console.log(
+        'xxx CustomAuthApi getBackstageIdentity with instantPopup',
+        options,
+      );
       const baseUrl = await this.discoveryApi.getBaseUrl('auth');
       const startUrl = `${baseUrl}/${this.providerId}/start?env=development`;
       // const loginData = await openLoginPopup({
       //   name: 'htpasswd Login',
       //   url: startUrl,
       // });
-      const loginData = await fetch(startUrl).then((response) => response.json());
-      console.log('xxx CustomAuthApi getBackstageIdentity loginData', loginData);
+      const loginData = await fetch(startUrl).then(response => response.json());
+      console.log(
+        'xxx CustomAuthApi getBackstageIdentity loginData',
+        loginData,
+      );
       this.entity = loginData.entity;
       this.backstageIdentity = loginData;
       return loginData;
     }
 
-    console.log('xxx CustomAuthApi getBackstageIdentity unknown options', options);
+    console.log(
+      'xxx CustomAuthApi getBackstageIdentity unknown options',
+      options,
+    );
     return undefined;
   }
 
@@ -101,7 +119,7 @@ export const apis: AnyApiFactory[] = [
     factory: ({ discoveryApi }) => {
       console.log('xxx create CustomAuthApi');
       return new CustomAuthApi({ discoveryApi });
-    }
+    },
   }),
 
   createApiFactory({
