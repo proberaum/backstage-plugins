@@ -9,7 +9,7 @@ import {
   AuthResolverContext,
 } from '@backstage/plugin-auth-node';
 
-class CustomAuthProvider implements AuthProviderRouteHandlers {
+class HtpasswdAuthProvider implements AuthProviderRouteHandlers {
   private logger: LoggerService;
   private resolverContext: AuthResolverContext;
 
@@ -25,21 +25,21 @@ class CustomAuthProvider implements AuthProviderRouteHandlers {
   }
 
   async start(_req: any, res: any): Promise<void> {
-    this.logger.warn('xxx CustomAuthProvider start');
+    this.logger.warn('xxx HtpasswdAuthProvider start');
 
     const { entity } = await this.resolverContext.findCatalogUser({
       entityRef: {
         name: 'guest',
       },
     });
-    this.logger.warn('xxx CustomAuthProvider start entity', entity);
+    this.logger.warn('xxx HtpasswdAuthProvider start entity', entity);
 
     const signin1 = await this.resolverContext.signInWithCatalogUser({
       entityRef: {
         name: 'guest',
       },
     });
-    this.logger.warn('xxx CustomAuthProvider start signin1', {
+    this.logger.warn('xxx HtpasswdAuthProvider start signin1', {
       token: signin1.token,
       identity: signin1.identity,
     });
@@ -51,7 +51,7 @@ class CustomAuthProvider implements AuthProviderRouteHandlers {
         displayName: 'no',
       },
     });
-    this.logger.warn('xxx CustomAuthProvider start signin2', {
+    this.logger.warn('xxx HtpasswdAuthProvider start signin2', {
       token: signin2.token,
       identity: signin2.identity,
     });
@@ -60,15 +60,15 @@ class CustomAuthProvider implements AuthProviderRouteHandlers {
   }
 
   async frameHandler(_req: any, _res: any): Promise<void> {
-    this.logger.warn('xxx CustomAuthProvider frameHandler');
+    this.logger.warn('xxx HtpasswdAuthProvider frameHandler');
   }
 
   async refresh(_req: any, _res: any): Promise<void> {
-    this.logger.warn('xxx CustomAuthProvider refresh');
+    this.logger.warn('xxx HtpasswdAuthProvider refresh');
   }
 
   async logout(_req: any, _res: any): Promise<void> {
-    this.logger.warn('xxx CustomAuthProvider logout');
+    this.logger.warn('xxx HtpasswdAuthProvider logout');
   }
 }
 
@@ -109,7 +109,7 @@ export const authModuleHtpasswdProvider = createBackendModule({
               'xxx authProviders factory cookieConfigurer',
               cookieConfigurer,
             );
-            return new CustomAuthProvider({ logger, resolverContext });
+            return new HtpasswdAuthProvider({ logger, resolverContext });
           },
         });
       },

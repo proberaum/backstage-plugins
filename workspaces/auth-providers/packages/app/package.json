@@ -48,6 +48,7 @@
     "@backstage/ui": "^0.8.0",
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.9.1",
+    "@proberaum/backstage-plugin-auth-htpasswd-provider": "workspace:^",
     "react": "^18.0.2",
     "react-dom": "^18.0.2",
     "react-router": "^6.3.0",

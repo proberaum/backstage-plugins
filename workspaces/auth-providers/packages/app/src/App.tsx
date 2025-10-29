@@ -20,7 +20,7 @@ import {
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 import { UserSettingsPage } from '@backstage/plugin-user-settings';
-import { apis, customAuthApiRef } from './apis';
+import { apis } from './apis';
 import { entityPage } from './components/catalog/EntityPage';
 import { searchPage } from './components/search/SearchPage';
 import { Root } from './components/Root';
@@ -37,6 +37,8 @@ import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 import { NotificationsPage } from '@backstage/plugin-notifications';
 import { SignalsDisplay } from '@backstage/plugin-signals';
+
+import { authHtpasswdApiRef } from '@proberaum/backstage-plugin-auth-htpasswd-provider';
 
 const app = createApp({
   apis,
@@ -66,9 +68,9 @@ const app = createApp({
           'guest',
           {
             id: 'htpasswd',
-            title: 'Htpasswd (title)',
-            message: 'Sign In using htpasswd',
-            apiRef: customAuthApiRef,
+            title: 'Htpasswd',
+            message: 'Sign In using username and password',
+            apiRef: authHtpasswdApiRef,
           },
         ]}
       />
