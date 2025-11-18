@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-analytics-module-browser-log
 
+## 0.5.0
+
+### Minor Changes
+
+- f9cb4b0: Backstage upgrade to 1.45.0
+
 ## 0.4.0
 
 ### Minor Changes
