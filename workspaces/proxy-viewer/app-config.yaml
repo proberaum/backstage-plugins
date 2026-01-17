@@ -46,10 +46,22 @@ integrations:
 proxy:
   ### Example for how to add a proxy endpoint for the frontend.
   ### A typical reason to do this is to handle HTTPS and CORS for internal services.
-  # endpoints:
-  #   '/test':
-  #     target: 'https://example.com'
-  #     changeOrigin: true
+  endpoints:
+    '/test':
+      target: 'https://example.com'
+      changeOrigin: true
+      headers:
+        authentication: 'Bearer secret-token'
+        X-Api-Key: 'super-secret-api-key'
+        X-Example-Header: example-value
+      pathRewrite:
+        '^/test': '/redirected-path'
+      allowedMethods: ['GET', 'POST']
+      allowedHeaders: ['X-Example-Header', 'Content-Type']
+      credentials: 'include'
+
+proxyViewer:
+  dangerouslyAnyoneCanReadAllProxies: true
 
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration
 # Note: After experimenting with basic setup, use CI/CD to generate docs
@@ -110,4 +122,4 @@ kubernetes:
 # see https://backstage.io/docs/permissions/getting-started for more on the permission framework
 permission:
   # setting this to `false` will disable permissions
-  enabled: true
+  enabled: false

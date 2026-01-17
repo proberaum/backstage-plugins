@@ -63,4 +63,7 @@ backend.add(import('@backstage/plugin-kubernetes-backend'));
 backend.add(import('@backstage/plugin-notifications-backend'));
 backend.add(import('@backstage/plugin-signals-backend'));
 
+// proxy-viewer plugin
+backend.add(import('@proberaum/backstage-plugin-proxy-viewer-backend'));
+
 backend.start();
