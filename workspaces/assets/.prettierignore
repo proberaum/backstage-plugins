@@ -1,4 +1,5 @@
 dist
 dist-types
 coverage
+knip-report.md
 .vscode
