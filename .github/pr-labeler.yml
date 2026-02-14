@@ -1,0 +1,43 @@
+workspace/analytics:
+- changed-files:
+  - any-glob-to-any-file: ['workspaces/analytics/**']
+
+workspace/assets:
+- changed-files:
+  - any-glob-to-any-file: ['workspaces/assets/**']
+
+workspace/config-viewer:
+- changed-files:
+  - any-glob-to-any-file: ['workspaces/config-viewer/**']
+
+workspace/dashboards:
+- changed-files:
+  - any-glob-to-any-file: ['workspaces/dashboards/**']
+
+workspace/env-viewer:
+- changed-files:
+  - any-glob-to-any-file: ['workspaces/env-viewer/**']
+
+workspace/github-notifications:
+- changed-files:
+  - any-glob-to-any-file: ['workspaces/github-notifications/**']
+
+workspace/icon-viewer:
+- changed-files:
+  - any-glob-to-any-file: ['workspaces/icon-viewer/**']
+
+workspace/planning-poker:
+- changed-files:
+  - any-glob-to-any-file: ['workspaces/planning-poker/**']
+
+workspace/scheduler-notifications:
+- changed-files:
+  - any-glob-to-any-file: ['workspaces/scheduler-notifications/**']
+
+workspace/whats-new:
+- changed-files:
+  - any-glob-to-any-file: ['workspaces/whats-new/**']
+
+owner/area-maintainers:
+- changed-files:
+  - any-glob-to-any-file: ['workspaces/analytics/**', 'workspaces/assets/**', 'workspaces/config-viewer/**', 'workspaces/dashboards/**', 'workspaces/env-viewer/**', 'workspaces/github-notifications/**', 'workspaces/icon-viewer/**', 'workspaces/planning-poker/**', 'workspaces/scheduler-notifications/**', 'workspaces/whats-new/**']

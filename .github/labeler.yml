@@ -1,0 +1,32 @@
+workspace/analytics:
+  - "Workspace\\s*analytics"
+
+workspace/assets:
+  - "Workspace\\s*assets"
+
+workspace/config-viewer:
+  - "Workspace\\s*config-viewer"
+
+workspace/dashboards:
+  - "Workspace\\s*dashboards"
+
+workspace/env-viewer:
+  - "Workspace\\s*env-viewer"
+
+workspace/github-notifications:
+  - "Workspace\\s*github-notifications"
+
+workspace/icon-viewer:
+  - "Workspace\\s*icon-viewer"
+
+workspace/planning-poker:
+  - "Workspace\\s*planning-poker"
+
+workspace/scheduler-notifications:
+  - "Workspace\\s*scheduler-notifications"
+
+workspace/whats-new:
+  - "Workspace\\s*whats-new"
+
+needs-triaging:
+  - "Workspace\\s*Select a workspace..."
