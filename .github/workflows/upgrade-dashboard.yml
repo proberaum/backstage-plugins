@@ -9,10 +9,9 @@ on:
     branches:
       - main
     paths:
-      - 'scripts/generate-upgrade-dashboard.js'
       - 'workspaces/*/backstage.json'
   schedule:
-    - cron: '0 6 * * *'  # run at 6 AM UTC every Monday
+    - cron: '0 6 * * MON'  # run at 6 AM UTC every week on Monday
   workflow_dispatch: # allow manual triggers
 
 jobs:
@@ -30,7 +29,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
         with:
-          node-version: 22
+          node-version: 22.x
           registry-url: https://registry.npmjs.org/
 
       - name: Install dependencies
