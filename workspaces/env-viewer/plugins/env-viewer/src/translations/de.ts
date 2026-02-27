@@ -9,6 +9,9 @@ const de = createTranslationMessages({
     'sidebar.title': 'Umgebungsvariablen',
     'page.title': 'Umgebungsvariablen',
     'common.filterPlaceholder': 'Umgebungsvariablen filtern',
+    'common.key': 'Schlüssel',
+    'common.value': 'Wert',
+    'common.noItemsFound': 'Keine Umgebungsvariablen gefunden.',
   },
 });
 
