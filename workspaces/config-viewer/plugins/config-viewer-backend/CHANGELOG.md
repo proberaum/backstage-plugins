@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-config-viewer-backend
 
+## 0.13.0
+
+### Minor Changes
+
+- abb9ac5: Backstage version bump to v1.48.3
+
 ## 0.12.0
 
 ### Minor Changes

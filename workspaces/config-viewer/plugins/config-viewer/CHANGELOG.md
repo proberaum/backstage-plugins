@@ -1,5 +1,12 @@
 # @proberaum/backstage-plugin-config-viewer
 
+## 0.13.0
+
+### Minor Changes
+
+- abb9ac5: Switch the page header from Backstage core components to Backstage UI.
+- abb9ac5: Backstage version bump to v1.48.3
+
 ## 0.12.0
 
 ### Minor Changes
