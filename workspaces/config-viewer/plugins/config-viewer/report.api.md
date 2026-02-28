@@ -26,8 +26,6 @@ export const configViewerTranslationRef: TranslationRef<
   'plugin.config-viewer.translation-ref',
   {
     readonly 'page.title': 'Config viewer';
-    readonly 'page.subtitleWithoutAppTitle': 'Inspect configuration files';
-    readonly 'page.subtitleWithAppTitle': 'Inspect configuration files of {{appTitle}}';
     readonly 'sidebar.title': 'Config viewer';
     readonly 'common.filterPlaceholder': 'Filter config keys';
   }

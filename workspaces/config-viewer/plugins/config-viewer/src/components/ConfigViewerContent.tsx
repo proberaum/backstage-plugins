@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { CodeSnippet, useQueryParamState } from '@backstage/core-components';
 import { useApi, configApiRef } from '@backstage/core-plugin-api';
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
-import { Tabs, TabList, Tab, SearchField } from '@backstage/ui';
+import { Tabs, TabList, Tab, SearchField, Flex } from '@backstage/ui';
 
 import YAML from 'yaml';
 
@@ -50,26 +50,23 @@ export const ConfigViewerContent = () => {
   searchParams.delete('filename');
 
   return (
-    <>
+    <Flex direction="column" gap="5" py="5">
       {files && files.length > 0 ? (
-        <>
-          <Tabs selectedKey={filename ?? frontendTabKey}>
-            <TabList>
-              <Tab id={frontendTabKey} href={`?${searchParams}`}>
-                Frontend config
-              </Tab>
-              {files.map(file => {
-                searchParams.set('filename', file);
-                return (
-                  <Tab key={file} id={file} href={`?${searchParams}`}>
-                    {file}
-                  </Tab>
-                );
-              })}
-            </TabList>
-          </Tabs>
-          <br />
-        </>
+        <Tabs selectedKey={filename ?? frontendTabKey}>
+          <TabList>
+            <Tab id={frontendTabKey} href={`?${searchParams}`}>
+              Frontend config
+            </Tab>
+            {files.map(file => {
+              searchParams.set('filename', file);
+              return (
+                <Tab key={file} id={file} href={`?${searchParams}`}>
+                  {file}
+                </Tab>
+              );
+            })}
+          </TabList>
+        </Tabs>
       ) : null}
 
       <SearchField
@@ -83,6 +80,6 @@ export const ConfigViewerContent = () => {
         showLineNumbers
         showCopyCodeButton
       />
-    </>
+    </Flex>
   );
 };
