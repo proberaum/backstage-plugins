@@ -6,8 +6,8 @@
 import { BackstagePlugin } from '@backstage/core-plugin-api';
 import { JSX as JSX_2 } from 'react/jsx-runtime';
 import { RouteRef } from '@backstage/core-plugin-api';
-import { TranslationRef } from '@backstage/core-plugin-api/alpha';
-import { TranslationResource } from '@backstage/core-plugin-api/alpha';
+import { TranslationRef } from '@backstage/frontend-plugin-api';
+import { TranslationResource } from '@backstage/frontend-plugin-api';
 
 // @public (undocumented)
 export const ConfigViewerPage: () => JSX_2.Element;
@@ -26,8 +26,6 @@ export const configViewerTranslationRef: TranslationRef<
   'plugin.config-viewer.translation-ref',
   {
     readonly 'page.title': 'Config viewer';
-    readonly 'page.subtitleWithoutAppTitle': 'Inspect configuration files';
-    readonly 'page.subtitleWithAppTitle': 'Inspect configuration files of {{appTitle}}';
     readonly 'sidebar.title': 'Config viewer';
     readonly 'common.filterPlaceholder': 'Filter config keys';
   }
