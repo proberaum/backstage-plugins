@@ -6,8 +6,8 @@
 import { BackstagePlugin } from '@backstage/core-plugin-api';
 import { JSX as JSX_2 } from 'react/jsx-runtime';
 import { RouteRef } from '@backstage/core-plugin-api';
-import { TranslationRef } from '@backstage/core-plugin-api/alpha';
-import { TranslationResource } from '@backstage/core-plugin-api/alpha';
+import { TranslationRef } from '@backstage/frontend-plugin-api';
+import { TranslationResource } from '@backstage/frontend-plugin-api';
 
 // @public (undocumented)
 export const EnvViewerPage: () => JSX_2.Element;
@@ -27,7 +27,10 @@ export const envViewerTranslationRef: TranslationRef<
   {
     readonly 'page.title': 'Env viewer';
     readonly 'sidebar.title': 'Env viewer';
+    readonly 'common.key': 'Key';
+    readonly 'common.value': 'Value';
     readonly 'common.filterPlaceholder': 'Filter environment variables';
+    readonly 'common.noItemsFound': 'No environment variables found.';
   }
 >;
 

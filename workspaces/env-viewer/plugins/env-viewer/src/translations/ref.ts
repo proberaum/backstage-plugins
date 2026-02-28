@@ -14,6 +14,9 @@ export const envViewerTranslationRef = createTranslationRef({
     },
     common: {
       filterPlaceholder: 'Filter environment variables',
+      key: 'Key',
+      value: 'Value',
+      noItemsFound: 'No environment variables found.',
     },
   },
 });
