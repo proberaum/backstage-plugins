@@ -44,11 +44,11 @@ async function main() {
     `.changeset/${workspaceChangesetFilename}`,
   );
 
-  // Get the packages for this workspace filtering down to just those in the `@backstage-community` org
+  // Get the packages for this workspace filtering down to just those in the `@proberaum` org
   // as this avoids including any sample `app` and/or sample `backend` in the changeset
   const { packages } = await getPackages(workspacePlugins);
   const packageEntries = packages
-    .filter(p => p.packageJson.name.includes('@backstage-community'))
+    .filter(p => p.packageJson.name.startsWith('@proberaum/'))
     .map(p => `'${p.packageJson.name}': ${versionBumpType}`);
 
   // Populate the changeset contents
