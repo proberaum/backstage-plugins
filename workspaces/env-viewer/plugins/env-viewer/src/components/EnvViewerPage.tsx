@@ -1,4 +1,5 @@
-import { Page, Header, Content } from '@backstage/core-components';
+import { HeaderPage, Container } from '@backstage/ui';
+
 import { useTranslationRef } from '@backstage/core-plugin-api/alpha';
 
 import { envViewerTranslationRef } from '../translations';
@@ -9,11 +10,11 @@ export const EnvViewerPage = () => {
   const { t } = useTranslationRef(envViewerTranslationRef);
 
   return (
-    <Page themeId="tool">
-      <Header title={t('page.title')} />
-      <Content>
+    <>
+      <HeaderPage title={t('page.title')} />
+      <Container>
         <EnvViewerContent />
-      </Content>
-    </Page>
+      </Container>
+    </>
   );
 };
