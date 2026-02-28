@@ -1,5 +1,13 @@
 # @proberaum/backstage-plugin-icon-viewer
 
+## 0.3.0
+
+### Minor Changes
+
+- bb9ebbe: Migrate from Material UI to Backstage UI.
+- bb9ebbe: Add new Grid view (enabled by default) and an option to switch to list view.
+- bb9ebbe: Backstage version bump to v1.48.3
+
 ## 0.2.0
 
 ### Minor Changes
