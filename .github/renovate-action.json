@@ -1,0 +1,6 @@
+{
+  "platform": "github",
+  "forkProcessing": "disabled",
+  "repositories": ["proberaum/backstage-plugins"],
+  "gitAuthor": "Christoph Jerolimov <jerolimov+git@gmail.com>"
+}
