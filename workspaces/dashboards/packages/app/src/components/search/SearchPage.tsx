@@ -1,12 +1,11 @@
-import { Grid, Paper } from '@mui/material';
-
-import makeStyles from '@mui/styles/makeStyles';
+import { makeStyles, Theme, Grid, Paper } from '@material-ui/core';
 
 import { CatalogSearchResultListItem } from '@backstage/plugin-catalog';
 import {
   catalogApiRef,
   CATALOG_FILTER_EXISTS,
 } from '@backstage/plugin-catalog-react';
+import { TechDocsSearchResultListItem } from '@backstage/plugin-techdocs';
 
 import { SearchType } from '@backstage/plugin-search';
 import {
@@ -25,14 +24,17 @@ import {
 } from '@backstage/core-components';
 import { useApi } from '@backstage/core-plugin-api';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: Theme) => ({
+  bar: {
+    padding: theme.spacing(1, 0),
+  },
   filters: {
-    padding: '16px',
-    marginTop: '16px',
+    padding: theme.spacing(2),
+    marginTop: theme.spacing(2),
   },
   filter: {
     '& + &': {
-      marginTop: '20px',
+      marginTop: theme.spacing(2.5),
     },
   },
 }));
@@ -48,7 +50,9 @@ const SearchPage = () => {
       <Content>
         <Grid container direction="row">
           <Grid item xs={12}>
-            <SearchBar />
+            <Paper className={classes.bar}>
+              <SearchBar />
+            </Paper>
           </Grid>
           <Grid item xs={3}>
             <SearchType.Accordion
@@ -107,6 +111,7 @@ const SearchPage = () => {
             <SearchPagination />
             <SearchResult>
               <CatalogSearchResultListItem icon={<CatalogIcon />} />
+              <TechDocsSearchResultListItem icon={<DocsIcon />} />
             </SearchResult>
           </Grid>
         </Grid>
