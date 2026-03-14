@@ -1,5 +1,5 @@
 {
-  "name": "@internal/whats-new",
+  "name": "@internal/permissions-viewer",
   "version": "1.0.0",
   "private": true,
   "engines": {
@@ -33,12 +33,12 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/proberaum/backstage-plugins",
-    "directory": "workspaces/whats-new"
+    "directory": "workspaces/permissions-viewer"
   },
   "devDependencies": {
     "@backstage/cli": "^0.35.4",
     "@backstage/e2e-test-utils": "^0.1.2",
-    "@backstage/repo-tools": "^0.16.5",
+    "@backstage/repo-tools": "^0.16.4",
     "@changesets/cli": "^2.27.1",
     "knip": "^5.27.4",
     "node-gyp": "^10.0.0",
