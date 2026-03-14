@@ -1,5 +1,5 @@
 {
-  "name": "@internal/analytics",
+  "name": "@internal/analytics-viewer",
   "version": "1.0.0",
   "private": true,
   "engines": {
