@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-github-notifications-backend
 
+## 0.12.0
+
+### Minor Changes
+
+- 3e7cf0c: Backstage version bump to v1.48.3
+
 ## 0.11.0
 
 ### Minor Changes
