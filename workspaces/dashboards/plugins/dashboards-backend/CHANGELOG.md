@@ -1,5 +1,16 @@
 # @proberaum/backstage-plugin-dashboards-backend
 
+## 0.7.0
+
+### Minor Changes
+
+- be67602: Backstage version bump to v1.48.3
+
+### Patch Changes
+
+- Updated dependencies [be67602]
+  - @proberaum/backstage-plugin-dashboards-common@0.7.0
+
 ## 0.6.0
 
 ### Minor Changes
