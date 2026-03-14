@@ -1,10 +1,9 @@
 import { PropsWithChildren } from 'react';
-import makeStyles from '@mui/styles/makeStyles';
-import HomeIcon from '@mui/icons-material/Home';
-import ExtensionIcon from '@mui/icons-material/Extension';
-import LibraryBooks from '@mui/icons-material/LibraryBooks';
-import CreateComponentIcon from '@mui/icons-material/AddCircleOutline';
-import DashboardIcon from '@mui/icons-material/Dashboard';
+import { makeStyles } from '@material-ui/core';
+import HomeIcon from '@material-ui/icons/Home';
+import ExtensionIcon from '@material-ui/icons/Extension';
+import LibraryBooks from '@material-ui/icons/LibraryBooks';
+import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
 import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
 import {
@@ -24,24 +23,25 @@ import {
   useSidebarOpenState,
   Link,
 } from '@backstage/core-components';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
 import { MyGroupsSidebarItem } from '@backstage/plugin-org';
-import GroupIcon from '@mui/icons-material/People';
-import { IconComponent } from '@backstage/core-plugin-api';
+import GroupIcon from '@material-ui/icons/People';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+// import { NotificationsSidebarItem } from '@backstage/plugin-notifications';
 
 const useSidebarLogoStyles = makeStyles({
-  sidebarLogo: {
+  root: {
     width: sidebarConfig.drawerWidthClosed,
     height: 3 * sidebarConfig.logoHeight,
     display: 'flex',
     flexFlow: 'row nowrap',
     alignItems: 'center',
     marginBottom: -14,
-    '& > a': {
-      width: sidebarConfig.drawerWidthClosed,
-      marginLeft: 24,
-    },
+  },
+  link: {
+    width: sidebarConfig.drawerWidthClosed,
+    marginLeft: 24,
   },
 });
 
@@ -50,8 +50,8 @@ const SidebarLogo = () => {
   const { isOpen } = useSidebarOpenState();
 
   return (
-    <div className={classes.sidebarLogo}>
-      <Link to="/" underline="none" aria-label="Home">
+    <div className={classes.root}>
+      <Link to="/" underline="none" className={classes.link} aria-label="Home">
         {isOpen ? <LogoFull /> : <LogoIcon />}
       </Link>
     </div>
@@ -68,36 +68,16 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
       <SidebarDivider />
       <SidebarGroup label="Menu" icon={<MenuIcon />}>
         {/* Global nav, not org-specific */}
-        <SidebarItem
-          icon={HomeIcon as IconComponent}
-          to="catalog"
-          text="Home"
-        />
-        <SidebarItem
-          icon={DashboardIcon as IconComponent}
-          to="dashboards"
-          text="Dashboards"
-        />
+        <SidebarItem icon={HomeIcon} to="catalog" text="Home" />
+        <SidebarItem icon={DashboardIcon} to="dashboards" text="Dashboards" />
         <MyGroupsSidebarItem
           singularTitle="My Group"
           pluralTitle="My Groups"
-          icon={GroupIcon as IconComponent}
+          icon={GroupIcon}
         />
-        <SidebarItem
-          icon={ExtensionIcon as IconComponent}
-          to="api-docs"
-          text="APIs"
-        />
-        <SidebarItem
-          icon={LibraryBooks as IconComponent}
-          to="docs"
-          text="Docs"
-        />
-        <SidebarItem
-          icon={CreateComponentIcon as IconComponent}
-          to="create"
-          text="Create..."
-        />
+        <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
+        <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
+        <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
         {/* End global nav */}
         <SidebarDivider />
         <SidebarScrollWrapper>
@@ -106,6 +86,8 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
       </SidebarGroup>
       <SidebarSpace />
       <SidebarDivider />
+      {/* <NotificationsSidebarItem /> */}
+      {/* <SidebarDivider /> */}
       <SidebarGroup
         label="Settings"
         icon={<UserSettingsSignInAvatar />}
