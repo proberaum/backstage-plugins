@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "repository": "git@github.com:proberaum/backstage-plugins.git",
   "engines": {
-    "node": "20 || 22"
+    "node": "22 || 24"
   },
   "scripts": {
     "postinstall": "husky",
