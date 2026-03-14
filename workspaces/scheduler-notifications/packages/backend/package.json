@@ -52,7 +52,7 @@
     "@proberaum/backstage-plugin-catalog-backend-module-scheduler-notifications": "workspace:^",
     "@proberaum/backstage-plugin-scheduler-notifications-backend": "workspace:^",
     "app": "link:../app",
-    "better-sqlite3": "^9.0.0",
+    "better-sqlite3": "^12.0.0",
     "node-gyp": "^10.0.0",
     "pg": "^8.11.3"
   },
