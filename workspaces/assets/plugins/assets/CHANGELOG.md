@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-assets
 
+## 0.7.0
+
+### Minor Changes
+
+- dbe1886: Backstage version bump to v1.48.5
+
 ## 0.6.0
 
 ### Minor Changes
