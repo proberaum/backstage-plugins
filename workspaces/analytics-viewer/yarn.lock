@@ -5371,9 +5371,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@internal/analytics@workspace:.":
+"@internal/analytics-viewer@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@internal/analytics@workspace:."
+  resolution: "@internal/analytics-viewer@workspace:."
   dependencies:
     "@backstage/cli": "npm:^0.35.4"
     "@backstage/e2e-test-utils": "npm:^0.1.2"
