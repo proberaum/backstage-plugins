@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-dashboards-common
 
+## 0.7.0
+
+### Minor Changes
+
+- be67602: Backstage version bump to v1.48.3
+
 ## 0.6.0
 
 ### Minor Changes
