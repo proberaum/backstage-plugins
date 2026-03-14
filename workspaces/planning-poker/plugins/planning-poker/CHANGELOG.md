@@ -1,5 +1,11 @@
 # @proberaum/backstage-plugin-planning-poker
 
+## 0.2.0
+
+### Minor Changes
+
+- b87effc: Backstage version bump to v1.48.5
+
 ## 0.1.0
 
 ### Minor Changes
