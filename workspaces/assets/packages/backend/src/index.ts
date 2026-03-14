@@ -58,4 +58,5 @@ backend.add(
   import('@proberaum/backstage-plugin-catalog-backend-module-assets'),
 );
 
+backend.add(import('@proberaum/backstage-plugin-assets-backend'));
 backend.start();
