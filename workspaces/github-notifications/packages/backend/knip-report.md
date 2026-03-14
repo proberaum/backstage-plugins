@@ -1,6 +1,6 @@
 # Knip report
 
-## Unused dependencies (12)
+## Unused dependencies (11)
 
 | Name                                                  | Location          | Severity |
 | :---------------------------------------------------- | :---------------- | :------- |
@@ -12,7 +12,6 @@
 | @backstage/plugin-permission-node                     | package.json:41:6 | error    |
 | @backstage/plugin-auth-node                           | package.json:30:6 | error    |
 | @backstage/config                                     | package.json:25:6 | error    |
-| better-sqlite3                                        | package.json:54:6 | error    |
 | node-gyp                                              | package.json:55:6 | error    |
 | app                                                   | package.json:53:6 | error    |
 | pg                                                    | package.json:56:6 | error    |
