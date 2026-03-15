@@ -1,4 +1,5 @@
 export type ParsedProxyEndpoint = {
+  id: string;
   path: string;
   target: string;
   headers?: { [key: string]: string | undefined };
@@ -6,8 +7,5 @@ export type ParsedProxyEndpoint = {
   pathRewrite?: { [regexp: string]: string };
   allowedMethods?: string[];
   allowedHeaders?: string[];
-  credentials?:
-    | 'require'
-    | 'forward'
-    | 'dangerously-allow-unauthenticated';
+  credentials?: 'require' | 'forward' | 'dangerously-allow-unauthenticated';
 };

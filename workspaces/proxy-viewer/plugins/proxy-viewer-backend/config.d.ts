@@ -19,10 +19,7 @@ export interface ProxyEndpointConfig {
   pathRewrite?: { [regexp: string]: string };
   allowedMethods?: string[];
   allowedHeaders?: string[];
-  credentials?:
-    | 'require'
-    | 'forward'
-    | 'dangerously-allow-unauthenticated';
+  credentials?: 'require' | 'forward' | 'dangerously-allow-unauthenticated';
 }
 
 export interface ProxyConfig {

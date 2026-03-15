@@ -19,9 +19,10 @@
 | @backstage/test-utils       | package.json:53:6 | error    |
 | msw                         | package.json:57:6 | error    |
 
-## Unlisted dependencies (1)
+## Unlisted dependencies (2)
 
 | Name          | Location                                   | Severity |
 | :------------ | :----------------------------------------- | :------- |
-| @backstage/ui | src/components/ProxyViewerContent.tsx:18:9 | error    |
+| @backstage/ui | src/components/ProxyViewerContent.tsx:13:9 | error    |
+| @backstage/ui | src/components/ProxyViewerPage.tsx:1:40    | error    |
 

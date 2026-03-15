@@ -15,5 +15,15 @@ export const proxyViewerTranslationRef = createTranslationRef({
     common: {
       filterPlaceholder: 'Filter proxies',
     },
+    table: {
+      path: 'Path',
+      target: 'Target',
+      headers: 'Headers',
+      changeOrigin: 'Change Origin',
+      pathRewrite: 'Path Rewrite',
+      allowedMethods: 'Allowed Methods',
+      allowedHeaders: 'Allowed Headers',
+      credentials: 'Credentials',
+    },
   },
 });

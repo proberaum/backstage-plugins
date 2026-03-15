@@ -86,9 +86,7 @@ describe('plugin', () => {
 
   it('should forward errors from the TodoListService', async () => {
     const { server } = await startTestBackend({
-      features: [
-        proxyViewerPlugin,
-      ],
+      features: [proxyViewerPlugin],
     });
 
     const createRes = await request(server)
