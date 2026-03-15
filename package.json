@@ -14,20 +14,18 @@
   "type": "module",
   "packageManager": "yarn@4.12.0",
   "devDependencies": {
-    "@backstage/cli": "^0.27.0",
-    "@backstage/cli-node": "^0.2.2",
+    "@backstage/cli": "^0.32.0",
     "@changesets/parse": "^0.4.0",
     "@manypkg/get-packages": "^2.2.2",
     "@octokit/rest": "^20.1.1",
     "@spotify/eslint-plugin": "^15.0.0",
-    "@spotify/prettier-config": "^15.0.0",
     "array-to-table": "^1.0.1",
     "codeowners-utils": "^1.0.2",
     "eslint": "^8.6.0",
     "eslint-plugin-notice": "^0.9.10",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-testing-library": "^6.0.0",
-    "fs-extra": "11.3.0",
+    "fs-extra": "^11.3.3",
     "husky": "^9.0.11",
     "js-yaml": "^4.1.0",
     "lint-staged": "^15.2.2",
@@ -35,7 +33,7 @@
     "node-fetch": "^2.6.7",
     "prettier": "^2.3.2"
   },
-  "prettier": "@spotify/prettier-config",
+  "prettier": "@backstage/cli/config/prettier",
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs,cjs}": [
       "eslint --fix",
