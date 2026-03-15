@@ -12,9 +12,7 @@ on:
           - disabled
           - reset
   schedule:
-    # https://crontab.guru/every-weekday
-    # At 00:00 on every day-of-week from Monday through Friday.
-    - cron: '0 0 * * 1-5'
+    - cron: '0 6 * * MON'  # run at 6 AM UTC every week on Monday
 
 # Adding these as env variables makes it easy to re-use them in different steps and in bash.
 env:

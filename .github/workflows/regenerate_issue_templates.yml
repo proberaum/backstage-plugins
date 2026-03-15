@@ -6,7 +6,7 @@ permissions:
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Run at midnight UTC every day
+    - cron: '0 6 * * MON'  # run at 6 AM UTC every week on Monday
   workflow_dispatch: # Allow manual triggers
 
 jobs:
@@ -43,7 +43,7 @@ jobs:
             This PR updates the issue templates with the latest workspace list.
 
             This is an automated PR created by the regenerate_issue_templates workflow.
-          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          author: Christoph Jerolimov <jerolimov+git@gmail.com>
           branch: automated-update-issue-templates
           delete-branch: true
           signoff: true

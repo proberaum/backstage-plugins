@@ -2,7 +2,7 @@ name: Automate staleness
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */6 * * *'  # Runs every 6 hours
+    - cron: '0 6 * * MON'  # run at 6 AM UTC every week on Monday
 permissions:
   contents: read
 jobs:

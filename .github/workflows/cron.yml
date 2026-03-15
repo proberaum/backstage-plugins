@@ -2,7 +2,7 @@ name: Cron
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '0 6 * * MON'  # run at 6 AM UTC every week on Monday
 
 jobs:
   cron:
