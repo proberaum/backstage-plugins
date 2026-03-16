@@ -34,7 +34,9 @@ export function readHcloudConfig(config: Config): HcloudConfig {
   const defaultProject = hcloud.getString('defaultProject');
   if (!projects[defaultProject]) {
     throw new Error(
-      `hcloud: defaultProject "${defaultProject}" does not match any configured project (${projectKeys.join(', ')})`,
+      `hcloud: defaultProject "${defaultProject}" does not match any configured project (${projectKeys.join(
+        ', ',
+      )})`,
     );
   }
 

@@ -1,5 +1,11 @@
 // plugins/hcloud/src/components/HcloudServerContent/ServerHeader.tsx
-import { Box, Button, Typography, FormControlLabel, Switch } from '@material-ui/core';
+import {
+  Box,
+  Button,
+  Typography,
+  FormControlLabel,
+  Switch,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import { HcloudServerDetails } from '@proberaum/backstage-plugin-hcloud-common';
@@ -36,7 +42,8 @@ export function ServerHeader(props: {
   onRefresh: () => void;
 }) {
   const classes = useStyles();
-  const { server, project, autoRefresh, onToggleAutoRefresh, onRefresh } = props;
+  const { server, project, autoRefresh, onToggleAutoRefresh, onRefresh } =
+    props;
 
   return (
     <Box className={classes.root}>
@@ -44,7 +51,8 @@ export function ServerHeader(props: {
         <Typography variant="h5">{server.name}</Typography>
         <StatusBadge status={server.status} />
         <Typography className={classes.meta}>
-          ID: {server.id}{project ? ` · Project: ${project}` : ''}
+          ID: {server.id}
+          {project ? ` · Project: ${project}` : ''}
         </Typography>
       </Box>
       <Box className={classes.right}>

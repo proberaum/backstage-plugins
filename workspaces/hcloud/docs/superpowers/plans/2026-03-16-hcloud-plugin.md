@@ -17,6 +17,7 @@
 ### Task 1: Scaffold `hcloud-common` package
 
 **Files:**
+
 - Create: `plugins/hcloud-common/package.json`
 - Create: `plugins/hcloud-common/src/index.ts`
 - Create: `plugins/hcloud-common/src/annotations.ts`
@@ -304,6 +305,7 @@ git commit -m "feat(hcloud): add hcloud-common package with types, annotations, 
 ### Task 2: Scaffold `hcloud-backend` package with Hcloud HTTP client
 
 **Files:**
+
 - Create: `plugins/hcloud-backend/package.json`
 - Create: `plugins/hcloud-backend/tsconfig.json`
 - Create: `plugins/hcloud-backend/src/index.ts`
@@ -421,7 +423,9 @@ export function readHcloudConfig(config: Config): HcloudConfig {
   const defaultProject = hcloud.getString('defaultProject');
   if (!projects[defaultProject]) {
     throw new Error(
-      `hcloud: defaultProject "${defaultProject}" does not match any configured project (${projectKeys.join(', ')})`,
+      `hcloud: defaultProject "${defaultProject}" does not match any configured project (${projectKeys.join(
+        ', ',
+      )})`,
     );
   }
 
@@ -527,11 +531,14 @@ import {
 
 const HCLOUD_API_BASE = 'https://api.hetzner.cloud/v1';
 
-const RANGE_PARAMS: Record<HcloudTimeRange, { offsetMs: number; step: number }> = {
-  '1h':  { offsetMs: 60 * 60 * 1000,          step: 60 },
-  '6h':  { offsetMs: 6 * 60 * 60 * 1000,      step: 300 },
-  '24h': { offsetMs: 24 * 60 * 60 * 1000,     step: 900 },
-  '7d':  { offsetMs: 7 * 24 * 60 * 60 * 1000, step: 3600 },
+const RANGE_PARAMS: Record<
+  HcloudTimeRange,
+  { offsetMs: number; step: number }
+> = {
+  '1h': { offsetMs: 60 * 60 * 1000, step: 60 },
+  '6h': { offsetMs: 6 * 60 * 60 * 1000, step: 300 },
+  '24h': { offsetMs: 24 * 60 * 60 * 1000, step: 900 },
+  '7d': { offsetMs: 7 * 24 * 60 * 60 * 1000, step: 3600 },
   '30d': { offsetMs: 30 * 24 * 60 * 60 * 1000, step: 14400 },
 };
 
@@ -548,7 +555,9 @@ export class HcloudClient {
   }
 
   async getServerByName(name: string): Promise<HcloudServerDetails> {
-    const data = await this.#request(`/servers?name=${encodeURIComponent(name)}`);
+    const data = await this.#request(
+      `/servers?name=${encodeURIComponent(name)}`,
+    );
     const servers = data.servers;
     if (!servers || servers.length === 0) {
       throw new NotFoundError(`Server with name "${name}" not found`);
@@ -584,7 +593,10 @@ export class HcloudClient {
     );
 
     const timeSeries: HcloudTimeSeries[] = Object.entries(
-      data.metrics.time_series as Record<string, { values: Array<[number, string]> }>,
+      data.metrics.time_series as Record<
+        string,
+        { values: Array<[number, string]> }
+      >,
     ).map(([name, series]) => ({
       name,
       values: series.values.map(([ts, val]) => ({
@@ -920,6 +932,7 @@ git commit -m "feat(hcloud): add hcloud-backend package with HTTP client and con
 ### Task 3: Backend service ref, caching, and API routes
 
 **Files:**
+
 - Create: `plugins/hcloud-backend/src/service.ts`
 - Create: `plugins/hcloud-backend/src/service.test.ts`
 - Create: `plugins/hcloud-backend/src/router.ts`
@@ -981,10 +994,7 @@ export class DefaultHcloudService implements HcloudService {
     return Object.keys(this.#config.projects);
   }
 
-  async getServer(
-    ref: string,
-    project?: string,
-  ): Promise<HcloudServerDetails> {
+  async getServer(ref: string, project?: string): Promise<HcloudServerDetails> {
     const projectKey = this.#resolveProject(project);
     const cacheKey = `server:${projectKey}:${ref}`;
 
@@ -1039,7 +1049,9 @@ export class DefaultHcloudService implements HcloudService {
     const key = project ?? this.#config.defaultProject;
     if (!this.#config.projects[key]) {
       throw new InputError(
-        `Unknown hcloud project "${key}". Valid projects: ${Object.keys(this.#config.projects).join(', ')}`,
+        `Unknown hcloud project "${key}". Valid projects: ${Object.keys(
+          this.#config.projects,
+        ).join(', ')}`,
       );
     }
     return key;
@@ -1091,15 +1103,31 @@ const MOCK_SERVER_RAW = {
   id: 12345,
   name: 'web-prod-01',
   status: 'running',
-  server_type: { id: 1, name: 'cpx31', description: 'CPX 31', cores: 4, memory: 8, disk: 80 },
+  server_type: {
+    id: 1,
+    name: 'cpx31',
+    description: 'CPX 31',
+    cores: 4,
+    memory: 8,
+    disk: 80,
+  },
   datacenter: {
-    id: 1, name: 'fsn1-dc14', description: 'Falkenstein 1 DC14',
-    location: { id: 1, name: 'fsn1', description: 'Falkenstein', country: 'DE', city: 'Falkenstein' },
+    id: 1,
+    name: 'fsn1-dc14',
+    description: 'Falkenstein 1 DC14',
+    location: {
+      id: 1,
+      name: 'fsn1',
+      description: 'Falkenstein',
+      country: 'DE',
+      city: 'Falkenstein',
+    },
   },
   public_net: {
     ipv4: { ip: '1.2.3.4', blocked: false },
     ipv6: { ip: '::1', blocked: false },
-    floating_ips: [], firewalls: [],
+    floating_ips: [],
+    firewalls: [],
   },
   image: null,
   created: '2025-01-01T00:00:00Z',
@@ -1258,9 +1286,7 @@ export async function createRouter(options: {
     const { ref } = req.params;
     const parsed = metricsQuerySchema.safeParse(req.query);
     if (!parsed.success) {
-      throw new InputError(
-        `Invalid query parameters: ${parsed.error.message}`,
-      );
+      throw new InputError(`Invalid query parameters: ${parsed.error.message}`);
     }
 
     const { type, range, project } = parsed.data;
@@ -1324,15 +1350,31 @@ const mockHcloudService: jest.Mocked<HcloudService> = {
     id: 12345,
     name: 'web-prod-01',
     status: 'running',
-    server_type: { id: 1, name: 'cpx31', description: 'CPX 31', cores: 4, memory: 8, disk: 80 },
+    server_type: {
+      id: 1,
+      name: 'cpx31',
+      description: 'CPX 31',
+      cores: 4,
+      memory: 8,
+      disk: 80,
+    },
     datacenter: {
-      id: 1, name: 'fsn1-dc14', description: 'Falkenstein 1 DC14',
-      location: { id: 1, name: 'fsn1', description: 'Falkenstein', country: 'DE', city: 'Falkenstein' },
+      id: 1,
+      name: 'fsn1-dc14',
+      description: 'Falkenstein 1 DC14',
+      location: {
+        id: 1,
+        name: 'fsn1',
+        description: 'Falkenstein',
+        country: 'DE',
+        city: 'Falkenstein',
+      },
     },
     public_net: {
       ipv4: { ip: '1.2.3.4', blocked: false },
       ipv6: { ip: '::1', blocked: false },
-      floating_ips: [], firewalls: [],
+      floating_ips: [],
+      firewalls: [],
     },
     image: null,
     created: '2025-01-01T00:00:00Z',
@@ -1450,6 +1492,7 @@ git commit -m "feat(hcloud): add backend plugin with service, caching, and API r
 ### Task 4: Scaffold `hcloud` frontend plugin with API client and hooks
 
 **Files:**
+
 - Create: `plugins/hcloud/package.json`
 - Create: `plugins/hcloud/tsconfig.json`
 - Create: `plugins/hcloud/src/index.ts`
@@ -1596,7 +1639,9 @@ export class HcloudApiClient implements HcloudApi {
     if (project) {
       params.set('project', project);
     }
-    const url = `${baseUrl}/servers/${encodeURIComponent(ref)}/metrics?${params}`;
+    const url = `${baseUrl}/servers/${encodeURIComponent(
+      ref,
+    )}/metrics?${params}`;
 
     const response = await this.#fetchApi.fetch(url);
     if (!response.ok) {
@@ -1855,6 +1900,7 @@ git commit -m "feat(hcloud): add frontend plugin scaffold with API client, hooks
 ### Task 5: Frontend — Overview Card component
 
 **Files:**
+
 - Create: `plugins/hcloud/src/components/HcloudServerCard/HcloudServerCard.tsx`
 - Create: `plugins/hcloud/src/components/HcloudServerCard/index.ts`
 - Create: `plugins/hcloud/src/components/common/StatusBadge.tsx`
@@ -1876,7 +1922,9 @@ const useStyles = makeStyles(theme => ({
   transitioning: { backgroundColor: theme.palette.warning.main, color: '#fff' },
 }));
 
-function statusCategory(status: HcloudServerStatus): 'running' | 'off' | 'error' | 'transitioning' {
+function statusCategory(
+  status: HcloudServerStatus,
+): 'running' | 'off' | 'error' | 'transitioning' {
   switch (status) {
     case 'running':
       return 'running';
@@ -1895,13 +1943,7 @@ export function StatusBadge({ status }: { status: HcloudServerStatus }) {
   const category = statusCategory(status);
   const label = status.charAt(0).toUpperCase() + status.slice(1);
 
-  return (
-    <Chip
-      label={label}
-      size="small"
-      className={classes[category]}
-    />
-  );
+  return <Chip label={label} size="small" className={classes[category]} />;
 }
 ```
 
@@ -1916,14 +1958,13 @@ export { StatusBadge } from './StatusBadge';
 ```typescript
 // plugins/hcloud/src/components/HcloudServerCard/HcloudServerCard.tsx
 import React from 'react';
-import {
-  Grid,
-  LinearProgress,
-  Typography,
-  Box,
-} from '@material-ui/core';
+import { Grid, LinearProgress, Typography, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { InfoCard, Progress, ResponseErrorPanel } from '@backstage/core-components';
+import {
+  InfoCard,
+  Progress,
+  ResponseErrorPanel,
+} from '@backstage/core-components';
 import { useServerDetails } from '../../hooks';
 import { useServerMetrics } from '../../hooks';
 import { StatusBadge } from '../common';
@@ -1965,7 +2006,9 @@ function CpuBar({ value }: { value: number }) {
           className={classes.bar}
           style={{ backgroundColor: '#4caf5033' }}
         />
-        <Typography className={classes.barLabel}>{Math.round(value)}%</Typography>
+        <Typography className={classes.barLabel}>
+          {Math.round(value)}%
+        </Typography>
       </Box>
     </Box>
   );
@@ -1977,7 +2020,11 @@ export function HcloudServerCard() {
   const { metrics: cpuMetrics } = useServerMetrics('cpu', '1h');
 
   if (loading) {
-    return <InfoCard title="Hetzner Cloud Server"><Progress /></InfoCard>;
+    return (
+      <InfoCard title="Hetzner Cloud Server">
+        <Progress />
+      </InfoCard>
+    );
   }
 
   if (error) {
@@ -2004,16 +2051,21 @@ export function HcloudServerCard() {
         <Grid item xs={6}>
           <Typography className={classes.label}>Type</Typography>
           <Typography className={classes.value}>
-            {server.server_type.name.toUpperCase()} ({server.server_type.cores} vCPU / {server.server_type.memory} GB)
+            {server.server_type.name.toUpperCase()} ({server.server_type.cores}{' '}
+            vCPU / {server.server_type.memory} GB)
           </Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography className={classes.label}>Datacenter</Typography>
-          <Typography className={classes.value}>{server.datacenter.name}</Typography>
+          <Typography className={classes.value}>
+            {server.datacenter.name}
+          </Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography className={classes.label}>IPv4</Typography>
-          <Typography className={classes.value}>{server.public_net.ipv4.ip}</Typography>
+          <Typography className={classes.value}>
+            {server.public_net.ipv4.ip}
+          </Typography>
         </Grid>
         <Grid item xs={12}>
           <CpuBar value={latestCpu} />
@@ -2047,6 +2099,7 @@ git commit -m "feat(hcloud): add overview card component with status badge and C
 ### Task 6: Frontend — Dedicated Tab components
 
 **Files:**
+
 - Create: `plugins/hcloud/src/components/HcloudServerContent/HcloudServerContent.tsx`
 - Create: `plugins/hcloud/src/components/HcloudServerContent/ServerHeader.tsx`
 - Create: `plugins/hcloud/src/components/HcloudServerContent/ServerInfoCards.tsx`
@@ -2061,7 +2114,13 @@ git commit -m "feat(hcloud): add overview card component with status badge and C
 ```typescript
 // plugins/hcloud/src/components/HcloudServerContent/ServerHeader.tsx
 import React from 'react';
-import { Box, Button, Typography, FormControlLabel, Switch } from '@material-ui/core';
+import {
+  Box,
+  Button,
+  Typography,
+  FormControlLabel,
+  Switch,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import { HcloudServerDetails } from '@proberaum/backstage-plugin-hcloud-common';
@@ -2098,7 +2157,8 @@ export function ServerHeader(props: {
   onRefresh: () => void;
 }) {
   const classes = useStyles();
-  const { server, project, autoRefresh, onToggleAutoRefresh, onRefresh } = props;
+  const { server, project, autoRefresh, onToggleAutoRefresh, onRefresh } =
+    props;
 
   return (
     <Box className={classes.root}>
@@ -2106,7 +2166,8 @@ export function ServerHeader(props: {
         <Typography variant="h5">{server.name}</Typography>
         <StatusBadge status={server.status} />
         <Typography className={classes.meta}>
-          ID: {server.id}{project ? ` · Project: ${project}` : ''}
+          ID: {server.id}
+          {project ? ` · Project: ${project}` : ''}
         </Typography>
       </Box>
       <Box className={classes.right}>
@@ -2172,7 +2233,8 @@ export function ServerInfoCards({ server }: { server: HcloudServerDetails }) {
             {server.server_type.name.toUpperCase()}
           </Typography>
           <Typography className={classes.secondary}>
-            {server.server_type.cores} vCPU · {server.server_type.memory} GB RAM · {server.server_type.disk} GB disk
+            {server.server_type.cores} vCPU · {server.server_type.memory} GB RAM
+            · {server.server_type.disk} GB disk
           </Typography>
         </InfoCard>
       </Grid>
@@ -2182,7 +2244,8 @@ export function ServerInfoCards({ server }: { server: HcloudServerDetails }) {
             {server.datacenter.name}
           </Typography>
           <Typography className={classes.secondary}>
-            {server.datacenter.location.city}, {server.datacenter.location.country}
+            {server.datacenter.location.city},{' '}
+            {server.datacenter.location.country}
           </Typography>
         </InfoCard>
       </Grid>
@@ -2192,7 +2255,11 @@ export function ServerInfoCards({ server }: { server: HcloudServerDetails }) {
             {server.image?.description ?? 'None'}
           </Typography>
           <Typography className={classes.secondary}>
-            {server.image ? `Created: ${new Date(server.image.created).toLocaleDateString()}` : ''}
+            {server.image
+              ? `Created: ${new Date(
+                  server.image.created,
+                ).toLocaleDateString()}`
+              : ''}
           </Typography>
         </InfoCard>
       </Grid>
@@ -2202,7 +2269,10 @@ export function ServerInfoCards({ server }: { server: HcloudServerDetails }) {
             {server.public_net.ipv4.ip}
           </Typography>
           <Typography className={classes.secondary}>
-            IPv6: {server.public_net.ipv6.ip ? server.public_net.ipv6.ip.substring(0, 20) + '...' : 'None'}
+            IPv6:{' '}
+            {server.public_net.ipv6.ip
+              ? server.public_net.ipv6.ip.substring(0, 20) + '...'
+              : 'None'}
           </Typography>
         </InfoCard>
       </Grid>
@@ -2239,7 +2309,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const COLORS = ['#4caf50', '#f44336', '#2196f3', '#ff9800', '#9c27b0', '#00bcd4'];
+const COLORS = [
+  '#4caf50',
+  '#f44336',
+  '#2196f3',
+  '#ff9800',
+  '#9c27b0',
+  '#00bcd4',
+];
 
 export function MetricsChart(props: {
   title: string;
@@ -2464,7 +2541,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function ProtectionStatus({ label, enabled }: { label: string; enabled: boolean }) {
+function ProtectionStatus({
+  label,
+  enabled,
+}: {
+  label: string;
+  enabled: boolean;
+}) {
   const classes = useStyles();
   return (
     <Typography className={classes.protectionLine}>
@@ -2487,7 +2570,12 @@ export function LabelsProtection({ server }: { server: HcloudServerDetails }) {
           {labelEntries.length > 0 ? (
             <Box className={classes.chipContainer}>
               {labelEntries.map(([k, v]) => (
-                <Chip key={k} label={`${k}=${v}`} size="small" variant="outlined" />
+                <Chip
+                  key={k}
+                  label={`${k}=${v}`}
+                  size="small"
+                  variant="outlined"
+                />
               ))}
             </Box>
           ) : (
@@ -2499,9 +2587,18 @@ export function LabelsProtection({ server }: { server: HcloudServerDetails }) {
       </Grid>
       <Grid item xs={12} md={6}>
         <InfoCard title="Protection & Backups" variant="gridItem">
-          <ProtectionStatus label="Delete protection" enabled={server.protection.delete} />
-          <ProtectionStatus label="Rebuild protection" enabled={server.protection.rebuild} />
-          <ProtectionStatus label="Backups" enabled={server.backup_window !== null} />
+          <ProtectionStatus
+            label="Delete protection"
+            enabled={server.protection.delete}
+          />
+          <ProtectionStatus
+            label="Rebuild protection"
+            enabled={server.protection.rebuild}
+          />
+          <ProtectionStatus
+            label="Backups"
+            enabled={server.backup_window !== null}
+          />
           {server.backup_window && (
             <Typography variant="body2" color="textSecondary">
               Backup window: {server.backup_window}
@@ -2547,8 +2644,7 @@ export function HcloudServerContent() {
   const [refreshKey, setRefreshKey] = useState(0);
   const intervalRef = useRef<ReturnType<typeof setInterval>>();
 
-  const project =
-    entity.metadata.annotations?.[HCLOUD_PROJECT_ANNOTATION];
+  const project = entity.metadata.annotations?.[HCLOUD_PROJECT_ANNOTATION];
 
   const triggerRefresh = useCallback(() => {
     refresh();
@@ -2639,6 +2735,7 @@ git commit -m "feat(hcloud): add overview card and dedicated tab components with
 ### Task 7: Catalog Entity Provider module
 
 **Files:**
+
 - Create: `plugins/hcloud-module-catalog/package.json`
 - Create: `plugins/hcloud-module-catalog/tsconfig.json`
 - Create: `plugins/hcloud-module-catalog/src/index.ts`
@@ -2766,9 +2863,7 @@ function readProviderConfigs(config: Config): ProviderConfig[] {
       projectKey: key,
       schedule: {
         frequency: {
-          minutes: scheduleConfig
-            .getConfig('frequency')
-            .getNumber('minutes'),
+          minutes: scheduleConfig.getConfig('frequency').getNumber('minutes'),
         },
         timeout: {
           minutes: scheduleConfig.getConfig('timeout').getNumber('minutes'),
@@ -2927,15 +3022,31 @@ const mockServer: HcloudServerDetails = {
   id: 12345,
   name: 'web-prod-01',
   status: 'running',
-  server_type: { id: 1, name: 'cpx31', description: 'CPX 31', cores: 4, memory: 8, disk: 80 },
+  server_type: {
+    id: 1,
+    name: 'cpx31',
+    description: 'CPX 31',
+    cores: 4,
+    memory: 8,
+    disk: 80,
+  },
   datacenter: {
-    id: 1, name: 'fsn1-dc14', description: 'Falkenstein 1 DC14',
-    location: { id: 1, name: 'fsn1', description: 'Falkenstein', country: 'DE', city: 'Falkenstein' },
+    id: 1,
+    name: 'fsn1-dc14',
+    description: 'Falkenstein 1 DC14',
+    location: {
+      id: 1,
+      name: 'fsn1',
+      description: 'Falkenstein',
+      country: 'DE',
+      city: 'Falkenstein',
+    },
   },
   public_net: {
     ipv4: { ip: '1.2.3.4', blocked: false },
     ipv6: { ip: '::1', blocked: false },
-    floating_ips: [], firewalls: [],
+    floating_ips: [],
+    firewalls: [],
   },
   image: null,
   created: '2025-01-01T00:00:00Z',
@@ -3085,6 +3196,7 @@ git commit -m "feat(hcloud): add catalog entity provider module for importing se
 ### Task 8: Integration — wire up in app and backend
 
 **Files:**
+
 - Modify: `packages/backend/package.json` — add hcloud-backend and module-catalog deps
 - Modify: `packages/backend/src/index.ts` — register backend plugins
 - Modify: `packages/app/package.json` — add hcloud frontend dep
@@ -3095,6 +3207,7 @@ git commit -m "feat(hcloud): add catalog entity provider module for importing se
 - [ ] **Step 1: Add backend dependencies to packages/backend/package.json**
 
 Add to `dependencies`:
+
 ```json
 "@proberaum/backstage-plugin-hcloud-backend": "workspace:^",
 "@proberaum/backstage-plugin-hcloud-module-catalog": "workspace:^"
@@ -3103,6 +3216,7 @@ Add to `dependencies`:
 - [ ] **Step 2: Register backend plugins in packages/backend/src/index.ts**
 
 Add before `backend.start()`:
+
 ```typescript
 // hcloud
 backend.add(import('@proberaum/backstage-plugin-hcloud-backend'));
@@ -3112,6 +3226,7 @@ backend.add(import('@proberaum/backstage-plugin-hcloud-module-catalog'));
 - [ ] **Step 3: Add frontend dependency to packages/app/package.json**
 
 Add to `dependencies`:
+
 ```json
 "@proberaum/backstage-plugin-hcloud": "workspace:^"
 ```
@@ -3119,6 +3234,7 @@ Add to `dependencies`:
 - [ ] **Step 4: Add card and tab to EntityPage.tsx**
 
 Add imports:
+
 ```typescript
 import {
   EntityHcloudServerCard,
@@ -3130,6 +3246,7 @@ import {
 Add the overview card and dedicated tab to **both** `defaultEntityPage` and `resourceEntityPage` layouts (since imported servers are `Resource` kind, and manually annotated entities can be any kind):
 
 In each entity page's overview content section (wherever `EntityAboutCard` is rendered), add the card:
+
 ```tsx
 <EntitySwitch>
   <EntitySwitch.Case if={isHcloudServerAvailable}>
@@ -3141,12 +3258,9 @@ In each entity page's overview content section (wherever `EntityAboutCard` is re
 ```
 
 In each `EntityLayout`, add the dedicated tab:
+
 ```tsx
-<EntityLayout.Route
-  path="/hcloud"
-  title="Hcloud"
-  if={isHcloudServerAvailable}
->
+<EntityLayout.Route path="/hcloud" title="Hcloud" if={isHcloudServerAvailable}>
   <EntityHcloudServerContent />
 </EntityLayout.Route>
 ```
@@ -3175,7 +3289,7 @@ kind: Component
 metadata:
   name: example-hcloud-server
   annotations:
-    hcloud/server: "web-prod-01"
+    hcloud/server: 'web-prod-01'
 spec:
   type: service
   lifecycle: production

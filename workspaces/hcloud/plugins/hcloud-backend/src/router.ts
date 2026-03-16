@@ -32,12 +32,15 @@ export async function createRouter(options: {
     const { ref } = req.params;
     const parsed = metricsQuerySchema.safeParse(req.query);
     if (!parsed.success) {
-      throw new InputError(
-        `Invalid query parameters: ${parsed.error.message}`,
-      );
+      throw new InputError(`Invalid query parameters: ${parsed.error.message}`);
     }
     const { type, range, project } = parsed.data;
-    const metrics = await hcloudService.getServerMetrics(ref, type, range, project);
+    const metrics = await hcloudService.getServerMetrics(
+      ref,
+      type,
+      range,
+      project,
+    );
     res.json(metrics);
   });
 

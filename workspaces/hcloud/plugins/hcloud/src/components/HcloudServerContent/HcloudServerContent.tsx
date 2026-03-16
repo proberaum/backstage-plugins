@@ -28,8 +28,7 @@ export function HcloudServerContent() {
   const [refreshKey, setRefreshKey] = useState(0);
   const intervalRef = useRef<ReturnType<typeof setInterval>>();
 
-  const project =
-    entity.metadata.annotations?.[HCLOUD_PROJECT_ANNOTATION];
+  const project = entity.metadata.annotations?.[HCLOUD_PROJECT_ANNOTATION];
 
   const triggerRefresh = useCallback(() => {
     refresh();

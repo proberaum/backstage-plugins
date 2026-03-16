@@ -12,12 +12,12 @@ A Backstage plugin for Hetzner Cloud that provides server status visibility on a
 
 Four packages under `plugins/`, following Backstage conventions with `@proberaum` scope:
 
-| Package | Backstage Role | Purpose |
-|---------|---------------|---------|
-| `plugins/hcloud` (`@proberaum/backstage-plugin-hcloud`) | `frontend-plugin` | Overview card + dedicated entity page tab |
-| `plugins/hcloud-backend` (`@proberaum/backstage-plugin-hcloud-backend`) | `backend-plugin` | API routes, hcloud client, caching, multi-project token management |
-| `plugins/hcloud-common` (`@proberaum/backstage-plugin-hcloud-common`) | `common-library` | Shared types, annotation constants, utilities |
-| `plugins/hcloud-module-catalog` (`@proberaum/backstage-plugin-hcloud-module-catalog`) | `backend-plugin-module` | Optional catalog entity provider for importing servers |
+| Package                                                                               | Backstage Role          | Purpose                                                            |
+| ------------------------------------------------------------------------------------- | ----------------------- | ------------------------------------------------------------------ |
+| `plugins/hcloud` (`@proberaum/backstage-plugin-hcloud`)                               | `frontend-plugin`       | Overview card + dedicated entity page tab                          |
+| `plugins/hcloud-backend` (`@proberaum/backstage-plugin-hcloud-backend`)               | `backend-plugin`        | API routes, hcloud client, caching, multi-project token management |
+| `plugins/hcloud-common` (`@proberaum/backstage-plugin-hcloud-common`)                 | `common-library`        | Shared types, annotation constants, utilities                      |
+| `plugins/hcloud-module-catalog` (`@proberaum/backstage-plugin-hcloud-module-catalog`) | `backend-plugin-module` | Optional catalog entity provider for importing servers             |
 
 ### Dependency graph
 
@@ -39,13 +39,14 @@ hcloud:
       token: ${HCLOUD_PROD_TOKEN}
     staging:
       token: ${HCLOUD_STAGING_TOKEN}
-  defaultProject: prod         # used when entity has no hcloud/project annotation
+  defaultProject: prod # used when entity has no hcloud/project annotation
   cache:
-    ttl: 30                    # seconds, server details cache TTL
-    metricsTtl: 60             # seconds, metrics data cache TTL
+    ttl: 30 # seconds, server details cache TTL
+    metricsTtl: 60 # seconds, metrics data cache TTL
 ```
 
 **Validation rules:**
+
 - At least one project must be configured.
 - `defaultProject` must reference a defined project key.
 - If an entity's `hcloud/project` annotation references an unknown project, the backend returns HTTP 400 and the frontend renders an error card.
@@ -90,12 +91,12 @@ Returns time series metrics data.
 
 The backend maps range presets to hcloud API parameters:
 
-| Range | `start` | `step` |
-|-------|---------|--------|
-| `1h`  | now - 1h | 60s |
-| `6h`  | now - 6h | 300s |
-| `24h` | now - 24h | 900s |
-| `7d`  | now - 7d | 3600s |
+| Range | `start`   | `step` |
+| ----- | --------- | ------ |
+| `1h`  | now - 1h  | 60s    |
+| `6h`  | now - 6h  | 300s   |
+| `24h` | now - 24h | 900s   |
+| `7d`  | now - 7d  | 3600s  |
 | `30d` | now - 30d | 14400s |
 
 `end` is always `now`. This keeps the mapping in the backend so the frontend only needs to send a preset name.
@@ -113,12 +114,12 @@ The backend maps range presets to hcloud API parameters:
 
 ### Error Handling
 
-| Condition | HTTP Status | Behavior |
-|-----------|-------------|----------|
-| Unknown project key | 400 | Message listing valid project keys |
-| Server not found | 404 | Clear message |
-| hcloud API error | Forwarded | Appropriate HTTP status from upstream |
-| Invalid/expired token | 502 | Clear message, no token leakage |
+| Condition             | HTTP Status | Behavior                              |
+| --------------------- | ----------- | ------------------------------------- |
+| Unknown project key   | 400         | Message listing valid project keys    |
+| Server not found      | 404         | Clear message                         |
+| hcloud API error      | Forwarded   | Appropriate HTTP status from upstream |
+| Invalid/expired token | 502         | Clear message, no token leakage       |
 
 ## Frontend Plugin (`hcloud`)
 
@@ -163,6 +164,7 @@ export const isHcloudServerAvailable = isPluginApplicableToEntity(
 ### Overview Card
 
 Compact card showing:
+
 - Server name and status badge (Running / Off / Rebuilding / etc.)
 - Server type (vCPU / RAM specs)
 - Datacenter
@@ -202,12 +204,12 @@ Full dashboard layout:
 
 ### Error States
 
-| Condition | Behavior |
-|-----------|----------|
+| Condition                          | Behavior                                               |
+| ---------------------------------- | ------------------------------------------------------ |
 | Missing `hcloud/server` annotation | Component not rendered (via `isHcloudServerAvailable`) |
-| Unknown project | Error card with message |
-| Server not found | Error card suggesting annotation value may be wrong |
-| Backend unreachable | Error card with retry button |
+| Unknown project                    | Error card with message                                |
+| Server not found                   | Error card suggesting annotation value may be wrong    |
+| Backend unreachable                | Error card with retry button                           |
 
 ## Catalog Entity Provider (`hcloud-module-catalog`)
 
@@ -219,13 +221,13 @@ Optional backend module that imports hcloud servers as Backstage `Resource` enti
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
-  name: hcloud-<project>-<server-name>    # e.g. hcloud-prod-web-prod-01
+  name: hcloud-<project>-<server-name> # e.g. hcloud-prod-web-prod-01
   annotations:
-    hcloud/server: "<server-id>"
-    hcloud/project: "<project-key>"
-  labels:                                  # mapped from hcloud labels
-    hcloud.io/env: "production"
-    hcloud.io/team: "platform"
+    hcloud/server: '<server-id>'
+    hcloud/project: '<project-key>'
+  labels: # mapped from hcloud labels
+    hcloud.io/env: 'production'
+    hcloud.io/team: 'platform'
 spec:
   type: hcloud-server
   owner: <configurable default>
@@ -238,13 +240,13 @@ spec:
 catalog:
   providers:
     hcloud:
-      prod:                                # matches project key from hcloud.projects
+      prod: # matches project key from hcloud.projects
         schedule:
           frequency: { minutes: 5 }
           timeout: { minutes: 3 }
-        filters:                           # optional: only import matching servers
+        filters: # optional: only import matching servers
           labels:
-            managed: "true"
+            managed: 'true'
         defaults:
           owner: group:platform-team
           lifecycle: production

@@ -52,9 +52,7 @@ function readProviderConfigs(config: Config): ProviderConfig[] {
       projectKey: key,
       schedule: {
         frequency: {
-          minutes: scheduleConfig
-            .getConfig('frequency')
-            .getNumber('minutes'),
+          minutes: scheduleConfig.getConfig('frequency').getNumber('minutes'),
         },
         timeout: {
           minutes: scheduleConfig.getConfig('timeout').getNumber('minutes'),

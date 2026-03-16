@@ -22,7 +22,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const COLORS = ['#4caf50', '#f44336', '#2196f3', '#ff9800', '#9c27b0', '#00bcd4'];
+const COLORS = [
+  '#4caf50',
+  '#f44336',
+  '#2196f3',
+  '#ff9800',
+  '#9c27b0',
+  '#00bcd4',
+];
 
 export function MetricsChart(props: {
   title: string;

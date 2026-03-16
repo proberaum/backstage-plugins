@@ -1,12 +1,11 @@
 // plugins/hcloud/src/components/HcloudServerCard/HcloudServerCard.tsx
-import {
-  Grid,
-  LinearProgress,
-  Typography,
-  Box,
-} from '@material-ui/core';
+import { Grid, LinearProgress, Typography, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { InfoCard, Progress, ResponseErrorPanel } from '@backstage/core-components';
+import {
+  InfoCard,
+  Progress,
+  ResponseErrorPanel,
+} from '@backstage/core-components';
 import { useServerDetails } from '../../hooks';
 import { useServerMetrics } from '../../hooks';
 import { StatusBadge } from '../common';
@@ -48,7 +47,9 @@ function CpuBar({ value }: { value: number }) {
           className={classes.bar}
           style={{ backgroundColor: '#4caf5033' }}
         />
-        <Typography className={classes.barLabel}>{Math.round(value)}%</Typography>
+        <Typography className={classes.barLabel}>
+          {Math.round(value)}%
+        </Typography>
       </Box>
     </Box>
   );
@@ -60,7 +61,11 @@ export function HcloudServerCard() {
   const { metrics: cpuMetrics } = useServerMetrics('cpu', '1h');
 
   if (loading) {
-    return <InfoCard title="Hetzner Cloud Server"><Progress /></InfoCard>;
+    return (
+      <InfoCard title="Hetzner Cloud Server">
+        <Progress />
+      </InfoCard>
+    );
   }
 
   if (error) {
@@ -87,16 +92,21 @@ export function HcloudServerCard() {
         <Grid item xs={6}>
           <Typography className={classes.label}>Type</Typography>
           <Typography className={classes.value}>
-            {server.server_type.name.toUpperCase()} ({server.server_type.cores} vCPU / {server.server_type.memory} GB)
+            {server.server_type.name.toUpperCase()} ({server.server_type.cores}{' '}
+            vCPU / {server.server_type.memory} GB)
           </Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography className={classes.label}>Datacenter</Typography>
-          <Typography className={classes.value}>{server.datacenter.name}</Typography>
+          <Typography className={classes.value}>
+            {server.datacenter.name}
+          </Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography className={classes.label}>IPv4</Typography>
-          <Typography className={classes.value}>{server.public_net.ipv4.ip}</Typography>
+          <Typography className={classes.value}>
+            {server.public_net.ipv4.ip}
+          </Typography>
         </Grid>
         <Grid item xs={12}>
           <CpuBar value={latestCpu} />

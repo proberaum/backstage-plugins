@@ -57,7 +57,9 @@ export class HcloudApiClient implements HcloudApi {
     if (project) {
       params.set('project', project);
     }
-    const url = `${baseUrl}/servers/${encodeURIComponent(ref)}/metrics?${params}`;
+    const url = `${baseUrl}/servers/${encodeURIComponent(
+      ref,
+    )}/metrics?${params}`;
 
     const response = await this.#fetchApi.fetch(url);
     if (!response.ok) {

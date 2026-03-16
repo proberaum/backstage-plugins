@@ -22,7 +22,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function ProtectionStatus({ label, enabled }: { label: string; enabled: boolean }) {
+function ProtectionStatus({
+  label,
+  enabled,
+}: {
+  label: string;
+  enabled: boolean;
+}) {
   const classes = useStyles();
   return (
     <Typography className={classes.protectionLine}>
@@ -45,7 +51,12 @@ export function LabelsProtection({ server }: { server: HcloudServerDetails }) {
           {labelEntries.length > 0 ? (
             <Box className={classes.chipContainer}>
               {labelEntries.map(([k, v]) => (
-                <Chip key={k} label={`${k}=${v}`} size="small" variant="outlined" />
+                <Chip
+                  key={k}
+                  label={`${k}=${v}`}
+                  size="small"
+                  variant="outlined"
+                />
               ))}
             </Box>
           ) : (
@@ -57,9 +68,18 @@ export function LabelsProtection({ server }: { server: HcloudServerDetails }) {
       </Grid>
       <Grid item xs={12} md={6}>
         <InfoCard title="Protection & Backups" variant="gridItem">
-          <ProtectionStatus label="Delete protection" enabled={server.protection.delete} />
-          <ProtectionStatus label="Rebuild protection" enabled={server.protection.rebuild} />
-          <ProtectionStatus label="Backups" enabled={server.backup_window !== null} />
+          <ProtectionStatus
+            label="Delete protection"
+            enabled={server.protection.delete}
+          />
+          <ProtectionStatus
+            label="Rebuild protection"
+            enabled={server.protection.rebuild}
+          />
+          <ProtectionStatus
+            label="Backups"
+            enabled={server.backup_window !== null}
+          />
           {server.backup_window && (
             <Typography variant="body2" color="textSecondary">
               Backup window: {server.backup_window}

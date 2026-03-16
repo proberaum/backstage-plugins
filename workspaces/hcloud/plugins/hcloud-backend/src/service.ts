@@ -94,7 +94,9 @@ export class DefaultHcloudService implements HcloudService {
     const key = project ?? this.#config.defaultProject;
     if (!this.#config.projects[key]) {
       throw new InputError(
-        `Unknown hcloud project "${key}". Valid projects: ${Object.keys(this.#config.projects).join(', ')}`,
+        `Unknown hcloud project "${key}". Valid projects: ${Object.keys(
+          this.#config.projects,
+        ).join(', ')}`,
       );
     }
     return key;

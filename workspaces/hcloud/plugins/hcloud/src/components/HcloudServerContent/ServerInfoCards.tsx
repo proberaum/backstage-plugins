@@ -32,7 +32,8 @@ export function ServerInfoCards({ server }: { server: HcloudServerDetails }) {
             {server.server_type.name.toUpperCase()}
           </Typography>
           <Typography className={classes.secondary}>
-            {server.server_type.cores} vCPU · {server.server_type.memory} GB RAM · {server.server_type.disk} GB disk
+            {server.server_type.cores} vCPU · {server.server_type.memory} GB RAM
+            · {server.server_type.disk} GB disk
           </Typography>
         </InfoCard>
       </Grid>
@@ -42,7 +43,8 @@ export function ServerInfoCards({ server }: { server: HcloudServerDetails }) {
             {server.datacenter.name}
           </Typography>
           <Typography className={classes.secondary}>
-            {server.datacenter.location.city}, {server.datacenter.location.country}
+            {server.datacenter.location.city},{' '}
+            {server.datacenter.location.country}
           </Typography>
         </InfoCard>
       </Grid>
@@ -52,7 +54,11 @@ export function ServerInfoCards({ server }: { server: HcloudServerDetails }) {
             {server.image?.description ?? 'None'}
           </Typography>
           <Typography className={classes.secondary}>
-            {server.image ? `Created: ${new Date(server.image.created).toLocaleDateString()}` : ''}
+            {server.image
+              ? `Created: ${new Date(
+                  server.image.created,
+                ).toLocaleDateString()}`
+              : ''}
           </Typography>
         </InfoCard>
       </Grid>
@@ -62,7 +68,10 @@ export function ServerInfoCards({ server }: { server: HcloudServerDetails }) {
             {server.public_net.ipv4.ip}
           </Typography>
           <Typography className={classes.secondary}>
-            IPv6: {server.public_net.ipv6.ip ? server.public_net.ipv6.ip.substring(0, 20) + '...' : 'None'}
+            IPv6:{' '}
+            {server.public_net.ipv6.ip
+              ? server.public_net.ipv6.ip.substring(0, 20) + '...'
+              : 'None'}
           </Typography>
         </InfoCard>
       </Grid>

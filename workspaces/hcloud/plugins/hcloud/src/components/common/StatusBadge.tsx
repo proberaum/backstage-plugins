@@ -10,7 +10,9 @@ const useStyles = makeStyles(theme => ({
   transitioning: { backgroundColor: theme.palette.warning.main, color: '#fff' },
 }));
 
-function statusCategory(status: HcloudServerStatus): 'running' | 'off' | 'error' | 'transitioning' {
+function statusCategory(
+  status: HcloudServerStatus,
+): 'running' | 'off' | 'error' | 'transitioning' {
   switch (status) {
     case 'running':
       return 'running';
@@ -29,11 +31,5 @@ export function StatusBadge({ status }: { status: HcloudServerStatus }) {
   const category = statusCategory(status);
   const label = status.charAt(0).toUpperCase() + status.slice(1);
 
-  return (
-    <Chip
-      label={label}
-      size="small"
-      className={classes[category]}
-    />
-  );
+  return <Chip label={label} size="small" className={classes[category]} />;
 }

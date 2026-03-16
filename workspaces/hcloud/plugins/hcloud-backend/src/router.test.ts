@@ -9,15 +9,31 @@ const mockHcloudService: jest.Mocked<HcloudService> = {
     id: 12345,
     name: 'web-prod-01',
     status: 'running',
-    server_type: { id: 1, name: 'cpx31', description: 'CPX 31', cores: 4, memory: 8, disk: 80 },
+    server_type: {
+      id: 1,
+      name: 'cpx31',
+      description: 'CPX 31',
+      cores: 4,
+      memory: 8,
+      disk: 80,
+    },
     datacenter: {
-      id: 1, name: 'fsn1-dc14', description: 'Falkenstein 1 DC14',
-      location: { id: 1, name: 'fsn1', description: 'Falkenstein', country: 'DE', city: 'Falkenstein' },
+      id: 1,
+      name: 'fsn1-dc14',
+      description: 'Falkenstein 1 DC14',
+      location: {
+        id: 1,
+        name: 'fsn1',
+        description: 'Falkenstein',
+        country: 'DE',
+        city: 'Falkenstein',
+      },
     },
     public_net: {
       ipv4: { ip: '1.2.3.4', blocked: false },
       ipv6: { ip: '::1', blocked: false },
-      floating_ips: [], firewalls: [],
+      floating_ips: [],
+      firewalls: [],
     },
     image: null,
     created: '2025-01-01T00:00:00Z',
@@ -67,14 +83,20 @@ describe('router', () => {
       .expect(200);
     expect(res.body.id).toBe(12345);
     expect(res.body.name).toBe('web-prod-01');
-    expect(mockHcloudService.getServer).toHaveBeenCalledWith('12345', undefined);
+    expect(mockHcloudService.getServer).toHaveBeenCalledWith(
+      '12345',
+      undefined,
+    );
   });
 
   it('GET /servers/:ref with project query param', async () => {
     await request(server)
       .get('/api/hcloud/servers/12345?project=staging')
       .expect(200);
-    expect(mockHcloudService.getServer).toHaveBeenCalledWith('12345', 'staging');
+    expect(mockHcloudService.getServer).toHaveBeenCalledWith(
+      '12345',
+      'staging',
+    );
   });
 
   it('GET /servers/:ref/metrics returns metrics', async () => {

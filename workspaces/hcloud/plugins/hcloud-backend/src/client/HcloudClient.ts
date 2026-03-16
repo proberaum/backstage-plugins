@@ -13,11 +13,14 @@ import {
 
 const HCLOUD_API_BASE = 'https://api.hetzner.cloud/v1';
 
-const RANGE_PARAMS: Record<HcloudTimeRange, { offsetMs: number; step: number }> = {
-  '1h':  { offsetMs: 60 * 60 * 1000,          step: 60 },
-  '6h':  { offsetMs: 6 * 60 * 60 * 1000,      step: 300 },
-  '24h': { offsetMs: 24 * 60 * 60 * 1000,     step: 900 },
-  '7d':  { offsetMs: 7 * 24 * 60 * 60 * 1000, step: 3600 },
+const RANGE_PARAMS: Record<
+  HcloudTimeRange,
+  { offsetMs: number; step: number }
+> = {
+  '1h': { offsetMs: 60 * 60 * 1000, step: 60 },
+  '6h': { offsetMs: 6 * 60 * 60 * 1000, step: 300 },
+  '24h': { offsetMs: 24 * 60 * 60 * 1000, step: 900 },
+  '7d': { offsetMs: 7 * 24 * 60 * 60 * 1000, step: 3600 },
   '30d': { offsetMs: 30 * 24 * 60 * 60 * 1000, step: 14400 },
 };
 
@@ -34,7 +37,9 @@ export class HcloudClient {
   }
 
   async getServerByName(name: string): Promise<HcloudServerDetails> {
-    const data = await this.#request(`/servers?name=${encodeURIComponent(name)}`);
+    const data = await this.#request(
+      `/servers?name=${encodeURIComponent(name)}`,
+    );
     const servers = data.servers;
     if (!servers || servers.length === 0) {
       throw new NotFoundError(`Server with name "${name}" not found`);
@@ -70,7 +75,10 @@ export class HcloudClient {
     );
 
     const timeSeries: HcloudTimeSeries[] = Object.entries(
-      data.metrics.time_series as Record<string, { values: Array<[number, string]> }>,
+      data.metrics.time_series as Record<
+        string,
+        { values: Array<[number, string]> }
+      >,
     ).map(([name, series]) => ({
       name,
       values: series.values.map(([ts, val]) => ({

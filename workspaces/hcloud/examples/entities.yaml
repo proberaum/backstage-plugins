@@ -45,7 +45,7 @@ kind: Component
 metadata:
   name: example-hcloud-server
   annotations:
-    hcloud/server: "web-prod-01"
+    hcloud/server: 'argocd3-test'
 spec:
   type: service
   lifecycle: production
