@@ -16,6 +16,9 @@ import {
 import { HcloudClient } from './client';
 import { readHcloudConfig, HcloudConfig } from './config';
 
+/**
+ * @public
+ */
 export interface HcloudService {
   getServer(ref: string, project?: string): Promise<HcloudServerDetails>;
   getServerMetrics(
@@ -28,6 +31,9 @@ export interface HcloudService {
   getProjectKeys(): string[];
 }
 
+/**
+ * @public
+ */
 export class DefaultHcloudService implements HcloudService {
   readonly #config: HcloudConfig;
   readonly #clients: Map<string, HcloudClient> = new Map();
@@ -113,6 +119,9 @@ export class DefaultHcloudService implements HcloudService {
   }
 }
 
+/**
+ * @public
+ */
 export const hcloudServiceRef = createServiceRef<HcloudService>({
   id: 'hcloud.service',
   defaultFactory: async service =>

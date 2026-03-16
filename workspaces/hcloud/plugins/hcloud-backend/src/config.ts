@@ -1,20 +1,32 @@
 import { Config } from '@backstage/config';
 
+/**
+ * @public
+ */
 export interface HcloudProjectConfig {
   token: string;
 }
 
+/**
+ * @public
+ */
 export interface HcloudCacheConfig {
   ttl: number;
   metricsTtl: number;
 }
 
+/**
+ * @public
+ */
 export interface HcloudConfig {
   projects: Record<string, HcloudProjectConfig>;
   defaultProject: string;
   cache: HcloudCacheConfig;
 }
 
+/**
+ * @public
+ */
 export function readHcloudConfig(config: Config): HcloudConfig {
   const hcloud = config.getConfig('hcloud');
   const projectsConfig = hcloud.getConfig('projects');

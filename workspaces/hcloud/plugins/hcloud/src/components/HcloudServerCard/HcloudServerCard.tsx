@@ -55,6 +55,9 @@ function CpuBar({ value }: { value: number }) {
   );
 }
 
+/**
+ * @public
+ */
 export function HcloudServerCard() {
   const classes = useStyles();
   const { server, loading, error } = useServerDetails();

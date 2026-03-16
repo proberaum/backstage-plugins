@@ -1,4 +1,8 @@
-/** Hetzner Cloud server status values */
+/**
+ * Hetzner Cloud server status values
+ *
+ * @public
+ */
 export type HcloudServerStatus =
   | 'running'
   | 'initializing'
@@ -10,7 +14,11 @@ export type HcloudServerStatus =
   | 'rebuilding'
   | 'unknown';
 
-/** Server type info (vCPU, memory, disk) */
+/**
+ * Server type info (vCPU, memory, disk)
+ *
+ * @public
+ */
 export interface HcloudServerType {
   id: number;
   name: string;
@@ -20,7 +28,11 @@ export interface HcloudServerType {
   disk: number;
 }
 
-/** Datacenter location */
+/**
+ * Datacenter location
+ *
+ * @public
+ */
 export interface HcloudLocation {
   id: number;
   name: string;
@@ -29,7 +41,11 @@ export interface HcloudLocation {
   city: string;
 }
 
-/** Datacenter info */
+/**
+ * Datacenter info
+ *
+ * @public
+ */
 export interface HcloudDatacenter {
   id: number;
   name: string;
@@ -37,19 +53,31 @@ export interface HcloudDatacenter {
   location: HcloudLocation;
 }
 
-/** IPv4 info */
+/**
+ * IPv4 info
+ *
+ * @public
+ */
 export interface HcloudIPv4 {
   ip: string;
   blocked: boolean;
 }
 
-/** IPv6 info */
+/**
+ * IPv6 info
+ *
+ * @public
+ */
 export interface HcloudIPv6 {
   ip: string;
   blocked: boolean;
 }
 
-/** Public networking */
+/**
+ * Public networking
+ *
+ * @public
+ */
 export interface HcloudPublicNet {
   ipv4: HcloudIPv4;
   ipv6: HcloudIPv6;
@@ -57,7 +85,11 @@ export interface HcloudPublicNet {
   firewalls: Array<{ id: number; status: string }>;
 }
 
-/** Server image */
+/**
+ * Server image
+ *
+ * @public
+ */
 export interface HcloudImage {
   id: number;
   type: string;
@@ -66,13 +98,21 @@ export interface HcloudImage {
   created: string;
 }
 
-/** Protection settings */
+/**
+ * Protection settings
+ *
+ * @public
+ */
 export interface HcloudProtection {
   delete: boolean;
   rebuild: boolean;
 }
 
-/** Volume info (denormalized from volumes API) */
+/**
+ * Volume info (denormalized from volumes API)
+ *
+ * @public
+ */
 export interface HcloudVolume {
   id: number;
   name: string;
@@ -81,7 +121,11 @@ export interface HcloudVolume {
   linux_device: string | null;
 }
 
-/** Full server details returned by the backend API */
+/**
+ * Full server details returned by the backend API
+ *
+ * @public
+ */
 export interface HcloudServerDetails {
   id: number;
   name: string;
@@ -101,19 +145,35 @@ export interface HcloudServerDetails {
   load_balancers: number[];
 }
 
-/** Valid metric types */
+/**
+ * Valid metric types
+ *
+ * @public
+ */
 export type HcloudMetricType = 'cpu' | 'disk' | 'network';
 
-/** Valid time range presets */
+/**
+ * Valid time range presets
+ *
+ * @public
+ */
 export type HcloudTimeRange = '1h' | '6h' | '24h' | '7d' | '30d';
 
-/** A single time series */
+/**
+ * A single time series
+ *
+ * @public
+ */
 export interface HcloudTimeSeries {
   name: string;
   values: Array<{ timestamp: number; value: number }>;
 }
 
-/** Metrics response from the backend API */
+/**
+ * Metrics response from the backend API
+ *
+ * @public
+ */
 export interface HcloudMetricsResponse {
   type: HcloudMetricType;
   range: HcloudTimeRange;

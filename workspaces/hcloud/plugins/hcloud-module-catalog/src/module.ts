@@ -6,6 +6,11 @@ import { catalogProcessingExtensionPoint } from '@backstage/plugin-catalog-node'
 import { hcloudServiceRef } from '@proberaum/backstage-plugin-hcloud-backend';
 import { HcloudEntityProvider } from './provider';
 
+/**
+ * Optional hcloud catalog module that loads a catalog entity provider.
+ *
+ * @public
+ */
 export const catalogModuleHcloud = createBackendModule({
   pluginId: 'catalog',
   moduleId: 'hcloud',

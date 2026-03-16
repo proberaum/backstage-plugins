@@ -11,6 +11,9 @@ import {
 } from '@proberaum/backstage-plugin-hcloud-common';
 import { ResponseError } from '@backstage/errors';
 
+/**
+ * @public
+ */
 export interface HcloudApi {
   getServer(ref: string, project?: string): Promise<HcloudServerDetails>;
   getServerMetrics(
@@ -21,10 +24,16 @@ export interface HcloudApi {
   ): Promise<HcloudMetricsResponse>;
 }
 
+/**
+ * @public
+ */
 export const hcloudApiRef = createApiRef<HcloudApi>({
   id: 'plugin.hcloud',
 });
 
+/**
+ * @public
+ */
 export class HcloudApiClient implements HcloudApi {
   readonly #discoveryApi: DiscoveryApi;
   readonly #fetchApi: FetchApi;

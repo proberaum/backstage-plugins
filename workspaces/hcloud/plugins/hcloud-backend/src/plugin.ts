@@ -5,6 +5,9 @@ import {
 import { createRouter } from './router';
 import { hcloudServiceRef } from './service';
 
+/**
+ * @public
+ */
 export const hcloudPlugin = createBackendPlugin({
   pluginId: 'hcloud',
   register(env) {

@@ -20,6 +20,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+/**
+ * @public
+ */
 export function HcloudServerContent() {
   const classes = useStyles();
   const { entity } = useEntity();

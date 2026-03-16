@@ -7,6 +7,9 @@ import {
 } from '@backstage/core-plugin-api';
 import { hcloudApiRef, HcloudApiClient } from './api';
 
+/**
+ * @public
+ */
 export const hcloudPlugin = createPlugin({
   id: 'hcloud',
   apis: [
@@ -19,6 +22,9 @@ export const hcloudPlugin = createPlugin({
   ],
 });
 
+/**
+ * @public
+ */
 export const EntityHcloudServerCard = hcloudPlugin.provide(
   createComponentExtension({
     name: 'EntityHcloudServerCard',
@@ -29,6 +35,9 @@ export const EntityHcloudServerCard = hcloudPlugin.provide(
   }),
 );
 
+/**
+ * @public
+ */
 export const EntityHcloudServerContent = hcloudPlugin.provide(
   createComponentExtension({
     name: 'EntityHcloudServerContent',
