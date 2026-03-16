@@ -24,7 +24,7 @@ Four packages under `plugins/`, following Backstage conventions with `@proberaum
 ```
 hcloud (frontend) ──> hcloud-common
 hcloud-backend ──> hcloud-common
-hcloud-module-catalog ──> hcloud-backend (shared hcloud client)
+hcloud-module-catalog ──> hcloud-backend (via service ref, not direct import)
 hcloud-module-catalog ──> hcloud-common
 ```
 
@@ -48,7 +48,7 @@ hcloud:
 **Validation rules:**
 - At least one project must be configured.
 - `defaultProject` must reference a defined project key.
-- If an entity's `hcloud/project` annotation references an unknown project, the frontend shows an error.
+- If an entity's `hcloud/project` annotation references an unknown project, the backend returns HTTP 400 and the frontend renders an error card.
 
 ### Entity Annotations
 
@@ -85,20 +85,31 @@ Returns time series metrics data.
 - Query params:
   - `project=<key>` (optional)
   - `type=cpu|disk|network` (required)
-  - `start=<ISO 8601>` (required)
-  - `end=<ISO 8601>` (required)
-  - `step=<seconds>` (required)
+  - `range=1h|6h|24h|7d|30d` (required)
 - Response: array of time series data points
+
+The backend maps range presets to hcloud API parameters:
+
+| Range | `start` | `step` |
+|-------|---------|--------|
+| `1h`  | now - 1h | 60s |
+| `6h`  | now - 6h | 300s |
+| `24h` | now - 24h | 900s |
+| `7d`  | now - 7d | 3600s |
+| `30d` | now - 30d | 14400s |
+
+`end` is always `now`. This keeps the mapping in the backend so the frontend only needs to send a preset name.
 
 ### Hcloud Client Layer
 
-- Wraps the official `hcloud-js` npm package (Hetzner's TypeScript SDK).
+- Direct HTTP client wrapping the [Hetzner Cloud REST API](https://docs.hetzner.cloud/) using `node-fetch` or Backstage's `fetchApiRef`. There is no official Hetzner TypeScript SDK on npm; existing community packages (`hcloud-js`) have outdated dependencies. A thin typed wrapper is straightforward given we only need server and metrics endpoints.
 - One client instance per configured project, created lazily on first use.
 - Caching layer between API routes and the hcloud client:
   - Server details: cached by `(project, serverId)`, TTL from config (default 30s).
   - Name-to-ID resolution: cached by `(project, serverName)`, same TTL.
-  - Metrics: cached by `(project, serverId, type, start, end, step)`, separate TTL (default 60s).
+  - Metrics: cached by `(project, serverId, type, range)`, separate TTL (default 60s). Since the backend maps range presets to time windows and `end` is always `now`, the cache key uses the preset name, not raw timestamps. Entries within the same range preset share the cache until TTL expires.
 - Uses Backstage's built-in `CacheManager` for cache storage.
+- Exposed as a Backstage service via `createServiceRef` so that `hcloud-module-catalog` can access it through the backend plugin's service interface (see Catalog Entity Provider section).
 
 ### Error Handling
 
@@ -156,7 +167,7 @@ Compact card showing:
 - Server type (vCPU / RAM specs)
 - Datacenter
 - IPv4 address
-- CPU, RAM, disk utilization bars (current percentage)
+- CPU and disk utilization bars (current percentage, derived from latest metrics data point)
 
 ### Dedicated Tab
 
@@ -164,9 +175,8 @@ Full dashboard layout:
 
 1. **Server header** — name, status badge, server ID, project key, refresh button, auto-refresh toggle (configurable interval, default 30s)
 2. **Info cards grid** (4 columns) — server type + specs, location + datacenter, image + creation date, networking (IPv4/IPv6)
-3. **Metrics panel** — time range selector (1h, 6h, 24h, 7d, 30d) with 4 chart components:
+3. **Metrics panel** — time range selector (1h, 6h, 24h, 7d, 30d) with 3 chart components (matching hcloud API capabilities):
    - CPU usage
-   - Memory usage
    - Disk I/O (read/write)
    - Network traffic (in/out)
 4. **Volumes table** — attached volumes with name, size, filesystem
@@ -182,7 +192,7 @@ Full dashboard layout:
   - `VolumesTable`
   - `LabelsProtection`
 - `useServerDetails(ref, project)` — hook, calls backend API, manages loading/error states
-- `useServerMetrics(ref, project, type, timeRange)` — hook for metrics data
+- `useServerMetrics(ref, project, type, range)` — hook for metrics data, `range` is a preset name (1h/6h/24h/7d/30d)
 
 ### Auto-Refresh
 
@@ -250,4 +260,4 @@ catalog:
 - Configurable default `owner` and `lifecycle` per project.
 - Server hcloud labels are mapped to Backstage entity labels with `hcloud.io/` prefix to avoid collisions.
 - Imported entities automatically get `hcloud/server` and `hcloud/project` annotations, so the frontend plugin works on them without additional configuration.
-- Uses the shared hcloud client from `hcloud-backend`.
+- Accesses the hcloud client via the `hcloudClientServiceRef` exposed by `hcloud-backend`. The catalog module declares a dependency on this service ref in its `createBackendModule` registration, and the Backstage backend system injects it at runtime. This avoids a direct package import and follows the Backstage new backend system plugin-to-module contract pattern.
