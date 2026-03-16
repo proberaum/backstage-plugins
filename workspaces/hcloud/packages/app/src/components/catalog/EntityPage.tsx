@@ -57,6 +57,11 @@ import {
   EntityKubernetesContent,
   isKubernetesAvailable,
 } from '@backstage/plugin-kubernetes';
+import {
+  EntityHcloudServerCard,
+  EntityHcloudServerContent,
+  isHcloudServerAvailable,
+} from '@proberaum/backstage-plugin-hcloud';
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -140,6 +145,13 @@ const overviewContent = (
     <Grid item md={8} xs={12}>
       <EntityHasSubcomponentsCard variant="gridItem" />
     </Grid>
+    <EntitySwitch>
+      <EntitySwitch.Case if={isHcloudServerAvailable}>
+        <Grid item md={6}>
+          <EntityHcloudServerCard />
+        </Grid>
+      </EntitySwitch.Case>
+    </EntitySwitch>
   </Grid>
 );
 
@@ -183,6 +195,14 @@ const serviceEntityPage = (
       </Grid>
     </EntityLayout.Route>
 
+    <EntityLayout.Route
+      path="/hcloud"
+      title="Hcloud"
+      if={isHcloudServerAvailable}
+    >
+      <EntityHcloudServerContent />
+    </EntityLayout.Route>
+
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
     </EntityLayout.Route>
@@ -218,6 +238,14 @@ const websiteEntityPage = (
       </Grid>
     </EntityLayout.Route>
 
+    <EntityLayout.Route
+      path="/hcloud"
+      title="Hcloud"
+      if={isHcloudServerAvailable}
+    >
+      <EntityHcloudServerContent />
+    </EntityLayout.Route>
+
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
     </EntityLayout.Route>
@@ -235,6 +263,14 @@ const defaultEntityPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
       {overviewContent}
+    </EntityLayout.Route>
+
+    <EntityLayout.Route
+      path="/hcloud"
+      title="Hcloud"
+      if={isHcloudServerAvailable}
+    >
+      <EntityHcloudServerContent />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/docs" title="Docs">

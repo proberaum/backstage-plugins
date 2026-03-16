@@ -39,3 +39,14 @@ spec:
     message ExampleMessage {
       string example = 1;
     };
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: example-hcloud-server
+  annotations:
+    hcloud/server: "web-prod-01"
+spec:
+  type: service
+  lifecycle: production
+  owner: guests
