@@ -33,7 +33,7 @@
     "@backstage/core-plugin-api": "^1.12.3",
     "@backstage/errors": "^1.2.7",
     "@backstage/theme": "^0.7.2",
-    "@material-ui/core": "^4.12.4",
+    "@mui/material": "^5.0.0",
     "@material-ui/icons": "^4.11.3",
     "@mui/styles": "6.4.8",
     "@proberaum/backstage-plugin-dashboards-common": "workspace:^",
