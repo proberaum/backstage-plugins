@@ -5,8 +5,8 @@ import {
   LoggerService,
   CacheService,
 } from '@backstage/backend-plugin-api';
-import { Config } from '@backstage/config';
 import { InputError } from '@backstage/errors';
+import { JsonValue } from '@backstage/types';
 import {
   HcloudServerDetails,
   HcloudMetricType,
@@ -51,13 +51,13 @@ export class DefaultHcloudService implements HcloudService {
   async getServer(ref: string, project?: string): Promise<HcloudServerDetails> {
     const projectKey = this.#resolveProject(project);
     const cacheKey = `server:${projectKey}:${ref}`;
-    const cached = await this.#cache.get<HcloudServerDetails>(cacheKey);
+    const cached = await this.#cache.get<JsonValue>(cacheKey);
     if (cached) {
-      return cached;
+      return cached as unknown as HcloudServerDetails;
     }
     const client = this.#getClient(projectKey);
     const server = await client.getServer(ref);
-    await this.#cache.set(cacheKey, server, {
+    await this.#cache.set(cacheKey, server as unknown as JsonValue, {
       ttl: this.#config.cache.ttl * 1000,
     });
     return server;
@@ -72,13 +72,13 @@ export class DefaultHcloudService implements HcloudService {
     const server = await this.getServer(ref, project);
     const projectKey = this.#resolveProject(project);
     const cacheKey = `metrics:${projectKey}:${server.id}:${type}:${range}`;
-    const cached = await this.#cache.get<HcloudMetricsResponse>(cacheKey);
+    const cached = await this.#cache.get<JsonValue>(cacheKey);
     if (cached) {
-      return cached;
+      return cached as unknown as HcloudMetricsResponse;
     }
     const client = this.#getClient(projectKey);
     const metrics = await client.getServerMetrics(server.id, type, range);
-    await this.#cache.set(cacheKey, metrics, {
+    await this.#cache.set(cacheKey, metrics as unknown as JsonValue, {
       ttl: this.#config.cache.metricsTtl * 1000,
     });
     return metrics;

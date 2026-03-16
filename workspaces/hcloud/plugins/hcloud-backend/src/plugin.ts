@@ -15,12 +15,11 @@ export const hcloudPlugin = createBackendPlugin({
         hcloudService: hcloudServiceRef,
       },
       async init({ httpAuth, httpRouter, hcloudService }) {
-        httpRouter.use(
-          await createRouter({
-            httpAuth,
-            hcloudService,
-          }),
-        );
+        const router = await createRouter({
+          httpAuth,
+          hcloudService,
+        });
+        httpRouter.use(router as any);
       },
     });
   },

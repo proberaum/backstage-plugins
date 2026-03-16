@@ -20,7 +20,7 @@ export async function createRouter(options: {
   router.use(express.json());
 
   router.get('/servers/:ref', async (req, res) => {
-    await httpAuth.credentials(req, { allow: ['user'] });
+    await httpAuth.credentials(req as any, { allow: ['user'] });
     const { ref } = req.params;
     const project = req.query.project as string | undefined;
     const server = await hcloudService.getServer(ref, project);
@@ -28,7 +28,7 @@ export async function createRouter(options: {
   });
 
   router.get('/servers/:ref/metrics', async (req, res) => {
-    await httpAuth.credentials(req, { allow: ['user'] });
+    await httpAuth.credentials(req as any, { allow: ['user'] });
     const { ref } = req.params;
     const parsed = metricsQuerySchema.safeParse(req.query);
     if (!parsed.success) {
