@@ -20,8 +20,7 @@
     "pluginPackages": [
       "@proberaum/backstage-plugin-hcloud",
       "@proberaum/backstage-plugin-hcloud-backend",
-      "@proberaum/backstage-plugin-hcloud-common",
-      "@proberaum/backstage-plugin-hcloud-module-catalog"
+      "@proberaum/backstage-plugin-hcloud-common"
     ]
   },
   "scripts": {
