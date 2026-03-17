@@ -54,3 +54,10 @@ e2e-test-report/
 
 # Cache
 .cache/
+
+# AI/Claude
+/.superpowers
+
+# Git worktrees
+.worktrees/
+
