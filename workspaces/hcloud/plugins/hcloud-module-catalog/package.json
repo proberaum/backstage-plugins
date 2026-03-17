@@ -9,6 +9,11 @@
     "main": "dist/index.cjs.js",
     "types": "dist/index.d.ts"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/proberaum/backstage-plugins",
+    "directory": "workspaces/hcloud/plugins/hcloud-module-catalog"
+  },
   "backstage": {
     "role": "backend-plugin-module",
     "pluginId": "catalog",
