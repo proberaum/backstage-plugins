@@ -30,12 +30,12 @@
     "postpack": "backstage-cli package postpack"
   },
   "dependencies": {
-    "@backstage/backend-plugin-api": "^1.7.0",
+    "@backstage/backend-plugin-api": "^1.8.0",
     "@proberaum/backstage-plugin-scheduler-notifications-common": "workspace:^"
   },
   "devDependencies": {
-    "@backstage/backend-test-utils": "^1.11.0",
-    "@backstage/cli": "^0.35.4"
+    "@backstage/backend-test-utils": "^1.11.1",
+    "@backstage/cli": "^0.36.0"
   },
   "files": [
     "dist"
