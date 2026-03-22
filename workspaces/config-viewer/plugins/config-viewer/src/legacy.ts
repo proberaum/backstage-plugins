@@ -1,15 +1,18 @@
 import {
   createPlugin,
   createRoutableExtension,
+  createRouteRef,
 } from '@backstage/core-plugin-api';
 
-import { rootRouteRef } from './routes';
+const rootRouteRef = createRouteRef({
+  id: 'config-viewer-legacy',
+});
 
 /**
  * @public
  */
 export const configViewerPlugin = createPlugin({
-  id: 'config-viewer',
+  id: 'config-viewer-legacy',
   routes: {
     root: rootRouteRef,
   },

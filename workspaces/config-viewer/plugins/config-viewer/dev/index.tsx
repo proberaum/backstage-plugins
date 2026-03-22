@@ -1,11 +1,5 @@
-import { createDevApp } from '@backstage/dev-utils';
-import { configViewerPlugin, ConfigViewerPage } from '../src/plugin';
+import { createDevApp } from '@backstage/frontend-dev-utils';
 
-createDevApp()
-  .registerPlugin(configViewerPlugin)
-  .addPage({
-    element: <ConfigViewerPage />,
-    title: 'Config viewer',
-    path: '/config-viewer',
-  })
-  .render();
+import plugin from '../src';
+
+createDevApp({ features: [plugin] });

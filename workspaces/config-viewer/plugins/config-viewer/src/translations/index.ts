@@ -1,4 +1,4 @@
-import { createTranslationResource } from '@backstage/core-plugin-api/alpha';
+import { createTranslationResource } from '@backstage/frontend-plugin-api';
 
 import { configViewerTranslationRef } from './ref';
 

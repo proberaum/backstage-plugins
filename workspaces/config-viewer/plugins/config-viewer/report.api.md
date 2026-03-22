@@ -4,6 +4,8 @@
 
 ```ts
 import { BackstagePlugin } from '@backstage/core-plugin-api';
+import { configViewerPlugin as configViewerPlugin_2 } from './plugin';
+import { configViewerTranslationModule } from './plugin';
 import { JSX as JSX_2 } from 'react/jsx-runtime';
 import { RouteRef } from '@backstage/core-plugin-api';
 import { TranslationRef } from '@backstage/frontend-plugin-api';
@@ -20,6 +22,10 @@ export const configViewerPlugin: BackstagePlugin<
   {},
   {}
 >;
+
+export default configViewerPlugin_2;
+
+export { configViewerTranslationModule };
 
 // @public (undocumented)
 export const configViewerTranslationRef: TranslationRef<

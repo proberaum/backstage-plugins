@@ -1,4 +1,4 @@
-import { createTranslationRef } from '@backstage/core-plugin-api/alpha';
+import { createTranslationRef } from '@backstage/frontend-plugin-api';
 
 /**
  * @public
