@@ -40,7 +40,7 @@
     "@backstage/errors": "^1.2.7",
     "@backstage/plugin-catalog-react": "^2.0.0",
     "@material-ui/core": "^4.12.2",
-    "@material-ui/icons": "^4.9.1",
+    "@mui/icons-material": "^5.0.0",
     "@material-ui/lab": "^4.0.0-alpha.61",
     "@proberaum/backstage-plugin-hcloud-common": "workspace:^",
     "recharts": "^2.12.0"
