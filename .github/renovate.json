@@ -6,5 +6,12 @@
   "prConcurrentLimit": 20,
   "postUpdateOptions": [
     "yarnDedupeHighest"
+  ],
+  "packageRules": [
+    {
+      "enabled": false,
+      "matchPackagePatterns": ["^@material-ui/"],
+      "matchUpdateTypes": ["replacement"]
+    }
   ]
 }
