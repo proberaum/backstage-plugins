@@ -3425,7 +3425,7 @@ __metadata:
     eslint-plugin-notice: "npm:^0.9.10"
     eslint-plugin-react: "npm:^7.28.0"
     eslint-plugin-testing-library: "npm:^6.0.0"
-    fs-extra: "npm:11.3.0"
+    fs-extra: "npm:11.4.0"
     husky: "npm:^9.0.11"
     js-yaml: "npm:^4.1.0"
     lint-staged: "npm:^15.2.2"
@@ -8778,14 +8778,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:11.3.0, fs-extra@npm:^11.2.0":
-  version: 11.3.0
-  resolution: "fs-extra@npm:11.3.0"
+"fs-extra@npm:11.4.0, fs-extra@npm:^11.2.0":
+  version: 11.4.0
+  resolution: "fs-extra@npm:11.4.0"
   dependencies:
     graceful-fs: "npm:^4.2.0"
     jsonfile: "npm:^6.0.1"
     universalify: "npm:^2.0.0"
-  checksum: 10/c9fe7b23dded1efe7bbae528d685c3206477e20cc60e9aaceb3f024f9b9ff2ee1f62413c161cb88546cc564009ab516dec99e9781ba782d869bb37e4fe04a97f
+  checksum: 10/a1bd91076fe9de9114bd037a433f1f498857eb3f0cf778e647fd00dc5984374dee5e088854de3d6ca77cd9f11554a85f6f016a6004d0838bbc7cd722e33601ce
   languageName: node
   linkType: hard
 
