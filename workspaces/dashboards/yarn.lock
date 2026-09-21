@@ -13238,11 +13238,11 @@ __metadata:
   linkType: hard
 
 "@types/react-grid-layout@npm:^1":
-  version: 1.3.5
-  resolution: "@types/react-grid-layout@npm:1.3.5"
+  version: 1.3.6
+  resolution: "@types/react-grid-layout@npm:1.3.6"
   dependencies:
     "@types/react": "npm:*"
-  checksum: 10/21599054dfa977ed8445b1ab3198a842531cb36bd620564c3f8a469688cbea051149eb644a99b2f8f6d02f8d9909a6145668f385781b5647601e9663de216946
+  checksum: 10/80b9cd6ab14f5cd32a62451544cbbeff32d6c8c3fefd6e04f974429a0b1b0d2aded1f4767ae4ce9cd4caa395e514531f5e5d6a3c3e93dba4906a907f8d77ee21
   languageName: node
   linkType: hard
 
@@ -15828,7 +15828,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clsx@npm:^1.0.2, clsx@npm:^1.0.4, clsx@npm:^1.1.0, clsx@npm:^1.1.1, clsx@npm:^1.2.1":
+"clsx@npm:^1.0.2, clsx@npm:^1.0.4, clsx@npm:^1.1.0, clsx@npm:^1.2.1":
   version: 1.2.1
   resolution: "clsx@npm:1.2.1"
   checksum: 10/5ded6f61f15f1fa0350e691ccec43a28b12fb8e64c8e94715f2a937bc3722d4c3ed41d6e945c971fc4dcc2a7213a43323beaf2e1c28654af63ba70c9968a8643
@@ -27460,16 +27460,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-draggable@npm:^4.0.3, react-draggable@npm:^4.4.5":
-  version: 4.4.6
-  resolution: "react-draggable@npm:4.4.6"
+"react-draggable@npm:^4.0.3, react-draggable@npm:^4.4.6":
+  version: 4.7.2
+  resolution: "react-draggable@npm:4.7.2"
   dependencies:
-    clsx: "npm:^1.1.1"
+    clsx: "npm:^2.1.1"
     prop-types: "npm:^15.8.1"
   peerDependencies:
     react: ">= 16.3.0"
     react-dom: ">= 16.3.0"
-  checksum: 10/51b9ac7f913797fc1cebc30ae383f346883033c45eb91e9b0b92e9ebd224bb1545b4ae2391825b649b798cc711a38351a5f41be24d949c64c6703ebc24eba661
+  checksum: 10/d0913851384f840dc1cd8d447653ac73d0d6e29046368f7ff72ef34b08f0af7a6988cad6ab5c774abb428dcec8d73283754e53ce99d289914d783ad00ff85caa
   languageName: node
   linkType: hard
 
@@ -27510,19 +27510,19 @@ __metadata:
   linkType: hard
 
 "react-grid-layout@npm:^1.4.4":
-  version: 1.4.4
-  resolution: "react-grid-layout@npm:1.4.4"
+  version: 1.5.4
+  resolution: "react-grid-layout@npm:1.5.4"
   dependencies:
-    clsx: "npm:^2.0.0"
+    clsx: "npm:^2.1.1"
     fast-equals: "npm:^4.0.3"
     prop-types: "npm:^15.8.1"
-    react-draggable: "npm:^4.4.5"
+    react-draggable: "npm:^4.4.6"
     react-resizable: "npm:^3.0.5"
     resize-observer-polyfill: "npm:^1.5.1"
   peerDependencies:
     react: ">= 16.3.0"
     react-dom: ">= 16.3.0"
-  checksum: 10/43c9bc7e8ce5a902720ebe559b1551724615c617391b040a0a275597748e1927b293c5ddcb73053b1925909e1c293948b4969a35799d541bf9d8886e07ac0085
+  checksum: 10/9599f1f8fdbb488d0be5d848454683933d56cf0c47c33a85dbc4f322402e4c92288b64b57f29d2faaefdea2eedc4c5df50a0cdcebc07305bb4913928cf032267
   languageName: node
   linkType: hard
 
